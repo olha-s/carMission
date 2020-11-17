@@ -36,17 +36,20 @@
     "start-js": "react-scripts start",
     "build": "npm run eslint && npm run stylelint-build && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "stylelint-dev": "stylelint ./src/**/*.scss --cache --cache-location ./.stylelintcache; exit 0",
     "stylelint-build": "stylelint ./src/**/*.scss",
-    "watch-sass-js": "npm-watch",
     "stylelint-fix-sass": "stylelint --fix ./src/**/*.scss",
-    "eslint": "eslint ./src/**/*.js"
+    "watch-sass-js": "npm-watch",
+    "prettier-fix-all": "prettier -w ./src/",
+    "stylelint-prettier-check": "stylelint-config-prettier-check",
+    "eslint": "eslint ./src/**/*.js",
+    "eslint-fix-js": "eslint --fix ./src/**/*.js"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "prettier"
     ]
   },
   "browserslist": {
@@ -63,8 +66,11 @@
   },
   "devDependencies": {
     "eslint": "^7.13.0",
+    "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-react": "^7.21.5",
-    "standard": "^16.0.2"
+    "prettier": "2.1.2",
+    "standard": "^16.0.2",
+    "stylelint-config-prettier": "^8.0.2"
   }
 }
