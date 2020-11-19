@@ -1,0 +1,23 @@
+.page-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  //to be changed when header and footer will be ready
+  //height: 98vh;
+  background: $Rectangle67;
+
+  &__head {
+    margin-top: 50px;
+    color: $Rectangle48;
+    font-weight: 700;
+    font-size: 64px;
+  }
+
+  &__text {
+    margin-top: 20px;
+    color: $Rectangle48;
+    font-weight: 400;
+    font-size: 18px;
+  }
+}
