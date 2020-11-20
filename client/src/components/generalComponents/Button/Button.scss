@@ -1,0 +1,129 @@
+@import "../../../theme/styles/variables";
+
+.button-callBack{
+  width: 175px;
+  height: 39px;
+  color: $Rectangle48;
+  font-size: 12px;
+  font-family: Open Sans;
+  line-height: 16px;
+  text-align: center;
+  background: linear-gradient($Rectangle67, $Rectangle67) padding-box, linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%) border-box;
+  border: 3px solid transparent;
+  border-radius: 18px;
+  outline: none;
+}
+.button-callBack:hover {
+  width: 174px;
+  background: linear-gradient($Rectangle65, $Rectangle65) padding-box, linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%) border-box;
+  border: 2px solid transparent;
+}
+
+.button-modal{
+  box-sizing: border-box;
+  width: 141px;
+  height: 31px;
+  color: $Rectangle48;
+  font-size: 12px;
+  font-family: Open Sans;
+  line-height: 16px;
+  text-align: center;
+  background: $Rectangle67;
+  border: 2px solid $Rectangle51;
+  border-radius: 18px;
+  outline: none;
+}
+.button-modal:hover{
+  background: $Rectangle64;
+  border: 2px solid $Rectangle51;
+  border-radius: 18px;
+}
+.button1-callBack{
+  width: 196px;
+  height: 42px;
+  color: $Rectangle48;
+  font-size: 12px;
+  font-family: Open Sans;
+  line-height: 16px;
+  text-align: center;
+  background: linear-gradient($Rectangle67, $Rectangle67) padding-box, linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%) border-box;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  outline: none;
+}
+.button1-callBack:hover{
+  background: linear-gradient($Rectangle65, $Rectangle65) padding-box, linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%) border-box;
+}
+.button1-callBack:active{
+  background: linear-gradient($Rectangle64, $Rectangle64) padding-box, linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%) border-box;
+ }
+.button2-sendRequest{
+  width: 221px;
+  height: 48px;
+  color: $Rectangle48;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: Open Sans;
+  line-height: 19px;
+  text-align: center;
+  background: linear-gradient($Rectangle67, $Rectangle67) padding-box, linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%) border-box;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  outline: none;
+}
+.button2-sendRequest:hover {
+  width: 196px;
+  height: 42px;
+  font-size: 12px;
+  line-height: 16px;
+  background: linear-gradient($Rectangle65, $Rectangle65) padding-box, linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%) border-box;
+}
+.button2-sendRequest:active{
+  width: 196px;
+  height: 42px;
+  font-size: 12px;
+  line-height: 16px;
+  background: linear-gradient($Rectangle64, $Rectangle64) padding-box, linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%) border-box;
+}
+
+.button-chooseCar{
+  width: 216px;
+  height: 47px;
+  color: $Rectangle48;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: Open Sans;
+  line-height: 19px;
+  text-align: center;
+  background: linear-gradient($Rectangle67, $Rectangle67) padding-box, linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%) border-box;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  outline: none;
+}
+.button-chooseCar:hover{
+  background: linear-gradient($Rectangle65, $Rectangle65) padding-box, linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%) border-box;
+}
+.button-subscribe{
+  box-sizing: border-box;
+  width: 165px;
+  height: 29px;
+  color: rgba(198, 209, 222, 0.5);
+  font-size: 14px;
+  font-family: Open Sans;
+  line-height: 19px;
+  text-align: center;
+  background: #282832;
+  border: 1px solid rgba(198, 209, 222, 0.5);
+  border-radius: 3px;
+  outline: none;
+}
+.button-subscribe:hover{
+  color: rgba(198, 209, 222, 0.8);
+}
+.button-subscribe:active{
+  color: rgba(198, 209, 222, 0.8);
+  background: linear-gradient($Rectangle65, $Rectangle65) padding-box, linear-gradient(325.31deg, rgba(124, 125, 127, 0.1) -54.96%, rgba(190, 191, 192, 0.1) -39.28%, rgba(125, 126, 128, 0.1) -2.72%, rgba(221, 222, 223, 0.1) 44.09%, rgba(100, 101, 103, 0.1) 78.43%) border-box;
+  border: 1px solid transparent;
+}
+
+
