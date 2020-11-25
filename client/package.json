@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
+    "axios": "^0.21.0",
     "enzyme-adapter-react-15": "^1.4.2",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.1",
@@ -87,5 +88,6 @@
     "stylelint-prettier-check": "stylelint-config-prettier-check",
     "eslint": "eslint ./src/**/*.js",
     "eslint-fix-js": "eslint --fix ./src/**/*.js"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }
