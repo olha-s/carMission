@@ -1,9 +1,9 @@
-const WorkStage = require("../models/WorkStage");
+const SectionMainPage = require("../models/SectionMainPage");
 
-exports.addWorkStage = (req, res, next) => {
-  const newWorkStages = new WorkStage(req.body);
+exports.addSectionMainPage = (req, res, next) => {
+  const newSectionMainPage = new SectionMainPage(req.body);
 
-  newWorkStages
+  newSectionMainPage
     .save()
     .then((data) => res.json(data))
     .catch((err) =>
@@ -13,8 +13,8 @@ exports.addWorkStage = (req, res, next) => {
     );
 };
 
-exports.getWorkStages = (req, res, next) => {
-  WorkStage.find()
+exports.getSectionsMainPage = (req, res, next) => {
+  SectionMainPage.find()
     .then((data) => res.send(data))
     .catch((err) =>
       res.status(400).json({
@@ -23,8 +23,8 @@ exports.getWorkStages = (req, res, next) => {
     );
 };
 
-exports.deleteWorkStages = (req, res, next) => {
-  WorkStage.deleteMany({}).then(() => {
+exports.deleteAllSectionsMainPage = (req, res, next) => {
+  SectionMainPage.deleteMany({}).then(() => {
     res
       .status(200)
       .json({

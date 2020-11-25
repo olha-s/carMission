@@ -1,9 +1,9 @@
 @import "variables";
 
 @mixin content-block {
-  box-sizing: border-box;
   max-width: 1000px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 @mixin section-heading {

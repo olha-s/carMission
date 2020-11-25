@@ -19,7 +19,7 @@ router.post("/", addWorkStage);
 // @access  Public
 router.get("/", getWorkStages);
 
-// @route   DELETE /catalog
+// @route   DELETE /work-stages
 // @desc    Delete all stages from collection
 // @access  Private
 router.delete("/", deleteWorkStages);
