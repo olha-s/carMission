@@ -1,5 +1,16 @@
+@import "variables";
+
 @mixin content-block {
   box-sizing: border-box;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+@mixin section-heading {
+  font-weight: bold;
+  font-size: 40px;
+  font-family: $headings-font;
+  font-style: normal;
+  line-height: 52px;
+  text-align: center;
 }
