@@ -28,6 +28,8 @@ const reviews = require("./routes/reviews");
 const workStages = require("./routes/workStages");
 const servicePackages = require("./routes/servicePackages");
 const mainRoute = require("./routes/index");
+const navbar = require('./routes/navbar');
+const logo = require('./routes/logo');
 
 const app = express();
 
@@ -72,6 +74,8 @@ app.use("/api/partners", partners);
 app.use("/api/sections-main", sectionsMainPage);
 app.use("/api/reviews", reviews);
 app.use("/api/work-stages", workStages);
+app.use('/api/navbar', navbar);
+app.use('/api/logo', logo);
 app.use("/api/service-packages", servicePackages);
 
 app.use("/", mainRoute);

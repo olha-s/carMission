@@ -1,0 +1,36 @@
+@import "src/theme/styles/_mixins";
+@import "src/theme/styles/_variables";
+
+.header {
+    &__bg {
+        &-main{
+            padding-top: 10px;
+            background: linear-gradient(180deg, rgba(43,47,50,1) 33%, rgba(43,47,49,1) 67%);
+            //color without linear gardient  
+            // background-color: #2a2e31;           
+        }
+        &-minor, &-main {
+            padding-top: 10px;
+        }
+        &-minor {
+            background-color: $Rectangle66;
+        }
+    }
+    &__container {
+        @include content-block();
+        max-width: 1350px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .header {
+        &__bg{
+            &-main {
+                // background: transparent; 
+                background: $Rectangle67;
+            }
+        }
+    }
+}
+
+

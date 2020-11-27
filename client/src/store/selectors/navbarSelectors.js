@@ -1,0 +1,1 @@
+export const getNavbarData = (state) => state.navbar.data;

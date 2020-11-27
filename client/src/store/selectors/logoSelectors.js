@@ -1,0 +1,1 @@
+export const getLogoData = (state) => state.logo.data;

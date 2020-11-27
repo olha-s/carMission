@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./Button.scss";
 
 export const Button = ({text, onClick, className}) => {
-     return (
+    return (
         <button data-testid='btn' className={className} onClick={onClick}>{text}</button>
     );
 };
