@@ -1,11 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Page404 from "../pages/Page404/Page404";
+import MainPage from "../pages/MainPage/MainPage";
 
 const AppRoutes = () => {
   return (
     <Switch>
-      <Route exact path="/" render={() => <p>home page</p>} />
+      <Route exact path="/" component={MainPage} />
       <Route exact path="/catalog-usa" render={() => <p>cars from usa</p>} />
       <Route
         exact

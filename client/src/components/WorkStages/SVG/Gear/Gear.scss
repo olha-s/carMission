@@ -1,0 +1,18 @@
+.gear-outer {
+  transition: .3s;
+}
+
+.work-stages__item:hover .gear-outer {
+  stroke: rgba(221, 222, 223, 1);
+}
+
+.gear-inner {
+  transition: .3s;
+}
+
+.work-stages__item:hover .gear-inner {
+  fill: url(#gear-gradient);
+;
+}
+
+
