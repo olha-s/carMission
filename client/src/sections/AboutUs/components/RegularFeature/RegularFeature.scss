@@ -1,0 +1,75 @@
+@import "../../../../theme/styles/variables";
+@import "../../../../theme/styles/mixins";
+
+.about-us__features-box {
+  @include content-block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about-us__features-box div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about-us__feature-box {
+  width: 90px;
+  margin: 16px;
+}
+
+.about-us__feature-box img {
+  height: 34px;
+}
+
+.about-us__feature-box p {
+  margin-top: 9px;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 15px;
+}
+
+@media screen and (min-width: $sm-size) {
+  .about-us__feature-box {
+    width: 100px;
+    margin: 23px;
+  }
+
+  .about-us__feature-box img {
+    height: 38px;
+  }
+
+  .about-us__feature-box p {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+@media screen and (min-width: $md-size) {
+  .about-us__feature-box {
+    width: 150px;
+    margin: 35px;
+  }
+
+  .about-us__feature-box img {
+    height: 57px;
+  }
+
+  .about-us__feature-box p {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
+
+@media screen and (min-width: $lg-size) {
+}
+
+@media screen and (min-width: $xl-size) {
+}

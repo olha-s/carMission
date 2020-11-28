@@ -1,0 +1,82 @@
+import React, { memo, useEffect, useState } from "react";
+import "./AboutUs.scss";
+import axios from "axios";
+import RegularFeature from "./components/RegularFeature/RegularFeature";
+import MainFeature from "./components/MainFeature/MainFeature";
+import SectionHeading from "../../components/generalComponents/SectionHeading/SectionHeading";
+
+const AboutUs = () => {
+  const [featuresList, setFeaturesList] = useState([]);
+  const [heading, setHeading] = useState("");
+
+  useEffect(() => {
+    getFeatures();
+    getHeading();
+  }, []);
+
+  const getFeatures = async () => {
+    const featuresFromServer = await axios("/api/features/").then(
+      (res) => res.data
+    );
+    setFeaturesList(featuresFromServer);
+  };
+
+  const getHeading = async () => {
+    const headingFromServer = await axios("/api/sections-main/").then((res) => {
+      return res.data.filter((d) => d.index === 2);
+    });
+    setHeading(headingFromServer[0].heading);
+  };
+
+  const regFeaturesArr = featuresList.filter(
+    (feature) => feature.isMain === false
+  );
+  const regularFeaturesToRender = regFeaturesArr.map((rf) => {
+    const { imgPath, title, _id: id } = rf;
+    return (
+      <RegularFeature
+        className="about-us__feature-box"
+        imgPath={imgPath}
+        title={title}
+        key={id}
+      />
+    );
+  });
+
+  const mainFeatureArr = featuresList.filter(
+    (feature) => feature.isMain === true
+  );
+  const mainFeatureToRender = mainFeatureArr.map((mf) => {
+    const { imgPath, title, text, _id: id } = mf;
+    return (
+      <MainFeature
+        className="about-us__content-box"
+        imgPath={imgPath}
+        title={title}
+        text={text}
+        key={id}
+      />
+    );
+  });
+
+  return (
+    <div className="about-us__container">
+      <SectionHeading className="about-us__heading" text={heading} />
+
+      <div className="about-us__features-box">
+        <div>
+          {regularFeaturesToRender[0]}
+          {regularFeaturesToRender[1]}
+        </div>
+        <div>
+          {regularFeaturesToRender[2]}
+          {regularFeaturesToRender[3]}
+        </div>
+      </div>
+
+      {mainFeatureToRender}
+    </div>
+  );
+};
+
+export default memo(AboutUs);
