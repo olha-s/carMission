@@ -2,9 +2,10 @@ import React, { memo } from "react";
 import "./MainFeature.scss";
 import useWinSize from "../../../../utils/hooks/UseWinSize";
 import PropTypes from "prop-types";
+import Image from "../../../../components/Image/Image";
 
 const MainFeature = (props) => {
-  const { className, imgPath, altText, text } = props;
+  const { className, imgPath, text } = props;
   const { width: winWidth } = useWinSize();
   const textContent = text.split("/");
 
@@ -26,7 +27,7 @@ const MainFeature = (props) => {
       {winWidth > 640 && (
         <div className={className}>
           <div className="about-us__content-box-img">
-            <img src={imgPath} alt={altText} />
+            <Image src={imgPath} alt="staff-photo" />
           </div>
 
           <div className="about-us__content-box-text">
@@ -45,7 +46,6 @@ const MainFeature = (props) => {
 
 MainFeature.propTypes = {
   className: PropTypes.string.isRequired,
-  imgPath: PropTypes.string.isRequired,
   altText: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 };

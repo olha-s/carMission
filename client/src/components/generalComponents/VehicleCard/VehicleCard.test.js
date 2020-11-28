@@ -8,11 +8,14 @@ const mockTransmission = "transmission";
 const mockMileageText = "mileage";
 
 test("VehicleCard is rendered is correctly", () => {
-  render(<VehicleCard
+  render(
+    <VehicleCard
       title={mockTitle}
       fuelText={mockFuelText}
       transmissionText={mockTransmission}
-      mileageText={mockMileageText}/>);
+      mileageText={mockMileageText}
+    />
+  );
 });
 
 // test("Simple VehicleCard snapshot", () => {

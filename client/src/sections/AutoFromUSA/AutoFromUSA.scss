@@ -10,7 +10,13 @@
 
 .auto-from-usa__wrapper {
   height: calc(100vh - 100px);
-  background: linear-gradient(to bottom, rgba(40, 40, 50, 0) 80%, rgba(40, 40, 50, 1) 97%);
+  margin: 0 auto;
+  padding: 0 20px;
+  background: linear-gradient(
+    to bottom,
+    rgba(40, 40, 50, 0) 80%,
+    rgba(40, 40, 50, 1) 97%
+  );
   background-size: cover;
 }
 
@@ -22,6 +28,8 @@
 }
 
 .auto-from-usa__sub-heading {
+  max-width: 650px;
+  margin: 0 auto;
   padding-top: 12px;
   padding-bottom: 18px;
   font-size: 11px;

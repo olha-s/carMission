@@ -1,5 +1,5 @@
 .gear-outer {
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .work-stages__item:hover .gear-outer {
@@ -7,12 +7,9 @@
 }
 
 .gear-inner {
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .work-stages__item:hover .gear-inner {
   fill: url(#gear-gradient);
-;
 }
-
-

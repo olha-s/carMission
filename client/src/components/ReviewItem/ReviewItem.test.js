@@ -7,23 +7,25 @@ const mockNameCar = "nameCar";
 const mockReview = "some review text";
 
 test("ReviewItem is rendered is correctly", () => {
-  render(<ReviewItem
+  render(
+    <ReviewItem
       nameReviewer={mockNameReviewer}
       nameCar={mockNameCar}
       review={mockReview}
-  />);
+    />
+  );
 });
 
 test("review contains text", () => {
-    const { getByTestId, getByText } = render(
-        <ReviewItem nameReviewer={mockNameReviewer}
-                    nameCar={mockNameCar}
-                    review={mockReview} />
-    );
-    const reviewText = getByTestId("review-text");
+  const { getByTestId, getByText } = render(
+    <ReviewItem
+      nameReviewer={mockNameReviewer}
+      nameCar={mockNameCar}
+      review={mockReview}
+    />
+  );
+  const reviewText = getByTestId("review-text");
 
-    expect(getByText("some review text")).toBeInTheDocument();
-    expect(reviewText).toBeDefined();
+  expect(getByText("some review text")).toBeInTheDocument();
+  expect(reviewText).toBeDefined();
 });
-
-

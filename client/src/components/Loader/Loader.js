@@ -4,24 +4,22 @@ import Image from "../Image/Image";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-const Loader = ({
-  className
-}) => {
+const Loader = ({ className }) => {
   const [loaderData, setLoaderData] = useState([]);
 
   useEffect(() => {
-    getLoaderData()
-  }, [])
+    getLoaderData();
+  }, []);
 
   const getLoaderData = async () => {
     setLoaderData(
       await axios("/api/loader")
-              .then(res => res.data)
-              .catch(err => console.error(err))
-    )
-  }
+        .then((res) => res.data)
+        .catch((err) => console.error(err))
+    );
+  };
 
-  const loaderImages = loaderData.map((e) =>
+  const loaderImages = loaderData.map((e) => (
     <Image
       className={e.className}
       id={e._id}
@@ -29,22 +27,17 @@ const Loader = ({
       src={e.path}
       key={e._id}
     />
-  )
+  ));
 
-  return (
-    <div className={className}>
-      {loaderImages}
-    </div>
-  )
+  return <div className={className}>{loaderImages}</div>;
 };
 
 Loader.propTypes = {
-  className: PropTypes.string
-}
+  className: PropTypes.string,
+};
 
 Loader.defaultProps = {
-  className: "loader-window"
-}
-
+  className: "loader-window",
+};
 
 export default Loader;

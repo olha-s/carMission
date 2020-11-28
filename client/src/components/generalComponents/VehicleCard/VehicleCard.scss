@@ -31,14 +31,20 @@
     padding: 9.9px 15px 0 15px;
   }
 
-  &__fuel, &__transmission, &__year, &__mileage, &__auction {
+  &__fuel,
+  &__transmission,
+  &__year,
+  &__mileage,
+  &__auction {
     display: flex;
     flex: 1 1 auto;
     align-items: center;
     margin-bottom: 15px;
   }
 
-  &__fuel-img, &__mileage-img, &__auction-img {
+  &__fuel-img,
+  &__mileage-img,
+  &__auction-img {
     margin-right: 7px;
   }
 
@@ -61,7 +67,13 @@
     height: 1px;
     margin-right: 15px;
     margin-left: 15px;
-    background-image: linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%);
+    background-image: linear-gradient(
+      274.95deg,
+      #bebfc0 2.76%,
+      #7d7e80 32.64%,
+      #dddedf 60.28%,
+      #646567 97.25%
+    );
     border: none;
   }
 
@@ -79,7 +91,10 @@
     margin-right: 20px;
   }
 
-  &__details, &__additionally-primary, &__additionally-highlits, &__additionally-seller {
+  &__details,
+  &__additionally-primary,
+  &__additionally-highlits,
+  &__additionally-seller {
     display: flex;
     justify-content: space-between;
   }
@@ -88,13 +103,15 @@
     padding: 13px 15px 14px 15px;
   }
 
-  &__details-title, &__additionally-title {
+  &__details-title,
+  &__additionally-title {
     color: $Rectangle48;
     font-size: 12px;
     line-height: 16px;
   }
 
-  &__details-name, &__additionally-name {
+  &__details-name,
+  &__additionally-name {
     color: $Rectangle48;
     font-size: 14px;
     line-height: 19px;

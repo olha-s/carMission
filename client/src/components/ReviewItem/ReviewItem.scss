@@ -1,27 +1,26 @@
 @import "../.././theme/styles/variables";
 
-.reviewItem{
-
-  &__wrapper{
+.reviewItem {
+  &__wrapper {
     box-sizing: border-box;
     max-width: 320px;
     padding: 10px 7px 76.9px 4px;
     background: #383841;
     border-radius: 5px;
   }
-  &__img{
+  &__img {
     display: block;
     width: 100%;
   }
-  &__info{
+  &__info {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 7px;
     padding-right: 33px;
     padding-left: 34px;
-    }
-  &__name-reviewer{
+  }
+  &__name-reviewer {
     color: $Rectangle48;
     font-weight: bold;
     font-size: 18px;
@@ -29,7 +28,7 @@
     line-height: 25px;
     text-align: center;
   }
-  &__name-car{
+  &__name-car {
     margin-top: 17px;
     margin-bottom: 27px;
     color: $Rectangle48;
@@ -37,8 +36,8 @@
     font-family: sans-serif;
     line-height: 19px;
     text-align: center;
-    }
-  &__review{
+  }
+  &__review {
     margin-top: 32px;
     color: $Rectangle48;
     font-size: 14px;

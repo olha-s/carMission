@@ -7,21 +7,23 @@ import Adapter from "enzyme-adapter-react-16";
 configure({ adapter: new Adapter() });
 
 describe("ErrorModal component", () => {
-
   const error = {
     name: "test error",
-    message: "test error message"
+    message: "test error message",
   };
 
   test("should be rendered", () => {
-    render(<ErrorModal error={error}/>);
+    render(<ErrorModal error={error} />);
   });
 
   test("should be rendered according to props fulfilled", () => {
-    const container = shallow(<ErrorModal error={error}/>);
+    const container = shallow(<ErrorModal error={error} />);
     expect(container.hasClass("error-modal")).toBeTruthy();
-    expect(container.find(".error-modal__heading-text").text()).toBe(`an error ${error.name} occurred`);
-    expect(container.find(".error-modal__text").text()).toBe("test error message");
+    expect(container.find(".error-modal__heading-text").text()).toBe(
+      `an error ${error.name} occurred`
+    );
+    expect(container.find(".error-modal__text").text()).toBe(
+      "test error message"
+    );
   });
-
 });

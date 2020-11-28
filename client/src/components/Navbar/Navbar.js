@@ -1,50 +1,41 @@
 import React from "react";
 import NavbarItem from "../NavbarItem/NavbarItem";
 import PropTypes from "prop-types";
-import "./Navbar.scss"
+import "./Navbar.scss";
 
-const Navbar = ({
-    items, className, onClick, mobileNavbar
-}) => {
+const Navbar = ({ items, className, onClick, mobileNavbar }) => {
+  const navbarItems = items.map((e) =>
+    !e.disabled ? (
+      <NavbarItem
+        className={className}
+        textContent={e.textContent}
+        contacts={e.contacts}
+        sectionId={e.sectionId}
+        id={e._id || e.id}
+        key={e._id || e.id}
+      />
+    ) : null
+  );
 
-    const navbarItems = items.map((e) =>
-        !e.disabled ? <NavbarItem
-            className={className}
-            textContent={e.textContent}
-            contacts={e.contacts}
-            sectionId={e.sectionId}
-            id={e._id || e.id}
-            key={e._id || e.id}
-        /> : null
-    )
-
-    if(mobileNavbar) {
-        return (
-            <div className={`${className}__window`} onClick={onClick}>
-                <ul className={className}>
-                    {navbarItems}
-                </ul>
-            </div>
-            )
-        }
-
+  if (mobileNavbar) {
     return (
-        <ul className={className}>
-            {navbarItems}
-        </ul>
+      <div className={`${className}__window`} onClick={onClick}>
+        <ul className={className}>{navbarItems}</ul>
+      </div>
     );
+  }
 
+  return <ul className={className}>{navbarItems}</ul>;
 };
 
 Navbar.propTypes = {
-    items: PropTypes.array,
-    className: PropTypes.string
+  items: PropTypes.array,
+  className: PropTypes.string,
 };
 
 Navbar.defaultProps = {
-    items: [],
-    className: ""
+  items: [],
+  className: "",
 };
-
 
 export default Navbar;

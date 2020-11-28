@@ -4,12 +4,10 @@ import SectionHeading from "../../components/generalComponents/SectionHeading/Se
 import "./servicePackages.scss";
 import Button from "../../components/generalComponents/Button/Button";
 
-
-const ServicePackages = ({name, price, currency, serviceList}) => {
-
+const ServicePackages = ({ name, price, currency, serviceList }) => {
   return (
     <div className="servicePackages">
-      <SectionHeading text="Пакеты услуг"/>
+      <SectionHeading text="Пакеты услуг" />
       <div className="servicePackages__wrapper">
         <div className="servicePackages__item">
           <div className="servicePackages__item-title">
@@ -62,7 +60,7 @@ const ServicePackages = ({name, price, currency, serviceList}) => {
       <p className="servicePackages__description">
         Оставьте заявку и мы поможем вам выбрать подходящий для вас пакет услуг
       </p>
-      <Button className="button2-sendRequest" text="Отправить заявку"/>
+      <Button className="button2-sendRequest" text="Отправить заявку" />
     </div>
   );
 };
@@ -72,6 +70,6 @@ ServicePackages.propTypes = {
   name: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   price: PropTypes.number,
-  serviceList: PropTypes.array.isRequired
+  serviceList: PropTypes.array.isRequired,
 };
 export default ServicePackages;

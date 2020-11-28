@@ -74,7 +74,7 @@
   &__stage-number {
     position: absolute;
     left: 50%;
-    color: #C4C4C4;
+    color: #c4c4c4;
     font-weight: 300;
     font-size: 18px;
     line-height: 22px;
@@ -128,7 +128,6 @@
 
 @media screen and (min-width: $sm-size) and (max-width: 960px) {
   .work-stages {
-
     &__items-wrapper {
       grid-row-gap: 10px;
       grid-template-rows: repeat(2, 1fr);
@@ -152,7 +151,6 @@
 
 @media screen and (max-width: 640px) {
   .work-stages {
-
     &__items-wrapper {
       position: relative;
       display: block;
@@ -167,7 +165,7 @@
       left: 0;
       z-index: 7;
       background-color: $Rectangle67;
-      transform: translateX( 190px );
+      transform: translateX(190px);
       animation: opaqTransition 18s cubic-bezier(0, 0, 0, 0.97) infinite;
 
       &--2 {
@@ -211,8 +209,16 @@
 }
 
 @keyframes opaqTransition {
-  3% { transform: translateX( 0 ); }
-  25% { transform: translateX( 0 ); }
-  28% { transform: translateX( -100% ); }
-  100% { transform: translateX( -100% ); }
+  3% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(0);
+  }
+  28% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }

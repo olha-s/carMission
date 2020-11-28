@@ -20,11 +20,19 @@
     box-sizing: border-box;
     width: 13px;
     height: 13px;
-    background: linear-gradient(#282832, #282832) padding-box, linear-gradient(274.95deg, #BEBFC0 2.76%, #7D7E80 32.64%, #DDDEDF 60.28%, #646567 97.25%) border-box;
+    background: linear-gradient(#282832, #282832) padding-box,
+      linear-gradient(
+          274.95deg,
+          #bebfc0 2.76%,
+          #7d7e80 32.64%,
+          #dddedf 60.28%,
+          #646567 97.25%
+        )
+        border-box;
     border: 1px solid transparent;
     border-radius: 4px;
-    opacity: .5;
-    transition: all .3s;
+    opacity: 0.5;
+    transition: all 0.3s;
   }
 
   &__text {
@@ -46,7 +54,6 @@
     background: $Rectangle45;
     border-radius: 2px;
     content: "";
-
   }
 
   &__native:checked ~ &__custom {
@@ -56,5 +63,4 @@
   &__native:checked ~ &__text {
     color: rgba(198, 209, 222, 1);
   }
-
 }

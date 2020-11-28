@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import RegularFeature from "./RegularFeature";
+import Image from "../../../../components/Image/Image";
 
 const mockComponentClassName = "about-us__feature-box";
 const mockComponentImgPath = "/path/img/file.png";
@@ -13,12 +14,10 @@ test("RegularFeature is rendered correctly", () => {
 test("RegularFeature contains image and text", () => {
   const { getByTestId } = render(
     <RegularFeature className={mockComponentClassName}>
-      <img src={mockComponentImgPath} alt="altText" />
+      <Image src={mockComponentImgPath} alt="feature-icon" />
       <p>{mockComponentTitle}</p>
     </RegularFeature>
   );
   const featureTitle = getByTestId("regularFeature-title");
-  const featureImg = getByTestId("regularFeature-img");
   expect(featureTitle).toBeDefined();
-  expect(featureImg).toBeDefined();
 });

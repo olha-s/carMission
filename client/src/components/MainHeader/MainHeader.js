@@ -18,25 +18,36 @@ const MainHeader = () => {
 
   const firstMobileSize = 640;
   const isMobileWindowSize = winWidth <= firstMobileSize;
-  const sectionsLinks = navbarData.filter((e) => e.sectionId !== undefined).map((e) => {return "/" + e.sectionId}).concat("/");
+  const sectionsLinks = navbarData
+    .filter((e) => e.sectionId !== undefined)
+    .map((e) => {
+      return "/" + e.sectionId;
+    })
+    .concat("/");
   const quantOfNavbaItems = navbarData.filter((e) => !e.disabled);
   const mainPage = sectionsLinks.includes(location.pathname);
   const headerBgClassName = mainPage ? "header__bg-main" : "header__bg-minor";
-  const leftSideItems = quantOfNavbaItems.length > 6 ? quantOfNavbaItems.slice(0, 5) : quantOfNavbaItems.slice(0, 3);
-  const rightSideItems = quantOfNavbaItems.length > 6 ? quantOfNavbaItems.slice(5) : quantOfNavbaItems.slice(3);
+  const leftSideItems =
+    quantOfNavbaItems.length > 6
+      ? quantOfNavbaItems.slice(0, 5)
+      : quantOfNavbaItems.slice(0, 3);
+  const rightSideItems =
+    quantOfNavbaItems.length > 6
+      ? quantOfNavbaItems.slice(5)
+      : quantOfNavbaItems.slice(3);
 
   const checkClick = (e) => {
-    setIsMobileNavbar(!isMobileNavbar)
-  }
+    setIsMobileNavbar(!isMobileNavbar);
+  };
 
   return (
     <div className={headerBgClassName}>
       <div className="header__container">
         <div className="navbar__block">
-          {!isMobileWindowSize &&
-            <Navbar className="navbar" items={leftSideItems}/>
-          }
-          {!isMobileWindowSize &&
+          {!isMobileWindowSize && (
+            <Navbar className="navbar" items={leftSideItems} />
+          )}
+          {!isMobileWindowSize && (
             <div className="logo__block">
               <Link to="/">
                 <Image
@@ -47,45 +58,45 @@ const MainHeader = () => {
                 />
               </Link>
             </div>
-          }
-          {!isMobileWindowSize &&
+          )}
+          {!isMobileWindowSize && (
             <Navbar className="navbar" items={rightSideItems} />
-          }
+          )}
 
           {/* Conditional rendering for device window size less 640 px */}
 
-          {isMobileWindowSize &&
-            isMobileNavbar ?
-              <Navbar
-                className="navbar"
-                items={navbarData}
-                id="navbar"
-                mobileNavbar={true}
-                onClick={(e) => checkClick(e)}
-              />
-              :
-              null
-          }
-          {isMobileWindowSize &&
-            !isMobileNavbar ?
-              <Button className="open-navbar" onClick={setIsMobileNavbar} text=""/> :
-              null
-          }
-          {isMobileWindowSize &&
+          {isMobileWindowSize && isMobileNavbar ? (
+            <Navbar
+              className="navbar"
+              items={navbarData}
+              id="navbar"
+              mobileNavbar={true}
+              onClick={(e) => checkClick(e)}
+            />
+          ) : null}
+          {isMobileWindowSize && !isMobileNavbar ? (
+            <Button
+              className="open-navbar"
+              onClick={setIsMobileNavbar}
+              text=""
+            />
+          ) : null}
+          {isMobileWindowSize && (
             <div className="logo__block">
               <Link to="/">
                 <Image
                   className="logo"
                   src={logoInfo.path}
                   id={logoInfo.id}
-                  alt={logoInfo.alt}/>
+                  alt={logoInfo.alt}
+                />
               </Link>
             </div>
-          }
+          )}
         </div>
       </div>
     </div>
-)
+  );
 };
 
 export default MainHeader;
