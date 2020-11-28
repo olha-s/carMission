@@ -30,7 +30,7 @@ const Loader = ({
       key={e._id}
     />
   )
-  
+
   return (
     <div className={className}>
       {loaderImages}
