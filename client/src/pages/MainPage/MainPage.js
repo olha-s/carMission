@@ -1,6 +1,7 @@
 import React from "react";
 import AutoFromUsa from "../../sections/AutoFromUSA/AutoFromUSA";
 import AboutUs from "../../sections/AboutUs/AboutUs";
+import ServicePackages from "../../sections/ServicePackages/ServicePackages";
 
 
 const MainPage = () => {
@@ -8,6 +9,7 @@ const MainPage = () => {
     <div>
       <AutoFromUsa />
       <AboutUs />
+      <ServicePackages/>
     </div>
   );
 };
