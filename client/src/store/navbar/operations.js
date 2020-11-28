@@ -1,10 +1,11 @@
-import axios from 'axios';
-import { setNavbarData } from './actions';
-
+import axios from "axios";
+import { setNavbarData, navbarDataLoading } from "./actions";
 
 export const loadNavbarData = () => (dispatch) => {
-    axios('/api/navbar')
+    dispatch(navbarDataLoading(true))
+    axios("/api/navbar")
         .then(res => {
         dispatch(setNavbarData(res.data))
+        dispatch(navbarDataLoading(false))
     })
 }

@@ -13,8 +13,8 @@ const Navbar = ({
             textContent={e.textContent}
             contacts={e.contacts}
             sectionId={e.sectionId}
-            id={e.id}
-            key={e.id}
+            id={e._id || e.id}
+            key={e._id || e.id}
         /> : null
     )
 

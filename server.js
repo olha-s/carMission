@@ -77,7 +77,6 @@ app.use("/api/work-stages", workStages);
 app.use('/api/navbar', navbar);
 app.use('/api/logo', logo);
 app.use("/api/service-packages", servicePackages);
-
 app.use("/", mainRoute);
 
 // Server static assets if in production

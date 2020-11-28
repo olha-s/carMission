@@ -1,20 +1,18 @@
-import { LOAD_LOGO } from "./actions";
+import { LOAD_LOGO, LOGO_LOADING } from "./actions";
 
 const initialState = {
-  data: {
-    path: "/img/logo/main-logo.png",
-    id: "main-logo",
-    alt: "main-logo",
-  },
-};
+    isLoading: false
+}
 
-const reducer = (state = initialState, action = {}) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_LOGO:
-      return { ...state, data: action.payload };
+        return { ...state, ...action.payload }
+    case LOGO_LOADING:
+        return { ...state, isLoading: action.payload }
     default:
-      return state;
+        return state
   }
-};
+}
 
 export default reducer;
