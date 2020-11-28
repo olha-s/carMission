@@ -5,6 +5,7 @@
       right: 0;
       bottom: 0;
       left: 0;
+      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -16,15 +17,7 @@
       height: 100px;
     }
     &-motion {
-      background-image: url('../../theme/images/loader-img/loader-motion.png');
-      background-repeat: no-repeat;
-      background-size: cover;
       animation: spin 1s linear infinite;
-    }
-    &-static {
-      background-image: url('../../theme/images/loader-img/loader-static.png');
-      background-repeat: no-repeat;
-      background-size: cover;
     }
     
     @keyframes spin {
