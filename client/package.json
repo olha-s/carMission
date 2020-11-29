@@ -38,7 +38,8 @@
     "stylelint": "^13.8.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-rational-order": "^0.1.2",
-    "stylelint-order": "^4.1.0"
+    "stylelint-order": "^4.1.0",
+    "uuid": "^8.3.1"
   },
   "watch": {
     "stylelint-dev": {

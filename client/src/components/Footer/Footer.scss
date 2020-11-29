@@ -5,31 +5,30 @@
 
 .footer {
   &__bg {
-      padding: 30px 0 50px;
-      background-color: $Rectangle66;
-      
+    padding: 30px 0 50px;
+    background-color: $Rectangle66;
   }
   &__container {
-      @include content-block();
+    @include content-block();
   }
   &__block {
-      display: grid;
-      grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);
+    display: grid;
+    grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
   }
   &__line {
-      width: 290px;
-      height: 1px;
-      margin: 0 auto;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      background: $Rectangle45;
+    width: 290px;
+    height: 1px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: $Rectangle45;
   }
   &__info-block {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
   }
   &__logo-link {
-      margin: 0 auto;
+    margin: 0 auto;
   }
 }
 

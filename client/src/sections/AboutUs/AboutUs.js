@@ -51,7 +51,7 @@ const AboutUs = ({ heading, anchorName }) => {
   });
 
   return (
-    <div className="about-us__container" id={anchorName}>
+    <section className="about-us__container" id={anchorName}>
       <SectionHeading className="about-us__heading" text={heading} />
 
       <div className="about-us__features-box">
@@ -66,7 +66,7 @@ const AboutUs = ({ heading, anchorName }) => {
       </div>
 
       {mainFeatureToRender}
-    </div>
+    </section>
   );
 };
 

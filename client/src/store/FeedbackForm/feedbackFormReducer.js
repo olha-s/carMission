@@ -1,12 +1,15 @@
-import { SHOW_FEEDBACK_FORM, HIDE_FEEDBACK_FORM, CONFIRM_FEEDBACK_FORM } from "./actionTypes";
+import {
+  SHOW_FEEDBACK_FORM,
+  HIDE_FEEDBACK_FORM,
+  CONFIRM_FEEDBACK_FORM,
+} from "./actionTypes";
 
 const initialStore = {
-  feedbackForm: "closed"
+  feedbackForm: "closed",
 };
 
-export default function reducer (store = initialStore, { type, payload }) {
+export default function reducer(store = initialStore, { type, payload }) {
   switch (type) {
-
     case SHOW_FEEDBACK_FORM:
       return payload;
 
@@ -17,7 +20,6 @@ export default function reducer (store = initialStore, { type, payload }) {
       return payload;
 
     default:
-      return store
-
+      return store;
   }
 }

@@ -22,7 +22,7 @@ const AutoFromUsa = () => {
   };
 
   return (
-    <div
+    <section
       className="auto-from-usa__container"
       style={{ backgroundImage: `url("${imgPath}")` }}
     >
@@ -35,7 +35,7 @@ const AutoFromUsa = () => {
           onClick={() => {}}
         />
       </div>
-    </div>
+    </section>
   );
 };
 

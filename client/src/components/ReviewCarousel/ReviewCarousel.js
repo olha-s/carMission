@@ -32,7 +32,14 @@ const ReviewCarousel = () => {
   return (
     <div className="carouse-wrapper">
       <SectionHeading text="Отзывы" />
-        <Carousel showThumbs={false} transitionTime="150" showStatus={false} infiniteLoop={true} centerMode centerSlidePercentage="33.33">
+      <Carousel
+        showThumbs={false}
+        transitionTime="150"
+        showStatus={false}
+        infiniteLoop={true}
+        centerMode
+        centerSlidePercentage="33.33"
+      >
         {allReviews}
       </Carousel>
     </div>

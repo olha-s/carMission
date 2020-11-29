@@ -1,5 +1,4 @@
 export const initialValues = {
-    name: "",
-    phone: ""
-
+  name: "",
+  phone: "",
 };

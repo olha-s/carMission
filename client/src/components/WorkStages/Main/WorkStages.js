@@ -23,7 +23,7 @@ const WorkStages = ({ description, heading, anchorName }) => {
 WorkStages.propTypes = {
   description: PropTypes.string,
   heading: PropTypes.string,
-  anchorName: PropTypes.string
+  anchorName: PropTypes.string,
 };
 
 export default WorkStages;
