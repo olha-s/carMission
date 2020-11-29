@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const WorkStageName = ({ stageName, classModifier }) => {
   return (
@@ -6,6 +7,11 @@ const WorkStageName = ({ stageName, classModifier }) => {
       {stageName}
     </span>
   );
+};
+
+WorkStageName.propTypes = {
+  stageName: PropTypes.string,
+  classModifier: PropTypes.string,
 };
 
 export default WorkStageName;

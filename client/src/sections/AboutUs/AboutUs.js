@@ -5,13 +5,11 @@ import RegularFeature from "./components/RegularFeature/RegularFeature";
 import MainFeature from "./components/MainFeature/MainFeature";
 import SectionHeading from "../../components/generalComponents/SectionHeading/SectionHeading";
 
-const AboutUs = () => {
+const AboutUs = ({ heading, anchorName }) => {
   const [featuresList, setFeaturesList] = useState([]);
-  const [heading, setHeading] = useState("");
 
   useEffect(() => {
     getFeatures();
-    getHeading();
   }, []);
 
   const getFeatures = async () => {
@@ -19,13 +17,6 @@ const AboutUs = () => {
       (res) => res.data
     );
     setFeaturesList(featuresFromServer);
-  };
-
-  const getHeading = async () => {
-    const headingFromServer = await axios("/api/sections-main/").then((res) => {
-      return res.data.filter((d) => d.index === 2);
-    });
-    setHeading(headingFromServer[0].heading);
   };
 
   const regFeaturesArr = featuresList.filter(
@@ -60,7 +51,7 @@ const AboutUs = () => {
   });
 
   return (
-    <div className="about-us__container">
+    <div className="about-us__container" id={anchorName}>
       <SectionHeading className="about-us__heading" text={heading} />
 
       <div className="about-us__features-box">

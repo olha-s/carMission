@@ -27,5 +27,15 @@
       "flowVersion": "0.86"
     },
     "propWrapperFunctions": [ "forbidExtraProps" ]
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "./src/store/**/*.js"
+      ],
+      "rules": {
+        "default-param-last" : "off"
+      }
+    }
+  ]
 }

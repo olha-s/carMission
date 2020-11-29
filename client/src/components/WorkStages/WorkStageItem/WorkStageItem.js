@@ -3,6 +3,7 @@ import Gear from "../SVG/Gear/Gear";
 import WorkStageName from "../WorkStageName/WorkStageName";
 import Arrow from "../SVG/Arrow/Arrow";
 import Image from "../../Image/Image";
+import PropTypes from "prop-types";
 
 const WorkStageItem = ({ stageNum, stageName, stageLength, src }) => {
   return (
@@ -33,6 +34,13 @@ const WorkStageItem = ({ stageNum, stageName, stageLength, src }) => {
       )}
     </div>
   );
+};
+
+WorkStageItem.propTypes = {
+  stageNum: PropTypes.number,
+  stageName: PropTypes.string,
+  stageLength: PropTypes.number,
+  src: PropTypes.string,
 };
 
 export default WorkStageItem;

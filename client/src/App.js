@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getIsLogoLoading } from "./store/selectors/logoSelectors";
 import { getIsNavbarLoading } from "./store/selectors/navbarSelectors";
 import { loadNavbarData } from "./store/navbar/operations";
+import { loadMainSection } from "./store/appMainSections/operations";
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(loadNavbarData());
+    dispatch(loadMainSection());
     dispatch(loadLogoData());
   }, [dispatch]);
 
