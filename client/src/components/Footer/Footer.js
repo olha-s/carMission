@@ -2,6 +2,7 @@ import React from "react";
 import "./Footer.scss";
 import Navbar from "../Navbar/Navbar";
 import Image from "../Image/Image";
+import SocialNetworks from "../SocialNetworks/SocialNetworks";
 import { useSelector } from "react-redux";
 import { getLogoData } from "../../store/selectors/logoSelectors";
 import { getNavbarData } from "../../store/selectors/navbarSelectors";
@@ -26,7 +27,7 @@ const Footer = () => {
         <div className="footer__block" id="footer">
           <Navbar className="footer--left-side footer" items={leftSideItems} />
           <div className="footer__info-block">
-            <Link to="/">
+            <Link to="/" className="footer__logo-link">
               <Image
                 className="logo"
                 src={logoInfo.path}
@@ -35,9 +36,7 @@ const Footer = () => {
               />
             </Link>
             <div className="footer__line"></div>
-            <div className="footer__social-networks">
-              facebook instagram telegram youtube
-            </div>
+            <SocialNetworks className="footer__networks" />
           </div>
           <Navbar
             className="footer--right-side footer"

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const instagtam = () => (
+export const facebook = () => (
   <svg
     width="24"
     height="24"
@@ -21,10 +21,10 @@ export const instagtam = () => (
         y2="-84.6538"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
     </defs>
   </svg>

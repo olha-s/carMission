@@ -32,6 +32,7 @@ const mainRoute = require("./routes/index");
 const navbar = require("./routes/navbar");
 const logo = require("./routes/logo");
 const loader = require("./routes/loader");
+const socialNetworks = require("./routes/socialNetworks");
 
 
 const app = express();
@@ -56,6 +57,7 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 // Use Routes
+
 app.use("/api/configs", globalConfigs);
 app.use("/api/customers", customers);
 app.use("/api/catalog", catalog);
@@ -82,6 +84,8 @@ app.use("/api/logo", logo);
 app.use("/api/service-packages", servicePackages);
 app.use("/api/features", features);
 app.use("/api/loader", loader);
+app.use("/api/social-networks", socialNetworks);
+
 
 app.use("/", mainRoute);
 
