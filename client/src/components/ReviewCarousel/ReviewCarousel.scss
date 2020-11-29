@@ -2,73 +2,79 @@
 
 .carouse-wrapper {
   padding-bottom: 116px;
-  background: #282832;
-}
-.carousel.carousel-slider .control-arrow:hover {
-  background: inherit;
-}
-.carousel .slide {
-  background: none;
+  background: $Rectangle67;
 }
 
 .carousel-root {
-  max-width: 1077.83px;
-  margin: 52px auto;
-}
-
-.carousel.carousel-slider {
   max-width: 1006px;
-  margin: 0 auto;
-  overflow: visible;
+  margin: 52px auto 0 auto;
 }
 
-.carousel .slider {
-  max-width: 343px;
-}
-.carousel .control-prev.control-arrow {
-  left: -30px;
-}
-.carousel .control-next.control-arrow {
-  right: -30px;
-}
-.carousel.carousel-slider .control-arrow {
-  padding: 0;
-}
+.carousel {
+  &.carousel-slider .control-arrow:hover {
+    background: inherit;
+    cursor: inherit;
+  }
 
-.carousel .control-arrow:before,
-.carousel.carousel-slider .control-arrow:before {
-  margin: 0;
-}
-.carousel .control-prev.control-arrow:before {
-  width: 18.75px;
-  height: 18.75px;
-  margin: 0;
-  border-top: 2px solid $Rectangle48;
-  border-right: 2px solid $Rectangle48;
-  border-bottom: 0;
-  transform: rotate(-135deg);
-  cursor: pointer;
-}
-.carousel .control-next.control-arrow:before {
-  width: 18.75px;
-  height: 18.75px;
-  margin: 0;
-  border-top: 2px solid $Rectangle48;
-  border-right: 2px solid $Rectangle48;
-  border-bottom: 0;
-  border-left: 0;
-  transform: rotate(45deg);
-  cursor: pointer;
-}
-.carousel .control-dots {
-  position: inherit;
-  margin-top: 16px;
-  padding: 0;
-}
+  & .slide {
+    background: none;
+  }
 
-.carousel .control-dots .dot {
-  width: 7px;
-  height: 7px;
-  margin: 0 35px;
-  background: $Rectangle48;
+  &.carousel-slider {
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  & .control-prev.control-arrow {
+    left: -30px;
+  }
+
+  & .control-next.control-arrow {
+    right: -30px;
+  }
+
+  &.carousel-slider .control-arrow {
+    padding: 0;
+  }
+
+  & .control-arrow:before,
+  &.carousel-slider .control-arrow:before {
+    margin: 0;
+  }
+
+  & .control-prev.control-arrow:before {
+    width: 18.75px;
+    height: 18.75px;
+    margin: 0;
+    border-top: 2px solid $Rectangle48;
+    border-right: 2px solid $Rectangle48;
+    border-bottom: 0;
+    transform: rotate(-135deg);
+    cursor: pointer;
+  }
+
+  & .control-next.control-arrow:before {
+    width: 18.75px;
+    height: 18.75px;
+    margin: 0;
+    border-top: 2px solid $Rectangle48;
+    border-right: 2px solid $Rectangle48;
+    border-bottom: 0;
+    border-left: 0;
+    transform: rotate(45deg);
+    cursor: pointer;
+  }
+
+  & .control-dots {
+    position: inherit;
+    margin-top: 16px;
+    padding: 0;
+  }
+
+  & .control-dots .dot {
+    width: 7px;
+    height: 7px;
+    margin: 0 35px;
+    background: $Rectangle48;
+  }
 }

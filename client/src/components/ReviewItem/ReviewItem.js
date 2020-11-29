@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { quotes } from "./quotes.jsx";
 import "./ReviewItem.scss";
+import Image from "../Image/Image";
 
 const ReviewItem = ({ src, nameReviewer, nameCar, review }) => {
   return (
     <div className="reviewItem__wrapper">
-      <img className="reviewItem__img" src={src} alt="photo" />
+      <Image className="reviewItem__img" src={src} alt="photo"/>
       <div className="reviewItem__info">
         <p className="reviewItem__name-reviewer">{nameReviewer}</p>
         <p className="reviewItem__name-car">{nameCar}</p>

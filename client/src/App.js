@@ -10,6 +10,7 @@ import { getIsLogoLoading } from "./store/selectors/logoSelectors";
 import { getIsNavbarLoading } from "./store/selectors/navbarSelectors";
 import { loadNavbarData } from "./store/navbar/operations";
 
+
 const App = () => {
   const dispatch = useDispatch();
 
