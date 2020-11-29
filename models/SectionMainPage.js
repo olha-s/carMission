@@ -4,29 +4,34 @@ const Schema = mongoose.Schema;
 const SectionMainPageSchema = new Schema({
   heading: {
     type: String,
-    required: true,
+    required: true
   },
   description: {
     type: String,
-    default: null,
+    default: null
   },
   disabled: {
     type: Boolean,
     required: true,
-    default: false,
+    default: false
   },
   index: {
     type: Number,
-    required: true,
+    required: true
   },
   name: {
     type: String,
-    required: true,
+    required: true
   },
   reactComponent: {
     type: String,
-    required: true,
+    required: true
   },
+
+  imgPath: {
+    type: String,
+    default: null
+  }
 });
 
 module.exports = SectionMainPage = mongoose.model(

@@ -1,0 +1,84 @@
+@import "../../theme/styles/variables";
+
+.feedback-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  min-height: 21vh;
+  margin: 10% auto 0 auto;
+  background-color: rgba(131, 149, 170, 1);
+  border-radius: 3px;
+
+  &__wrapper {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background-color: $Rectangle89-shadow;
+  }
+
+  &__name-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 35px;
+    color: #C6D1DE;
+    font-size: 13px;
+  }
+
+  &__phone-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    color: #C6D1DE;
+    font-size: 13px;
+  }
+
+  &__button-label {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  &__field {
+    width: 40%;
+    margin-top: 5px;
+    background: rgba(185, 185, 193, 0.2);
+    border-color: transparent;
+    border-radius: 5px;
+  }
+
+  &__conf-button {
+    color: #C6D1DE;
+    font-size: 12px;
+    background-color: transparent;
+    border: none;
+  }
+
+  &__exit-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #C6D1DE;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+  }
+
+  &__conf-text1 {
+    margin-top: 16%;
+    margin-bottom: 15px;
+    color: #C6D1DE;
+    font-size: 14px;
+  }
+
+  &__conf-text2 {
+    margin-bottom: 11%;
+    color: #C6D1DE;
+    font-size: 14px;
+  }
+}
