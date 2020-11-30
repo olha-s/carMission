@@ -23,7 +23,7 @@ const ServicePackages = ({ heading, anchorName, description }) => {
     const { price, currency, serviceList, name, _id: id } = servicePackage;
     return (
       <ServicePackage
-        className="servicePackages__item"
+        className="service-packages__item"
         name={name}
         price={price}
         currency={currency}
@@ -34,10 +34,10 @@ const ServicePackages = ({ heading, anchorName, description }) => {
   });
 
   return (
-    <section className="servicePackages" id={anchorName}>
+    <section className="service-packages" id={anchorName}>
       <SectionHeading text={heading} />
-      <div className="servicePackages__wrapper">{servicePackagesToRender}</div>
-      <p className="servicePackages__description">{description}</p>
+      <div className="service-packages__wrapper">{servicePackagesToRender}</div>
+      <p className="service-packages__description">{description}</p>
       <Button className="button2-sendRequest" text="Отправить заявку" />
     </section>
   );
