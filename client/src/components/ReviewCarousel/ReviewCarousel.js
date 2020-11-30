@@ -6,7 +6,7 @@ import "./ReviewCarousel.scss";
 import ReviewItem from "../ReviewItem/ReviewItem";
 import SectionHeading from "../generalComponents/SectionHeading/SectionHeading";
 
-const ReviewCarousel = () => {
+const ReviewCarousel = ({ heading, anchorName }) => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
@@ -30,16 +30,9 @@ const ReviewCarousel = () => {
   ));
 
   return (
-    <div className="carouse-wrapper">
-      <SectionHeading text="Отзывы" />
-      <Carousel
-        showThumbs={false}
-        transitionTime="150"
-        showStatus={false}
-        infiniteLoop={true}
-        centerMode
-        centerSlidePercentage="33.33"
-      >
+    <div className="carouse-wrapper" id={anchorName} >
+      <SectionHeading text={heading} />
+        <Carousel showThumbs={false} transitionTime="300" showStatus={false} infiniteLoop={true} centerMode centerSlidePercentage="33.33">
         {allReviews}
       </Carousel>
     </div>

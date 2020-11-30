@@ -6,12 +6,12 @@ import Image from "../Image/Image";
 
 const ReviewItem = ({ src, nameReviewer, nameCar, review }) => {
   return (
-    <div className="reviewItem__wrapper">
-      <Image className="reviewItem__img" src={src} alt="photo" />
-      <div className="reviewItem__info">
-        <p className="reviewItem__name-reviewer">{nameReviewer}</p>
-        <p className="reviewItem__name-car">{nameCar}</p>
-        <span className="reviewItem__quotes">{quotes()}</span>
+    <div className="review__wrapper">
+      <Image className="review__img" src={src} alt="photo"/>
+      <div className="review__info">
+        <p className="review__name-reviewer">{nameReviewer}</p>
+        <p className="review__name-car">{nameCar}</p>
+        <span className="review__quotes">{quotes()}</span>
         <p data-testid="review-text" className="reviewItem__review">
           {review}
         </p>

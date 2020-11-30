@@ -1,11 +1,10 @@
 @import "../../../theme/styles/variables";
 
-.button-callBack {
-  max-width: 175px;
-  padding: 8px 0 9px 0;
+.button-callback {
+  padding: 9.44px 33.18px;
   color: $Rectangle48;
   font-size: 12px;
-  font-family: sans-serif;
+  font-family: $content-font;
   line-height: 16px;
   text-align: center;
   background: linear-gradient($Rectangle67, $Rectangle67) padding-box,
@@ -22,8 +21,7 @@
   outline: none;
   transition: 0.3s;
 }
-.button-callBack:hover {
-  max-width: 174px;
+.button-callback:hover {
   background: linear-gradient($Rectangle65, $Rectangle65) padding-box,
     linear-gradient(
         274.95deg,
@@ -33,17 +31,13 @@
         #646567 97.25%
       )
       border-box;
-  border: 2px solid transparent;
 }
 
 .button-modal {
-  box-sizing: border-box;
-  max-width: 141px;
-  padding-top: 4px;
-  padding-bottom: 7px;
+  padding: 5.5px 36.72px;
   color: $Rectangle48;
   font-size: 12px;
-  font-family: sans-serif;
+  font-family: $content-font;
   line-height: 16px;
   text-align: center;
   background: $Rectangle67;
@@ -54,17 +48,13 @@
 }
 .button-modal:hover {
   background: $Rectangle64;
-  border: 2px solid $Rectangle51;
-  border-radius: 18px;
 }
 
-.button-callBack-bigger {
-  max-width: 196px;
-  padding-top: 9px;
-  padding-bottom: 12px;
+.button-callback-bigger {
+  padding: 11px 43.67px;
   color: $Rectangle48;
   font-size: 12px;
-  font-family: sans-serif;
+  font-family: $content-font;
   line-height: 16px;
   text-align: center;
   background: linear-gradient($Rectangle67, $Rectangle67) padding-box,
@@ -82,7 +72,7 @@
   transition: 0.3s;
 }
 
-.button-callBack-bigger:hover {
+.button-callback-bigger:hover {
   background: linear-gradient($Rectangle65, $Rectangle65) padding-box,
     linear-gradient(
         274.95deg,
@@ -93,7 +83,7 @@
       )
       border-box;
 }
-.button-callBack-bigger:active {
+.button-callback-bigger:active {
   background: linear-gradient($Rectangle64, $Rectangle64) padding-box,
     linear-gradient(
         274.95deg,
@@ -104,14 +94,12 @@
       )
       border-box;
 }
-.button2-sendRequest {
-  max-width: 221px;
-  padding-top: 11px;
-  padding-bottom: 14px;
+.button2-send-request {
+  padding: 12.5px 44.3px;
   color: $Rectangle48;
   font-weight: 600;
   font-size: 14px;
-  font-family: sans-serif;
+  font-family: $content-font;
   line-height: 19px;
   text-align: center;
   background: linear-gradient($Rectangle67, $Rectangle67) padding-box,
@@ -128,12 +116,7 @@
   outline: none;
   transition: 0.3s;
 }
-.button2-sendRequest:hover {
-  max-width: 196px;
-  padding-top: 9px;
-  padding-bottom: 12px;
-  font-size: 12px;
-  line-height: 16px;
+.button2-send-request:hover {
   background: linear-gradient($Rectangle65, $Rectangle65) padding-box,
     linear-gradient(
         274.95deg,
@@ -144,12 +127,7 @@
       )
       border-box;
 }
-.button2-sendRequest:active {
-  max-width: 196px;
-  padding-top: 9px;
-  padding-bottom: 12px;
-  font-size: 12px;
-  line-height: 16px;
+.button2-send-request:active {
   background: linear-gradient($Rectangle64, $Rectangle64) padding-box,
     linear-gradient(
         274.95deg,
@@ -161,14 +139,12 @@
       border-box;
 }
 
-.button-chooseCar {
-  max-width: 216px;
-  padding-top: 11px;
-  padding-bottom: 13px;
+.button-choose-car {
+  padding: 12px 49.54px;
   color: $Rectangle48;
   font-weight: 600;
   font-size: 14px;
-  font-family: sans-serif;
+  font-family: $content-font;
   line-height: 19px;
   text-align: center;
   background: linear-gradient($Rectangle67, $Rectangle67) padding-box,
@@ -185,7 +161,7 @@
   outline: none;
   transition: 0.3s;
 }
-.button-chooseCar:hover {
+.button-choose-car:hover {
   background: linear-gradient($Rectangle65, $Rectangle65) padding-box,
     linear-gradient(
         274.95deg,
@@ -197,13 +173,10 @@
       border-box;
 }
 .button-subscribe {
-  box-sizing: border-box;
-  max-width: 165px;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding: 4px 37.52px;
   color: rgba(198, 209, 222, 0.5);
   font-size: 14px;
-  font-family: sans-serif;
+  font-family: $content-font;
   line-height: 19px;
   text-align: center;
   background: #282832;
