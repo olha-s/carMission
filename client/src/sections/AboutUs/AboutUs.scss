@@ -16,3 +16,18 @@
 .about-us__heading {
   @include section-heading;
 }
+
+.about-us__features-box {
+  @include content-block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about-us__features-sub-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}

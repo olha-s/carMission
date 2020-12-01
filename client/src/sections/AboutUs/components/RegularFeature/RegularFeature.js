@@ -7,11 +7,14 @@ const RegularFeature = (props) => {
   return (
     <div className={className}>
       <Image
+        className="about-us__feature-image"
         data-testid="regularFeature-img"
         src={imgPath}
         alt="feature-icon"
       />
-      <p data-testid="regularFeature-title">{title}</p>
+      <p className="about-us__feature-text" data-testid="regularFeature-title">
+        {title}
+      </p>
     </div>
   );
 };

@@ -41,7 +41,7 @@ const AboutUs = ({ heading, anchorName }) => {
     const { imgPath, title, text, _id: id } = mf;
     return (
       <MainFeature
-        className="about-us__content-box"
+        className="about-us__main-feature-box"
         imgPath={imgPath}
         title={title}
         text={text}
@@ -55,11 +55,11 @@ const AboutUs = ({ heading, anchorName }) => {
       <SectionHeading className="about-us__heading" text={heading} />
 
       <div className="about-us__features-box">
-        <div>
+        <div className="about-us__features-sub-box">
           {regularFeaturesToRender[0]}
           {regularFeaturesToRender[1]}
         </div>
-        <div>
+        <div className="about-us__features-sub-box">
           {regularFeaturesToRender[2]}
           {regularFeaturesToRender[3]}
         </div>

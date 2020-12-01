@@ -5,6 +5,7 @@
   color: $Rectangle48;
   text-align: center;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 }
 
@@ -21,65 +22,55 @@
 }
 
 .auto-from-usa__heading {
-  padding-top: 56px;
-  font-size: 39px;
+  padding-top: 80px;
+  font-size: 64px;
   font-family: $headings-font;
-  line-height: 51px;
+  line-height: 83px;
 }
 
-.auto-from-usa__sub-heading {
-  max-width: 650px;
-  margin: 0 auto;
-  padding-top: 12px;
-  padding-bottom: 18px;
-  font-size: 11px;
-  line-height: 15px;
+.auto-from-usa__description {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  font-size: 18px;
+  line-height: 25px;
 }
 
-@media screen and (min-width: $sm-size) {
+@media screen and (min-width: $sm-size) and (max-width: 960px) {
+  .auto-from-usa__container {
+    background-position: unset;
+  }
+
+  .auto-from-usa__heading {
+    padding-top: 56px;
+    font-size: 39px;
+    line-height: 51px;
+  }
+
+  .auto-from-usa__description {
+    max-width: 650px;
+    margin: 0 auto;
+    padding-top: 12px;
+    padding-bottom: 18px;
+    font-size: 11px;
+    line-height: 15px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .auto-from-usa__container {
+    background-position: unset;
+  }
+
   .auto-from-usa__heading {
     padding-top: 80px;
     font-size: 47px;
-    font-family: $headings-font;
     line-height: 61px;
   }
 
-  .auto-from-usa__sub-heading {
+  .auto-from-usa__description {
     padding-top: 15px;
     padding-bottom: 22px;
     font-size: 13px;
     line-height: 18px;
   }
-}
-
-@media screen and (min-width: $md-size) {
-  .auto-from-usa__container {
-    background-position: center;
-  }
-
-  .auto-from-usa__heading {
-    padding-top: 80px;
-    font-size: 64px;
-    font-family: $headings-font;
-    line-height: 83px;
-  }
-
-  .auto-from-usa__sub-heading {
-    padding-top: 20px;
-    padding-bottom: 30px;
-    font-size: 18px;
-    line-height: 25px;
-  }
-}
-
-@media screen and (min-width: $lg-size) {
-}
-
-@media screen and (min-width: $xl-size) {
-}
-
-@media screen and (min-width: $sm-size) and (max-width: 960px) {
-}
-
-@media screen and (max-width: 640px) {
 }
