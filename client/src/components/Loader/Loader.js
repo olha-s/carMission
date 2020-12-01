@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Loader.scss";
 import Image from "../Image/Image";
 import PropTypes from "prop-types";

@@ -5,3 +5,10 @@
   background-size: cover;
   background-attachment: fixed;
 }
+
+
+@media screen and (max-width: 640px) {
+  .App {
+    background-position: left;
+  }
+}
