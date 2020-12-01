@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UseWinSize from "../../utils/hooks/UseWinSize";
 import Navbar from "../Navbar/Navbar";
-import Image from "../Image/Image";
+import Logo from "../Logo/Logo";
 import Button from "../generalComponents/Button/Button";
 import "./MainHeader.scss";
 import { getLogoData } from "../../store/selectors/logoSelectors";
@@ -50,7 +50,7 @@ const MainHeader = () => {
           {!isMobileWindowSize && (
             <div className="logo__block">
               <Link to="/">
-                <Image
+                <Logo
                   className="logo"
                   src={logoInfo.path}
                   id={logoInfo.id}
@@ -84,7 +84,7 @@ const MainHeader = () => {
           {isMobileWindowSize && (
             <div className="logo__block">
               <Link to="/">
-                <Image
+                <Logo
                   className="logo"
                   src={logoInfo.path}
                   id={logoInfo.id}
