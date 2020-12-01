@@ -16,7 +16,7 @@ const MainHeader = () => {
   const { width: winWidth } = UseWinSize();
   const [isMobileNavbar, setIsMobileNavbar] = useState(false);
 
-  const firstMobileSize = 640;
+  const firstMobileSize = 768;
   const isMobileWindowSize = winWidth <= firstMobileSize;
   const sectionsLinks = navbarData
     .filter((e) => e.sectionId !== undefined)
@@ -40,59 +40,56 @@ const MainHeader = () => {
     setIsMobileNavbar(!isMobileNavbar);
   };
 
+  const header = !isMobileWindowSize ? (
+      <>
+        <Navbar className="navbar" items={leftSideItems} />
+          <div className="logo__block">
+            <Link to="/">
+              <Image
+                className="logo"
+                src={logoInfo.path}
+                id={logoInfo.id}
+                alt={logoInfo.alt}
+              />
+            </Link>
+          </div>
+        <Navbar className="navbar" items={rightSideItems} />
+      </>
+    ) : (
+      <>
+        <div className="logo__block">
+          <Link to="/">
+            <Image
+              className="logo"
+              src={logoInfo.path}
+              id={logoInfo.id}
+              alt={logoInfo.alt}
+            />
+          </Link>
+        </div>
+        {isMobileNavbar ?
+          <Navbar
+            className="navbar"
+            items={navbarData}
+            id="navbar"
+            mobileNavbar={true}
+            onClick={(e) => checkClick(e)}
+          />
+        :
+          <Button
+            className="open-navbar"
+            onClick={setIsMobileNavbar}
+            text=""
+          />
+        }
+      </>
+    )
+
   return (
     <div className={headerBgClassName}>
       <div className="header__container">
         <div className="navbar__block">
-          {!isMobileWindowSize && (
-            <Navbar className="navbar" items={leftSideItems} />
-          )}
-          {!isMobileWindowSize && (
-            <div className="logo__block">
-              <Link to="/">
-                <Logo
-                  className="logo"
-                  src={logoInfo.path}
-                  id={logoInfo.id}
-                  alt={logoInfo.alt}
-                />
-              </Link>
-            </div>
-          )}
-          {!isMobileWindowSize && (
-            <Navbar className="navbar" items={rightSideItems} />
-          )}
-
-          {/* Conditional rendering for device window size less 640 px */}
-
-          {isMobileWindowSize && isMobileNavbar ? (
-            <Navbar
-              className="navbar"
-              items={navbarData}
-              id="navbar"
-              mobileNavbar={true}
-              onClick={(e) => checkClick(e)}
-            />
-          ) : null}
-          {isMobileWindowSize && !isMobileNavbar ? (
-            <Button
-              className="open-navbar"
-              onClick={setIsMobileNavbar}
-              text=""
-            />
-          ) : null}
-          {isMobileWindowSize && (
-            <div className="logo__block">
-              <Link to="/">
-                <Logo
-                  className="logo"
-                  src={logoInfo.path}
-                  id={logoInfo.id}
-                  alt={logoInfo.alt}
-                />
-              </Link>
-            </div>
-          )}
+          {header}
         </div>
       </div>
     </div>

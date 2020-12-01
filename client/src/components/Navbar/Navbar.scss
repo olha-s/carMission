@@ -30,14 +30,14 @@
   }
 }
 
-@media screen and (min-width: $sm-size) and (max-width: 960px) {
+@media screen and (min-width: 769px) and (max-width: 960px) {
   .navbar {
     flex-wrap: wrap;
     justify-content: space-between;
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
   .navbar {
     position: absolute;
     display: flex;
@@ -57,10 +57,35 @@
       justify-content: center;
       width: 100%;
       height: 100vh;
-      background-color: #3d3c4ab4;
+      background-color: #51515539;
+      &::before, &::after {
+        position: absolute;
+        top: 15%;
+        right: 10%;
+        width: 28px;
+        padding: 1px 0;
+        background: $Rectangle45;
+        content: "";
+      }
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(135deg);
+      } 
     }
     &__block {
       grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .navbar {
+    &__window {
+      &::before, &::after {
+        top: 8%;
+      }
     }
   }
 }

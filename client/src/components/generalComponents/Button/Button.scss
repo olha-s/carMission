@@ -204,15 +204,14 @@
 }
 
 // burger-button for mobile navbar
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
   .open-navbar {
     position: absolute;
     top: 45%;
     left: 5%;
     width: 28px;
     padding: 1px 0;
-    // background-color: $Rectangle45;
-    background-color: white;
+    background: $Rectangle46;
     border: 0px solid transparent;
     cursor: pointer;
     &::after,
@@ -221,8 +220,7 @@
       left: 0;
       width: 28px;
       padding: 1px 0;
-      background-color: white;
-      // background-color: $Rectangle45;
+      background: $Rectangle46;
       content: "";
     }
     &::after {

@@ -31,7 +31,6 @@ const AutoFromUsa = () => {
   return (
     <section
       className="auto-from-usa__container"
-      style={{ backgroundImage: `url("${imgPath}")` }}
     >
       <div className="auto-from-usa__wrapper">
         <h1 className="auto-from-usa__heading">{heading}</h1>
