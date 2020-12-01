@@ -1,23 +1,16 @@
-@import "../../theme/styles/variables";
+@import "../../../theme/styles/variables";
 
 .feedback-form {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30%;
-  min-height: 21vh;
+  min-width: 35%;
+  min-height: 35%;
   margin: 10% auto 0 auto;
   background-color: rgba(131, 149, 170, 1);
   border-radius: 3px;
 
-  &__wrapper {
-    position: absolute;
-    z-index: 1;
-    width: 100vw;
-    height: 100vh;
-    background-color: $Rectangle89-shadow;
-  }
 
   &__name-label {
     display: flex;
@@ -77,8 +70,9 @@
   }
 
   &__conf-text2 {
-    margin-bottom: 11%;
+    margin: 0 5% 11% 5%;
     color: #c6d1de;
     font-size: 14px;
+    text-align: center;
   }
 }

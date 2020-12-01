@@ -1,2 +1,1 @@
-export const feedbackFormOpen = (state) =>
-  state.feedbackFormReducer.feedbackForm;
+export const feedbackFormOpen = (state) => state.feedbackFormReducer.feedbackForm.feedbackFormOpen;

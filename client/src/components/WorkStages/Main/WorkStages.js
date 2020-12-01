@@ -5,6 +5,7 @@ import Button from "../../generalComponents/Button/Button";
 import SectionHeading from "../../generalComponents/SectionHeading/SectionHeading";
 import PropTypes from "prop-types";
 
+
 const WorkStages = ({ description, heading, anchorName }) => {
   return (
     <section id={anchorName} className="work-stages">
@@ -14,7 +15,7 @@ const WorkStages = ({ description, heading, anchorName }) => {
           <WorkStagesList />
         </div>
         <p className="work-stages__description">{description}</p>
-        <Button text="Обратный звонок" className="button-callBack-bigger" />
+        <Button text="Обратный звонок" className="button-callBack-bigger"/>
       </div>
     </section>
   );

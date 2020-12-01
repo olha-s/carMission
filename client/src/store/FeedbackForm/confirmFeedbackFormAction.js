@@ -3,6 +3,6 @@ import { CONFIRM_FEEDBACK_FORM } from "./actionTypes";
 export const confirmFeedbackFormAction = {
   type: CONFIRM_FEEDBACK_FORM,
   payload: {
-    feedbackForm: "confirm",
-  },
+    feedbackFormOpen: "confirm"
+  }
 };
