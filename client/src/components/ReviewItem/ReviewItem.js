@@ -12,7 +12,7 @@ const ReviewItem = ({ src, nameReviewer, nameCar, review }) => {
         <p className="review__name-reviewer">{nameReviewer}</p>
         <p className="review__name-car">{nameCar}</p>
         <span className="review__quotes">{quotes()}</span>
-        <p data-testid="review-text" className="reviewItem__review">
+        <p data-testid="review-text" className="review__review">
           {review}
         </p>
       </div>
