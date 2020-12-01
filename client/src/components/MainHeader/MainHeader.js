@@ -45,7 +45,7 @@ const MainHeader = () => {
         <Navbar className="navbar" items={leftSideItems} />
           <div className="logo__block">
             <Link to="/">
-              <Image
+              <Logo
                 className="logo"
                 src={logoInfo.path}
                 id={logoInfo.id}
@@ -59,7 +59,7 @@ const MainHeader = () => {
       <>
         <div className="logo__block">
           <Link to="/">
-            <Image
+            <Logo
               className="logo"
               src={logoInfo.path}
               id={logoInfo.id}
