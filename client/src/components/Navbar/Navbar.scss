@@ -7,7 +7,6 @@
 }
 
 .navbar {
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 
@@ -32,8 +31,11 @@
 
 @media screen and (min-width: 769px) and (max-width: 960px) {
   .navbar {
-    flex-wrap: wrap;
     justify-content: space-between;
+    &__block {
+      grid-template-columns: 45% 10% 45%;
+    }
+  
   }
 }
 
