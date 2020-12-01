@@ -2,7 +2,7 @@ import React from "react";
 import Gear from "../SVG/Gear/Gear";
 import WorkStageName from "../WorkStageName/WorkStageName";
 import Arrow from "../SVG/Arrow/Arrow";
-import Image from "../../Image/Image";
+import Image from "../../../components/Image/Image";
 import PropTypes from "prop-types";
 
 const WorkStageItem = ({ stageNum, stageName, stageLength, src }) => {

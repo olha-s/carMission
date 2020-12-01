@@ -137,10 +137,10 @@ export const year = () => (
         y2="-65.7933"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint1_linear"
@@ -150,10 +150,10 @@ export const year = () => (
         y2="2.97954"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint2_linear"
@@ -163,10 +163,10 @@ export const year = () => (
         y2="5.91436"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint3_linear"
@@ -176,10 +176,10 @@ export const year = () => (
         y2="7.54498"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint4_linear"
@@ -189,10 +189,10 @@ export const year = () => (
         y2="5.91436"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint5_linear"
@@ -202,10 +202,10 @@ export const year = () => (
         y2="7.54498"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint6_linear"
@@ -215,10 +215,10 @@ export const year = () => (
         y2="5.91436"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint7_linear"
@@ -228,10 +228,10 @@ export const year = () => (
         y2="7.54498"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint8_linear"
@@ -241,10 +241,10 @@ export const year = () => (
         y2="5.91436"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint9_linear"
@@ -254,10 +254,10 @@ export const year = () => (
         y2="7.54498"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint10_linear"
@@ -267,10 +267,10 @@ export const year = () => (
         y2="9.17535"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint11_linear"
@@ -280,10 +280,10 @@ export const year = () => (
         y2="12.178"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint12_linear"
@@ -293,10 +293,10 @@ export const year = () => (
         y2="5.91436"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint13_linear"
@@ -306,10 +306,10 @@ export const year = () => (
         y2="7.54498"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint14_linear"
@@ -319,10 +319,10 @@ export const year = () => (
         y2="9.17535"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint15_linear"
@@ -332,10 +332,10 @@ export const year = () => (
         y2="12.178"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint16_linear"
@@ -345,10 +345,10 @@ export const year = () => (
         y2="5.91436"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint17_linear"
@@ -358,10 +358,10 @@ export const year = () => (
         y2="7.54497"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint18_linear"
@@ -371,10 +371,10 @@ export const year = () => (
         y2="9.17534"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint19_linear"
@@ -384,10 +384,10 @@ export const year = () => (
         y2="10.8057"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint20_linear"
@@ -397,10 +397,10 @@ export const year = () => (
         y2="12.4361"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint21_linear"
@@ -410,10 +410,10 @@ export const year = () => (
         y2="14.0667"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint22_linear"
@@ -423,10 +423,10 @@ export const year = () => (
         y2="5.91436"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint23_linear"
@@ -436,10 +436,10 @@ export const year = () => (
         y2="7.54498"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint24_linear"
@@ -449,10 +449,10 @@ export const year = () => (
         y2="9.17535"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint25_linear"
@@ -462,10 +462,10 @@ export const year = () => (
         y2="10.8057"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint26_linear"
@@ -475,10 +475,10 @@ export const year = () => (
         y2="12.4361"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint27_linear"
@@ -488,10 +488,10 @@ export const year = () => (
         y2="14.0667"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint28_linear"
@@ -501,10 +501,10 @@ export const year = () => (
         y2="-20.1129"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint29_linear"
@@ -514,10 +514,10 @@ export const year = () => (
         y2="1.76355"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
     </defs>
   </svg>

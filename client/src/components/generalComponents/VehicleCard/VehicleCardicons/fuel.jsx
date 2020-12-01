@@ -24,10 +24,10 @@ export const fuel = () => (
         y2="-26.8311"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint1_linear"
@@ -37,10 +37,10 @@ export const fuel = () => (
         y2="-79.1905"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
     </defs>
   </svg>

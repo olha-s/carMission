@@ -8,7 +8,7 @@ export const auction = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0)">
+    <g clipPath="url(#clip0)">
       <path
         d="M13.7374 18.2802H2.14706C0.963139 18.2802 0 19.2433 0 20.4272V23.5936C0 23.8177 0.181687 23.9994 0.405749 23.9994H15.4787C15.7028 23.9994 15.8844 23.8177 15.8844 23.5936V20.4272C15.8845 19.2433 14.9213 18.2802 13.7374 18.2802ZM15.0729 23.1878H0.811545V20.4272C0.811545 19.6909 1.41061 19.0917 2.14706 19.0917H13.7374C14.4738 19.0917 15.073 19.6908 15.073 20.4272V23.1878H15.0729Z"
         fill="url(#paint0_linear)"
@@ -39,10 +39,10 @@ export const auction = () => (
         y2="-31.1482"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint1_linear"
@@ -52,10 +52,10 @@ export const auction = () => (
         y2="-36.9577"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint2_linear"
@@ -65,10 +65,10 @@ export const auction = () => (
         y2="-17.6381"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint3_linear"
@@ -78,10 +78,10 @@ export const auction = () => (
         y2="-24.443"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint4_linear"
@@ -91,10 +91,10 @@ export const auction = () => (
         y2="-38.6507"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <clipPath id="clip0">
         <rect width="24" height="24" fill="white" />

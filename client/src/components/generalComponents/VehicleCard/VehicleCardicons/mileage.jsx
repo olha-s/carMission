@@ -8,7 +8,7 @@ export const mileage = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0)">
+    <g clipPath="url(#clip0)">
       <path
         d="M10.5 14.0679C10.5 14.8949 11.1729 15.5677 11.9999 15.5677C12.8269 15.5677 13.4997 14.8949 13.4997 14.0679C13.4997 13.8609 13.3319 13.693 13.1249 13.693C12.9179 13.693 12.7501 13.8609 12.7501 14.0679C12.7501 14.4815 12.4136 14.8181 11.9999 14.8181C11.5862 14.8181 11.2497 14.4815 11.2497 14.0679C11.2497 13.9905 11.2615 13.9158 11.2833 13.8456C11.2962 13.8259 11.308 13.8053 11.3174 13.7828C11.3264 13.7609 11.3329 13.7387 11.3376 13.7163C11.4639 13.4794 11.7132 13.3177 11.9999 13.3177C12.2069 13.3177 12.3747 13.1499 12.3747 12.9429C12.3747 12.7359 12.2069 12.5681 11.9999 12.5681C11.5115 12.5681 11.077 12.8028 10.803 13.1653L5.09099 10.8104C4.89956 10.7315 4.68048 10.8227 4.60163 11.0141C4.52274 11.2054 4.61391 11.4245 4.80529 11.5034L10.5152 13.8575C10.5054 13.9262 10.5 13.9964 10.5 14.0679Z"
         fill="url(#paint0_linear)"
@@ -43,10 +43,10 @@ export const mileage = () => (
         y2="-15.8815"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint1_linear"
@@ -56,10 +56,10 @@ export const mileage = () => (
         y2="-74.3048"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint2_linear"
@@ -69,10 +69,10 @@ export const mileage = () => (
         y2="-9.12285"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint3_linear"
@@ -82,10 +82,10 @@ export const mileage = () => (
         y2="15.2038"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint4_linear"
@@ -95,10 +95,10 @@ export const mileage = () => (
         y2="15.2038"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <linearGradient
         id="paint5_linear"
@@ -108,10 +108,10 @@ export const mileage = () => (
         y2="15.2038"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#BEBFC0" />
-        <stop offset="0.278807" stop-color="#7D7E80" />
-        <stop offset="0.578125" stop-color="#DDDEDF" />
-        <stop offset="0.953125" stop-color="#646567" />
+        <stop stopColor="#BEBFC0" />
+        <stop offset="0.278807" stopColor="#7D7E80" />
+        <stop offset="0.578125" stopColor="#DDDEDF" />
+        <stop offset="0.953125" stopColor="#646567" />
       </linearGradient>
       <clipPath id="clip0">
         <rect width="24" height="24" fill="white" />

@@ -1,5 +1,4 @@
-export const LOAD_SECTIONS = "LOAD_SECTIONS";
-export const IS_LOADING_SECTIONS = "IS_LOADING_SECTIONS";
+import {IS_LOADING_SECTIONS, LOAD_SECTIONS} from "./actionTypes";
 
 export const setMainSections = (sectionsArr) => ({
   type: LOAD_SECTIONS,

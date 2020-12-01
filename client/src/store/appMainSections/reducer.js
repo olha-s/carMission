@@ -1,4 +1,4 @@
-import { LOAD_SECTIONS, IS_LOADING_SECTIONS } from "./actions";
+import { LOAD_SECTIONS, IS_LOADING_SECTIONS } from "./actionTypes";
 
 const initialState = {
   sections: [],
