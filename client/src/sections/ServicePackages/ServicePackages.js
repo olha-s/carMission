@@ -38,7 +38,7 @@ const ServicePackages = ({ heading, anchorName, description }) => {
       <SectionHeading text={heading} />
       <div className="service-packages__wrapper">{servicePackagesToRender}</div>
       <p className="service-packages__description">{description}</p>
-      <Button className="button2-sendRequest" text="Отправить заявку" />
+      <Button className="button2-send-request" text="Отправить заявку" />
     </section>
   );
 };
