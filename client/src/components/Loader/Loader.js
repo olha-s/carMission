@@ -1,35 +1,26 @@
 import React, { useState, useEffect } from "react";
 import "./Loader.scss";
 import Image from "../Image/Image";
-import axios from "axios";
 import PropTypes from "prop-types";
 
 const Loader = ({ className }) => {
-  const [loaderData, setLoaderData] = useState([]);
 
-  useEffect(() => {
-    getLoaderData();
-  }, []);
-
-  const getLoaderData = async () => {
-    setLoaderData(
-      await axios("/api/loader")
-        .then((res) => res.data)
-        .catch((err) => console.error(err))
-    );
-  };
-
-  const loaderImages = loaderData.map((e) => (
-    <Image
-      className={e.className}
-      id={e._id}
-      alt={e.className}
-      src={e.path}
-      key={e._id}
-    />
-  ));
-
-  return <div className={className}>{loaderImages}</div>;
+  return (
+      <div className={className}>
+        <Image
+          className="loader-motion"
+          id="loader-img"
+          alt="loader-img"
+          src="/img/loader-img/loader-motion.png"
+        />
+        <Image
+          className="loader-static"
+          id="loader-img"
+          alt="loader-img"
+          src="/img/loader-img/loader-static.png"
+        />
+      </div>
+    )
 };
 
 Loader.propTypes = {

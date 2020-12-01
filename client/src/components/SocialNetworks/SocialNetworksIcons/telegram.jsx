@@ -1,6 +1,6 @@
 import React from "react";
 
-export const telegram = () => (
+const telegram = () => (
   <svg
     width="25"
     height="25"
@@ -29,3 +29,5 @@ export const telegram = () => (
     </defs>
   </svg>
 );
+
+export default telegram;
