@@ -5,7 +5,7 @@ import MainFeature from "./MainFeature";
 const mockComponentClassName = "about-us__content-box";
 const mockSubComponentClassName = "about-us__content-box-text";
 const mockComponentText =
-  "First sentence./Second sentence./Third sentence./Fourth sentence.";
+  "First sentence./Second sentence.Third sentence./Fourth sentence.";
 const splittedText = mockComponentText.split("/");
 
 test("MainFeature is rendered correctly", () => {
@@ -13,11 +13,8 @@ test("MainFeature is rendered correctly", () => {
     <MainFeature className={mockComponentClassName} text={mockComponentText}>
       <div className={mockSubComponentClassName}>
         <p>{splittedText[0]}</p>
-        <p>
-          {splittedText[1]}
-          {splittedText[2]}
-        </p>
-        <p>{splittedText[3]}</p>
+        <p>{splittedText[1]}</p>
+        <p>{splittedText[2]}</p>
       </div>
     </MainFeature>
   );

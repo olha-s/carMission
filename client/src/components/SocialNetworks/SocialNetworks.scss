@@ -1,4 +1,29 @@
+@import "../../theme/styles/variables";
+
 .footer__networks {
   display: flex;
   justify-content: space-around;
+}
+
+.header__networks {
+  position: absolute;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
+  height: 25vh;
+}
+
+@media screen and (max-width: 640px) {
+  .header__networks {
+    right: 1vw;
+    bottom: 1vh;
+    flex-direction: row;
+    align-content: space-around;
+    align-self: center;
+    justify-content: space-around;
+    width: 50vw;
+    height: auto;
+  }
 }

@@ -2,50 +2,31 @@ import React, { memo } from "react";
 import "./MainFeature.scss";
 import useWinSize from "../../../../utils/hooks/UseWinSize";
 import PropTypes from "prop-types";
-import Image from "../../../../components/Image/Image";
+import MainFeatureImage from "./components/MainFeatureImage/MainFeatureImage";
+import MainFeatureText from "./components/MainFeatureText/MainFeatureText";
 
 const MainFeature = (props) => {
   const { className, imgPath, text } = props;
   const { width: winWidth } = useWinSize();
-  const textContent = text.split("/");
 
-  return (
-    <>
-      {winWidth <= 640 && (
+  const mainFeatureRender = (windowWidth) => {
+    if (windowWidth <= 640) {
+      return (
         <div className={className}>
-          <div className="about-us__main-feature-text-box">
-            <p className="about-us__main-feature-text">{textContent[0]}</p>
-            <p className="about-us__main-feature-text">
-              {textContent[1]}
-              {textContent[2]}
-            </p>
-            <p className="about-us__main-feature-text">{textContent[3]}</p>
-          </div>
+          <MainFeatureText text={text} />
         </div>
-      )}
-
-      {winWidth > 640 && (
+      );
+    } else if (windowWidth > 640) {
+      return (
         <div className={className}>
-          <div className="about-us__main-feature-image-box">
-            <Image
-              className="about-us__main-feature-image"
-              src={imgPath}
-              alt="staff-photo"
-            />
-          </div>
-
-          <div className="about-us__main-feature-text-box">
-            <p className="about-us__main-feature-text">{textContent[0]}</p>
-            <p className="about-us__main-feature-text">
-              {textContent[1]}
-              {textContent[2]}
-            </p>
-            <p className="about-us__main-feature-text">{textContent[3]}</p>
-          </div>
+          <MainFeatureImage imgPath={imgPath} />
+          <MainFeatureText text={text} />
         </div>
-      )}
-    </>
-  );
+      );
+    }
+  };
+
+  return <>{mainFeatureRender(winWidth)}</>;
 };
 
 MainFeature.propTypes = {
