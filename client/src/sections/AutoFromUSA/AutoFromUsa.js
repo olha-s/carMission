@@ -2,18 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./AutoFromUSA.scss";
 import Button from "../../components/generalComponents/Button/Button";
 import axios from "axios";
-// import { useDispatch } from "react-redux";
-// import { showFeedbackFormAction } from "../../store/FeedbackForm/showFeedbackFormAction";
+import { useDispatch } from "react-redux";
+import { showFeedbackFormAction } from "../../store/FeedbackForm/actions";
 
 const AutoFromUsa = () => {
   const [heading, setHeading] = useState("");
   const [description, setDescription] = useState("");
-  const [imgPath, setImgPath] = useState("");
+  // const [imgPath, setImgPath] = useState("");
 
-  // const dispatch = useDispatch();
-  // const showForm = () => {
-  //   dispatch(showFeedbackFormAction);
-  // };
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getData();
@@ -25,20 +22,20 @@ const AutoFromUsa = () => {
     });
     setHeading(dataFromServer[0].heading);
     setDescription(dataFromServer[0].description);
-    setImgPath(dataFromServer[0].imgPath);
+    // setImgPath(dataFromServer[0].imgPath);
   };
 
   return (
-    <section
-      className="auto-from-usa__container"
-    >
+    <section className="auto-from-usa__container">
       <div className="auto-from-usa__wrapper">
         <h1 className="auto-from-usa__heading">{heading}</h1>
         <p className="auto-from-usa__description">{description}</p>
         <Button
           className="button-choose-car"
           text="Подобрать авто"
-          onClick={() => {}}
+          onClick={() => {
+            dispatch(showFeedbackFormAction);
+          }}
         />
       </div>
     </section>

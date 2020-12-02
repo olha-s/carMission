@@ -1,40 +1,32 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import Button from "../generalComponents/Button/Button";
-import "./ErrorModal.scss";
+import React from "react"
+import Button from "../generalComponents/Button/Button"
+import "./ErrorModal.scss"
+import { useDispatch, useSelector } from "react-redux"
+import { closeErrModal } from "../../store/ErrorModal/closeErrModal"
+import { isErrModalOpen } from "../../store/selectors/errModalSelectors"
+import {errObjSelector} from "../../store/selectors/errObjSelector"
 
-const ErrorModal = ({ error }) => {
-  const [isErrorModal, setIsErrorModal] = useState(true);
-
-  const closeErrorModal = (event) => {
-    if (event.target === event.currentTarget) setIsErrorModal(!isErrorModal);
-  };
+const ErrorModal = () => {
+  const dispatch = useDispatch()
+  const ErrModalOpen = useSelector(isErrModalOpen);
+  const err = useSelector(errObjSelector)
 
   return (
-    isErrorModal && (
-      <div
-        data-testid="git"
-        className="error-modal"
-        onClick={(event) => closeErrorModal(event)}
-      >
-        <div className="error-modal__window">
-          <div className="error-modal__heading">
-            <p className="error-modal__heading-text">{`an error ${error.name} occurred`}</p>
-          </div>
-          <p className="error-modal__text">{error.message}</p>
-          <Button
-            text="Ok"
-            className="button-modal error-modal__btn"
-            onClick={(event) => closeErrorModal(event)}
-          />
+    ErrModalOpen && err && (
+      <div className="error-modal">
+        <div className="error-modal__heading">
+          <p className="error-modal__heading-text">{`${err.name}`}</p>
         </div>
+        <p className="error-modal__text">{err.message}</p>
+        <Button
+          text="Ok"
+          className="button-modal error-modal__btn"
+          onClick={() => dispatch(closeErrModal)}
+        />
       </div>
     )
-  );
-};
+  )
+}
 
-ErrorModal.propTypes = {
-  error: PropTypes.object.isRequired,
-};
 
-export default ErrorModal;
+export default ErrorModal

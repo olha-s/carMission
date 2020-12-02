@@ -2,7 +2,6 @@ const Feedback = require("../models/Feedback");
 const mailSender = require("../commonHelpers/mailSender");
 
 exports.createFeedback = (req, res, next) => {
-  console.log("req body  - - - ", req.body);
   mailSender("db.carsmission@gmail.com", "Вам пришел запрос от клиента",
     `<p style="font-size: 20px">Вам пришел запрос от клиента: имя клиента ${req.body.name}, контактный номер телефона ${req.body.phone}.</p>`);
 

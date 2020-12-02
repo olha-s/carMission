@@ -8,6 +8,11 @@ test("ServicePackages is rendered correctly", () => {
   render(<ServicePackages className={mockSectionClassName} />);
 });
 
+const mockDispatch = jest.fn();
+jest.mock("react-redux", () => ({
+  useDispatch: () => mockDispatch,
+}));
+
 test("ServicePackages contains sections", () => {
   const mockHeadingText = "Test heading";
   const mockPackageClassName = "service-packages";
