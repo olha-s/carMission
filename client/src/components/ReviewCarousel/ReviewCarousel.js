@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
-import "./ReviewCarousel.scss";
-
-import ReviewItem from "../ReviewItem/ReviewItem";
+import ReviewItem from "./ReviewItem/ReviewItem";
 import SectionHeading from "../generalComponents/SectionHeading/SectionHeading";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./ReviewCarousel.scss";
+import SampleNextArrow from "./CarouselArrows/SampleNextArrow";
+import SamplePrevArrow from "./CarouselArrows/SamplePrevArrow";
 
 const ReviewCarousel = ({ heading, anchorName }) => {
   const [reviews, setReviews] = useState([]);
@@ -30,19 +32,68 @@ const ReviewCarousel = ({ heading, anchorName }) => {
     />
   ));
 
+  const settings = {
+    className: "center",
+    dots: true,
+    infinite: true,
+    speed: 500,
+    arrows: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    swipeToSlide: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1281,
+        settings: {
+          dots: true,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 898,
+        settings: {
+          dots: true,
+          infinite: true,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 361,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: false,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className="carouse-wrapper" id={anchorName}>
+    <div className="carousel__section" id={anchorName}>
       <SectionHeading text={heading} />
-      <Carousel
-        showThumbs={false}
-        transitionTime="3000"
-        showStatus={false}
-        infiniteLoop={true}
-        centerMode
-        centerSlidePercentage="33.33"
-      >
-        {allReviews}
-      </Carousel>
+      <div className="carousel__wrapper">
+        <Slider {...settings}>
+          {allReviews}
+          {allReviews}
+        </Slider>
+      </div>
     </div>
   );
 };

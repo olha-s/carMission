@@ -1,80 +1,99 @@
 @import "../../theme/styles/variables";
-
-.carouse-wrapper {
+.carousel{
+&__section{
   padding-bottom: 116px;
   background: $Rectangle67;
 }
-
-.carousel-root {
-  max-width: 1006px;
-  margin: 52px auto 0 auto;
+  &__wrapper {
+    max-width: 1088px;
+    margin: 0 auto;
+   }
 }
 
-.carousel {
-  &.carousel-slider .control-arrow:hover {
-    background: inherit;
-    cursor: inherit;
+.slick-slider {
+  margin: 52px auto 0 auto;
+}
+.arrow__prev, .arrow__next{
+  position: absolute;
+  top: 50%;
+  background: transparent;
+  border-top: 2px solid $Rectangle48;
+  border-right: 2px solid $Rectangle48;
+  border-bottom: none;
+  border-left: none;
+  outline: none;
+  cursor: pointer;
+}
+.arrow__prev{
+  left: -30px;
+  transform: rotate(-135deg) translate(-50%, 50%);
+}
+.arrow__next {
+  right: -30px;
+  transform: rotate(45deg) translate(-50%, 50%);
+}
+.slick-initialized .slick-slide {
+  display: flex;
+  justify-content: center;
+}
+
+  .slick-dots {
+    bottom: auto;
+
+    & li {
+      width: fit-content;
+      height: fit-content;
+      margin: 13px 18px 0 18px;
+    }
+
+    & li button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    & li button:before {
+      top: 50%;
+      left: 50%;
+      width: 7px;
+      height: 7px;
+      background-color: $Rectangle48;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 1;
+      content: " ";
+    }
+
+    & li.slick-active button:before {
+      opacity: 1;
+    }
+
+    & li.slick-active button {
+      border: 1px solid $Rectangle48;
+    }
   }
 
-  & .slide {
-    background: none;
+@media screen and (min-width: $sm-size){
+  .slick-slider {
+    max-width: calc(100% - 58.7px);
   }
-
-  &.carousel-slider {
-    margin: 0 auto;
-    overflow: visible;
-  }
-
-  & .control-prev.control-arrow {
-    left: -30px;
-  }
-
-  & .control-next.control-arrow {
-    right: -30px;
-  }
-
-  &.carousel-slider .control-arrow {
-    padding: 0;
-  }
-
-  & .control-arrow:before,
-  &.carousel-slider .control-arrow:before {
-    margin: 0;
-  }
-
-  & .control-prev.control-arrow:before {
+  .arrow__prev, .arrow__next {
     width: 18.75px;
     height: 18.75px;
-    margin: 0;
-    border-top: 2px solid $Rectangle48;
-    border-right: 2px solid $Rectangle48;
-    border-bottom: 0;
-    transform: rotate(-135deg);
-    cursor: pointer;
   }
-
-  & .control-next.control-arrow:before {
-    width: 18.75px;
-    height: 18.75px;
-    margin: 0;
-    border-top: 2px solid $Rectangle48;
-    border-right: 2px solid $Rectangle48;
-    border-bottom: 0;
-    border-left: 0;
-    transform: rotate(45deg);
-    cursor: pointer;
+}
+@media screen and (max-width: 640px) and (min-width: 362px) {
+  .slick-slider {
+    max-width: calc(100% - 58.7px);
   }
-
-  & .control-dots {
-    position: inherit;
-    margin-top: 16px;
-    padding: 0;
+  .arrow__prev, .arrow__next {
+    width: 15px;
+    height: 15px;
   }
+}
 
-  & .control-dots .dot {
-    width: 7px;
-    height: 7px;
-    margin: 0 35px;
-    background: $Rectangle48;
+@media screen and (max-width: 361px) {
+  .slick-slider {
+    width: 320px;
   }
 }
