@@ -1,9 +1,9 @@
-import { SAVE_ERROR_OBJECT } from "./actionTypes"
+import { SAVE_ERROR_OBJECT } from "./actionTypes";
 
 export const saveErrObjAction = (err) => {
-  console.log("error object - - - ",err)
+  console.log("error object - - - ", err);
   return {
-      type: SAVE_ERROR_OBJECT,
-      payload: err
-    }
-}
+    type: SAVE_ERROR_OBJECT,
+    payload: err,
+  };
+};

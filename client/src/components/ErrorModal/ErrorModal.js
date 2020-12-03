@@ -1,18 +1,19 @@
-import React from "react"
-import Button from "../generalComponents/Button/Button"
-import "./ErrorModal.scss"
-import { useDispatch, useSelector } from "react-redux"
-import { closeErrModal } from "../../store/ErrorModal/closeErrModal"
-import { isErrModalOpen } from "../../store/selectors/errModalSelectors"
-import {errObjSelector} from "../../store/selectors/errObjSelector"
+import React from "react";
+import Button from "../generalComponents/Button/Button";
+import "./ErrorModal.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { closeErrModal } from "../../store/ErrorModal/closeErrModal";
+import { isErrModalOpen } from "../../store/selectors/errModalSelectors";
+import { errObjSelector } from "../../store/selectors/errObjSelector";
 
 const ErrorModal = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const ErrModalOpen = useSelector(isErrModalOpen);
-  const err = useSelector(errObjSelector)
+  const err = useSelector(errObjSelector);
 
   return (
-    ErrModalOpen && err && (
+    ErrModalOpen &&
+    err && (
       <div className="error-modal">
         <div className="error-modal__heading">
           <p className="error-modal__heading-text">{`${err.name}`}</p>
@@ -25,8 +26,7 @@ const ErrorModal = () => {
         />
       </div>
     )
-  )
-}
+  );
+};
 
-
-export default ErrorModal
+export default ErrorModal;

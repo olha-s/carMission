@@ -1,1 +1,1 @@
-export const errObjSelector = (state)=> state.errObjReducer.err;
+export const errObjSelector = (state) => state.errObjReducer.err;

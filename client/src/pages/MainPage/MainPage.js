@@ -1,59 +1,61 @@
 import React from "react";
-import {useSelector} from "react-redux";
-import {getMainSections} from "../../store/appMainSections/selectors";
+import { useSelector } from "react-redux";
+import { getMainSections } from "../../store/appMainSections/selectors";
 import WorkStages from "../../sections/WorkStages/Main/WorkStages";
 import AutoFromUsa from "../../sections/AutoFromUSA/AutoFromUsa";
 import AboutUs from "../../sections/AboutUs/AboutUs";
 import ReviewCarousel from "../../components/ReviewCarousel/ReviewCarousel";
 import ServicePackages from "../../sections/ServicePackages/ServicePackages";
-import {Helmet} from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 
 const MainPage = () => {
-    const sectionsFromDB = useSelector(getMainSections).filter(
-        (section) => !section.disabled
-    );
-    const sectionsComponents = [
-        WorkStages,
-        AutoFromUsa,
-        AboutUs,
-        ReviewCarousel,
-        ServicePackages,
-    ];
+  const sectionsFromDB = useSelector(getMainSections).filter(
+    (section) => !section.disabled
+  );
+  const sectionsComponents = [
+    WorkStages,
+    AutoFromUsa,
+    AboutUs,
+    ReviewCarousel,
+    ServicePackages,
+  ];
 
-    const mapComponentsToRender = () => {
-        return sectionsFromDB.map((section) => {
-            const {description, _id: id, heading, name, reactComponent} = section;
-            const Component = sectionsComponents.find((component) => {
-                if (component.type) {
-                    return component.type.name === reactComponent;
-                }
-                return component.name === reactComponent;
-            });
+  const mapComponentsToRender = () => {
+    return sectionsFromDB.map((section) => {
+      const { description, _id: id, heading, name, reactComponent } = section;
+      const Component = sectionsComponents.find((component) => {
+        if (component.type) {
+          return component.type.name === reactComponent;
+        }
+        return component.name === reactComponent;
+      });
 
-            if (Component) {
-                return (
-                    <Component
-                        description={description}
-                        heading={heading}
-                        anchorName={name}
-                        key={id}
-                    />
-                );
-            }
-            return null;
-        });
-    };
+      if (Component) {
+        return (
+          <Component
+            description={description}
+            heading={heading}
+            anchorName={name}
+            key={id}
+          />
+        );
+      }
+      return null;
+    });
+  };
 
-    const filteredReadySections = mapComponentsToRender().filter(
-        (i) => i !== null
-    );
+  const filteredReadySections = mapComponentsToRender().filter(
+    (i) => i !== null
+  );
 
-    return <>
-        <Helmet>
-            <title>Main Page</title>
-        </Helmet>
-        {filteredReadySections}
-    </>;
+  return (
+    <>
+      <Helmet>
+        <title>Main Page</title>
+      </Helmet>
+      {filteredReadySections}
+    </>
+  );
 };
 
 export default MainPage;

@@ -4,23 +4,22 @@ import Image from "../Image/Image";
 import PropTypes from "prop-types";
 
 const Loader = ({ className }) => {
-
   return (
-      <div className={className}>
-        <Image
-          className="loader-motion"
-          id="loader-img"
-          alt="loader-img"
-          src="/img/loader-img/loader-motion.png"
-        />
-        <Image
-          className="loader-static"
-          id="loader-img"
-          alt="loader-img"
-          src="/img/loader-img/loader-static.png"
-        />
-      </div>
-    )
+    <div className={className}>
+      <Image
+        className="loader-motion"
+        id="loader-img"
+        alt="loader-img"
+        src="/img/loader-img/loader-motion.png"
+      />
+      <Image
+        className="loader-static"
+        id="loader-img"
+        alt="loader-img"
+        src="/img/loader-img/loader-static.png"
+      />
+    </div>
+  );
 };
 
 Loader.propTypes = {

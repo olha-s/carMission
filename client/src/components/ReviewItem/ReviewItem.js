@@ -7,7 +7,7 @@ import Image from "../Image/Image";
 const ReviewItem = ({ src, nameReviewer, nameCar, review }) => {
   return (
     <div className="review__wrapper">
-      <Image className="review__img" src={src} alt="photo"/>
+      <Image className="review__img" src={src} alt="photo" />
       <div className="review__info">
         <p className="review__name-reviewer">{nameReviewer}</p>
         <p className="review__name-car">{nameCar}</p>

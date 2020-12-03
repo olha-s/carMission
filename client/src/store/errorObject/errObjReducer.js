@@ -1,20 +1,18 @@
-import { SAVE_ERROR_OBJECT, CLEAR_ERROR_OBJECT } from "./actionTypes"
+import { SAVE_ERROR_OBJECT, CLEAR_ERROR_OBJECT } from "./actionTypes";
 
 const initialStore = {
-  err: null
+  err: null,
 };
 
-export default function reducer (store = initialStore, { type, payload }) {
+export default function reducer(store = initialStore, { type, payload }) {
   switch (type) {
-
     case SAVE_ERROR_OBJECT:
-      return { err: payload } ;
+      return { err: payload };
 
     case CLEAR_ERROR_OBJECT:
       return { err: null };
 
     default:
-      return store
-
+      return store;
   }
 }

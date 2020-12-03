@@ -13,17 +13,17 @@ const SocialNetworks = ({ className }) => {
 
   const getData = async () => {
     const response = await axios("/api/social-networks");
-    const data = response.data.map(async item => {
-        const icon = await import(`./SocialNetworksIcons/${item.name}`);
-        const newItem = {
-            ...item,
-            src: icon.default
-        };
-        return  newItem;
+    const data = response.data.map(async (item) => {
+      const icon = await import(`./SocialNetworksIcons/${item.name}`);
+      const newItem = {
+        ...item,
+        src: icon.default,
+      };
+      return newItem;
     });
     const snCollection = await Promise.all(data);
     setItems(snCollection);
-}
+  };
 
   const linkItems = items.map((e) =>
     e.isEnabled ? (
@@ -41,11 +41,11 @@ const SocialNetworks = ({ className }) => {
 };
 
 SocialNetworks.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 SocialNetworks.defaultTypes = {
-  className: ""
-}
+  className: "",
+};
 
 export default SocialNetworks;

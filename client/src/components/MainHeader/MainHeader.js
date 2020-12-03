@@ -41,56 +41,50 @@ const MainHeader = () => {
   };
 
   const header = !isMobileWindowSize ? (
-      <>
-        <Navbar className="navbar" items={leftSideItems} />
-          <div className="logo__block">
-            <Link to="/">
-              <Logo
-                className="logo"
-                src={logoInfo.path}
-                id={logoInfo.id}
-                alt={logoInfo.alt}
-              />
-            </Link>
-          </div>
-        <Navbar className="navbar" items={rightSideItems} />
-      </>
-    ) : (
-      <>
-        <div className="logo__block">
-          <Link to="/">
-            <Logo
-              className="logo"
-              src={logoInfo.path}
-              id={logoInfo.id}
-              alt={logoInfo.alt}
-            />
-          </Link>
-        </div>
-        {isMobileNavbar ?
-          <Navbar
-            className="navbar"
-            items={navbarData}
-            id="navbar"
-            mobileNavbar={true}
-            onClick={(e) => checkClick(e)}
+    <>
+      <Navbar className="navbar" items={leftSideItems} />
+      <div className="logo__block">
+        <Link to="/">
+          <Logo
+            className="logo"
+            src={logoInfo.path}
+            id={logoInfo.id}
+            alt={logoInfo.alt}
           />
-        :
-          <Button
-            className="open-navbar"
-            onClick={setIsMobileNavbar}
-            text=""
+        </Link>
+      </div>
+      <Navbar className="navbar" items={rightSideItems} />
+    </>
+  ) : (
+    <>
+      <div className="logo__block">
+        <Link to="/">
+          <Logo
+            className="logo"
+            src={logoInfo.path}
+            id={logoInfo.id}
+            alt={logoInfo.alt}
           />
-        }
-      </>
-    )
+        </Link>
+      </div>
+      {isMobileNavbar ? (
+        <Navbar
+          className="navbar"
+          items={navbarData}
+          id="navbar"
+          mobileNavbar={true}
+          onClick={(e) => checkClick(e)}
+        />
+      ) : (
+        <Button className="open-navbar" onClick={setIsMobileNavbar} text="" />
+      )}
+    </>
+  );
 
   return (
     <div className={headerBgClassName}>
       <div className="header__container">
-        <div className="navbar__block">
-          {header}
-        </div>
+        <div className="navbar__block">{header}</div>
       </div>
     </div>
   );

@@ -4,20 +4,32 @@ import axios from "axios";
 import RegularFeature from "./components/RegularFeature/RegularFeature";
 import MainFeature from "./components/MainFeature/MainFeature";
 import SectionHeading from "../../components/generalComponents/SectionHeading/SectionHeading";
+import { useDispatch, useSelector } from "react-redux";
+import { saveErrObjAction } from "../../store/errorObject/saveErrObjAction";
+import { openErrModal } from "../../store/ErrorModal/openErrModalAction";
+import { errObjSelector } from "../../store/selectors/errObjSelector";
 
 const AboutUs = ({ heading, anchorName }) => {
   const [featuresList, setFeaturesList] = useState([]);
+  const dispatch = useDispatch();
+  const errObj = useSelector(errObjSelector);
 
   useEffect(() => {
-    getFeatures();
-  }, []);
+    const getFeatures = async () => {
+      const featuresFromServer = await axios({
+        method: "GET",
+        url: "/api/features/",
+      })
+        .then((res) => res.data)
+        .catch((err) => {
+          dispatch(saveErrObjAction(err));
+          dispatch(openErrModal);
+        });
+      setFeaturesList(featuresFromServer);
+    };
 
-  const getFeatures = async () => {
-    const featuresFromServer = await axios("/api/features/").then(
-      (res) => res.data
-    );
-    setFeaturesList(featuresFromServer);
-  };
+    getFeatures();
+  }, [dispatch]);
 
   const featuresRender = () => {
     const regularFeaturesArr = featuresList.filter((f) => !f.isMain);
@@ -59,7 +71,7 @@ const AboutUs = ({ heading, anchorName }) => {
   return (
     <section className="about-us__container" id={anchorName}>
       <SectionHeading className="about-us__heading" text={heading} />
-      {featuresRender(featuresList)}
+      {!errObj ? featuresRender(featuresList) : null}
     </section>
   );
 };

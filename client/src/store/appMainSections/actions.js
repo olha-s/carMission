@@ -1,4 +1,4 @@
-import {IS_LOADING_SECTIONS, LOAD_SECTIONS} from "./actionTypes";
+import { IS_LOADING_SECTIONS, LOAD_SECTIONS } from "./actionTypes";
 
 export const setMainSections = (sectionsArr) => ({
   type: LOAD_SECTIONS,

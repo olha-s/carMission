@@ -5,17 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import {HelmetProvider} from "react-helmet-async";
+import { HelmetProvider } from "react-helmet-async";
 import store from "./store/store";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-        <HelmetProvider>
-            <BrowserRouter>
-                <App/>
-            </BrowserRouter>
-        </HelmetProvider>
+      <HelmetProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
