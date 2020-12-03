@@ -1,35 +1,18 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo } from "react";
 import "./AboutUs.scss";
-import axios from "axios";
 import RegularFeature from "./components/RegularFeature/RegularFeature";
 import MainFeature from "./components/MainFeature/MainFeature";
 import SectionHeading from "../../components/generalComponents/SectionHeading/SectionHeading";
-import { useDispatch, useSelector } from "react-redux";
-import { saveErrObjAction } from "../../store/errorObject/saveErrObjAction";
-import { openErrModal } from "../../store/ErrorModal/openErrModalAction";
-import { errObjSelector } from "../../store/selectors/errObjSelector";
+import { useSelector } from "react-redux";
+import {
+  getFeatures,
+  getFeaturesIsLoading,
+} from "../../store/aboutUs/selectors";
+import Loader from "../../components/Loader/Loader";
 
 const AboutUs = ({ heading, anchorName }) => {
-  const [featuresList, setFeaturesList] = useState([]);
-  const dispatch = useDispatch();
-  const errObj = useSelector(errObjSelector);
-
-  useEffect(() => {
-    const getFeatures = async () => {
-      const featuresFromServer = await axios({
-        method: "GET",
-        url: "/api/features/",
-      })
-        .then((res) => res.data)
-        .catch((err) => {
-          dispatch(saveErrObjAction(err));
-          dispatch(openErrModal);
-        });
-      setFeaturesList(featuresFromServer);
-    };
-
-    getFeatures();
-  }, [dispatch]);
+  const featuresList = useSelector(getFeatures);
+  const isLoading = useSelector(getFeaturesIsLoading);
 
   const featuresRender = () => {
     const regularFeaturesArr = featuresList.filter((f) => !f.isMain);
@@ -71,7 +54,7 @@ const AboutUs = ({ heading, anchorName }) => {
   return (
     <section className="about-us__container" id={anchorName}>
       <SectionHeading className="about-us__heading" text={heading} />
-      {!errObj ? featuresRender(featuresList) : null}
+      {isLoading ? <Loader /> : featuresRender(featuresList)}
     </section>
   );
 };

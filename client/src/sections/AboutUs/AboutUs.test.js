@@ -13,6 +13,7 @@ const mockStore = configureStore();
 const store = mockStore({
   errObjReducer: { err: { message: "testError" } },
   errModalReducer: { isErrModalOpen: false },
+  aboutUs: { features: [] },
 });
 
 test("AboutUs is rendered correctly", () => {
