@@ -3,13 +3,7 @@
 
 .header {
   &__bg {
-    &-minor,
-    &-main {
-      padding-top: 20px;
-    }
-    &-minor {
-      background-color: $Rectangle66;
-    }
+    padding-top: 20px;
   }
   &__container {
     @include content-block();

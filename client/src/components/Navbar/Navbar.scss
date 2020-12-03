@@ -47,6 +47,22 @@
     font-size: 24px;
     background-color: $Rectangle67;
     border-radius: 5px;
+    &::before, &::after {
+      position: absolute;
+      top: 8%;
+      right: 5%;
+      width: 25px;
+      padding: 1px 0;
+      background-color: $Rectangle48;
+      content: "";
+    }
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(135deg);
+    } 
+
     &__window {
       position: fixed;
       top: 0;
@@ -59,22 +75,6 @@
       width: 100%;
       height: 100vh;
       background-color: #51515539;
-      &::before,
-      &::after {
-        position: absolute;
-        top: 15%;
-        right: 10%;
-        width: 28px;
-        padding: 1px 0;
-        background: $Rectangle45;
-        content: "";
-      }
-      &::before {
-        transform: rotate(45deg);
-      }
-      &::after {
-        transform: rotate(135deg);
-      }
     }
     &__block {
       grid-template-columns: 1fr;

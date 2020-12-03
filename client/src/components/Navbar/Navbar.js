@@ -3,7 +3,7 @@ import NavbarItem from "../NavbarItem/NavbarItem";
 import PropTypes from "prop-types";
 import "./Navbar.scss";
 
-const Navbar = ({ items, className, onClick, mobileNavbar }) => {
+const Navbar = ({ items, className, onClick, mobileNavbar, isFooter }) => {
   const navbarItems = items.map((e) =>
     !e.disabled ? (
       <NavbarItem
@@ -11,8 +11,9 @@ const Navbar = ({ items, className, onClick, mobileNavbar }) => {
         textContent={e.textContent}
         contacts={e.contacts}
         sectionId={e.sectionId}
-        id={e._id || e.id}
-        key={e._id || e.id}
+        id={e.id || e._id}
+        key={e.id || e._id}
+        isFooter={e.contacts && isFooter}
       />
     ) : null
   );

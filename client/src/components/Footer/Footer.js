@@ -41,6 +41,7 @@ const Footer = () => {
           <Navbar
             className="footer--right-side footer"
             items={rightSideItems}
+            isFooter={true}
           />
         </div>
       </div>
