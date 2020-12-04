@@ -7,28 +7,27 @@ require("dotenv").config();
 
 const globalConfigs = require("./routes/globalConfigs");
 const customers = require("./routes/customers");
-const catalog = require("./routes/catalog");
-const products = require("./routes/products");
-const colors = require("./routes/colors");
-const sizes = require("./routes/sizes");
-const filters = require("./routes/filters");
-const subscribers = require("./routes/subscribers");
-const cart = require("./routes/cart");
-const orders = require("./routes/orders");
-const links = require("./routes/links");
-const pages = require("./routes/pages");
-const slides = require("./routes/slides");
-const wishlist = require("./routes/wishlist");
-const comments = require("./routes/comments");
-const shippingMethods = require("./routes/shippingMethods");
-const paymentMethods = require("./routes/paymentMethods");
-const partners = require("./routes/partners");
+// const catalog = require("./routes/catalog");
+// const products = require("./routes/products");
+// const colors = require("./routes/colors");
+// const sizes = require("./routes/sizes");
+// const filters = require("./routes/filters");
+// const subscribers = require("./routes/subscribers");
+// const cart = require("./routes/cart");
+// const orders = require("./routes/orders");
+// const links = require("./routes/links");
+// const pages = require("./routes/pages");
+// const slides = require("./routes/slides");
+// const wishlist = require("./routes/wishlist");
+// const comments = require("./routes/comments");
+// const shippingMethods = require("./routes/shippingMethods");
+// const paymentMethods = require("./routes/paymentMethods");
+// const partners = require("./routes/partners");
 const sectionsMainPage = require("./routes/sectionsMainPages");
 const reviews = require("./routes/reviews");
 const workStages = require("./routes/workStages");
 const servicePackages = require("./routes/servicePackages");
 const features = require("./routes/features");
-const mainRoute = require("./routes/index");
 const navbar = require("./routes/navbar");
 const logo = require("./routes/logo");
 const loader = require("./routes/loader");
@@ -61,22 +60,22 @@ require("./config/passport")(passport);
 
 app.use("/api/configs", globalConfigs);
 app.use("/api/customers", customers);
-app.use("/api/catalog", catalog);
-app.use("/api/products", products);
-app.use("/api/colors", colors);
-app.use("/api/sizes", sizes);
-app.use("/api/filters", filters);
-app.use("/api/subscribers", subscribers);
-app.use("/api/cart", cart);
-app.use("/api/orders", orders);
-app.use("/api/links", links);
-app.use("/api/pages", pages);
-app.use("/api/slides", slides);
-app.use("/api/wishlist", wishlist);
-app.use("/api/comments", comments);
-app.use("/api/shipping-methods", shippingMethods);
-app.use("/api/payment-methods", paymentMethods);
-app.use("/api/partners", partners);
+// app.use("/api/catalog", catalog);
+// app.use("/api/products", products);
+// app.use("/api/colors", colors);
+// app.use("/api/sizes", sizes);
+// app.use("/api/filters", filters);
+// app.use("/api/subscribers", subscribers);
+// app.use("/api/cart", cart);
+// app.use("/api/orders", orders);
+// app.use("/api/links", links);
+// app.use("/api/pages", pages);
+// app.use("/api/slides", slides);
+// app.use("/api/wishlist", wishlist);
+// app.use("/api/comments", comments);
+// app.use("/api/shipping-methods", shippingMethods);
+// app.use("/api/payment-methods", paymentMethods);
+// app.use("/api/partners", partners);
 app.use("/api/sections-main", sectionsMainPage);
 app.use("/api/reviews", reviews);
 app.use("/api/work-stages", workStages);
@@ -89,17 +88,12 @@ app.use("/api/social-networks", socialNetworks);
 app.use("/api/feedbacks", feedbacks);
 
 
-app.use("/", mainRoute);
+// Set static folder
+app.use(express.static("client/build"));
 
-// Server static assets if in production
-if (process.env.NODE_ENV === "production") {
-  // Set static folder
-  app.use(express.static("client/build"));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 
 const port = process.env.PORT || 5000;
 
