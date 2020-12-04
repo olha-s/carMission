@@ -4,14 +4,24 @@ import { HashLink } from "react-router-hash-link";
 import "./NavbarItem.scss";
 import { useDispatch } from "react-redux";
 import { showFeedbackFormAction } from "../../store/FeedbackForm/actions";
+import { v4 as uuidv4 } from "uuid";
 
-const NavbarItem = ({ className, textContent, contacts, sectionId, id, isFooter }) => {
+const NavbarItem = ({
+  className,
+  textContent,
+  contacts,
+  sectionId,
+  id,
+  isFooter,
+}) => {
   const dispatch = useDispatch();
   const showFeedbackModal = () => {
     dispatch(showFeedbackFormAction);
   };
 
-  const contanctsInfo = contacts.split(/[\\\/]/).map((e) => <p>{e}</p>)
+  const contanctsInfo = contacts
+    .split(/[\\]/)
+    .map((e) => <p key={uuidv4()}>{e}</p>);
 
   return (
     <li className={`${className}--item`}>
@@ -35,7 +45,6 @@ NavbarItem.propTypes = {
   sectionId: PropTypes.string,
   id: PropTypes.string,
   isFooter: PropTypes.bool,
-
 };
 
 NavbarItem.defaultProps = {
@@ -44,7 +53,7 @@ NavbarItem.defaultProps = {
   contacts: "",
   sectionId: "",
   id: "",
-  isFooter: false
+  isFooter: false,
 };
 
 export default NavbarItem;

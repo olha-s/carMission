@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import SectionHeading from "../../components/generalComponents/SectionHeading/SectionHeading";
 import "./servicePackages.scss";
 import Button from "../../components/generalComponents/Button/Button";
-import axios from "axios";
 import ServicePackage from "./components/ServicePackage";
 import { showFeedbackFormAction } from "../../store/FeedbackForm/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,15 +16,15 @@ import {
   resetDotClick,
   resetTargetSection,
 } from "../../store/paginationDotClick/actions";
+import { getPackages } from "../../store/servicePackages/selectors";
 
 const ServicePackages = ({ heading, anchorName, description }) => {
-  const [servicePackages, setServicePackages] = useState([]);
   const dispatch = useDispatch();
-
   const { ref, inView } = useInView({ threshold: 0.3 });
   const history = useHistory();
   const dotTargetSection = useSelector(getTargetSection);
   const dotClick = useSelector(getDotClick);
+  const servicePackages = useSelector(getPackages);
 
   useEffect(() => {
     if (inView) {
@@ -36,18 +35,10 @@ const ServicePackages = ({ heading, anchorName, description }) => {
         pushHashToHistory(history, anchorName);
       }
     }
-    getServicePackages();
   }, [inView, anchorName, history, dispatch, dotTargetSection, dotClick]);
 
   const showFeedbackModal = () => {
     dispatch(showFeedbackFormAction);
-  };
-
-  const getServicePackages = async () => {
-    const servicePackagesFromServer = await axios(
-      "/api/service-packages/"
-    ).then((res) => res.data);
-    setServicePackages(servicePackagesFromServer);
   };
 
   const servicePackagesToRender = servicePackages.map((servicePackage) => {

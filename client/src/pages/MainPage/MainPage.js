@@ -9,6 +9,7 @@ import ServicePackages from "../../sections/ServicePackages/ServicePackages";
 import { Helmet } from "react-helmet-async";
 import { loadFeatures } from "../../store/aboutUs/operations";
 import PaginationDots from "../../components/PaginationDots/PaginationDots";
+import { loadPackages } from "../../store/servicePackages/operations";
 import { loadWorkStages } from "../../store/workStages/operations";
 
 const MainPage = () => {
@@ -19,6 +20,7 @@ const MainPage = () => {
 
   useEffect(() => {
     dispatch(loadFeatures());
+    dispatch(loadPackages());
     dispatch(loadWorkStages());
   }, [dispatch]);
 

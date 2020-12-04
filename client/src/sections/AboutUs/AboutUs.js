@@ -82,7 +82,11 @@ const AboutUs = ({ heading, anchorName }) => {
   return (
     <section className="about-us__container" id={anchorName} ref={ref}>
       <SectionHeading className="about-us__heading" text={heading} />
-      {isLoading ? <Loader /> : featuresRender(featuresList)}
+      {isLoading || !featuresList.length ? (
+        <Loader className="about-us__loader" />
+      ) : (
+        featuresRender(featuresList)
+      )}
     </section>
   );
 };

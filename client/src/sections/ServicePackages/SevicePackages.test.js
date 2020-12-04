@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 const mockStore = configureStore();
 const store = mockStore({
   paginationDotClick: { click: false, targetSection: "" },
+  servicePackages: { packages: [] },
 });
 
 test("ServicePackages is rendered correctly", () => {
@@ -34,6 +35,9 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
+const mockHeadingText = "Test heading";
+const mockPackageClassName = "service-packages";
+
 test("ServicePackages contains sections", () => {
   const mockDispatch = jest.fn();
   const mockSelector = jest.fn();
@@ -41,11 +45,9 @@ test("ServicePackages contains sections", () => {
     useDispatch: () => mockDispatch,
     useSelector: () => mockSelector,
   }));
-  const mockHeadingText = "Test heading";
-  const mockPackageClassName = "service-packages";
   const { getByTestId } = render(
     <Provider store={store}>
-      <ServicePackages>
+      <ServicePackages heading={mockHeadingText}>
         <SectionHeading text={mockHeadingText} />
         <div className={mockPackageClassName} />
       </ServicePackages>
