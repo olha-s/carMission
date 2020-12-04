@@ -8,13 +8,40 @@ import "slick-carousel/slick/slick-theme.css";
 import "./ReviewCarousel.scss";
 import SampleNextArrow from "./CarouselArrows/SampleNextArrow";
 import SamplePrevArrow from "./CarouselArrows/SamplePrevArrow";
+import { useInView } from "react-intersection-observer";
+import { useHistory } from "react-router-dom";
+import { pushHashToHistory } from "../../utils/functions/pushHashToHistory";
+import {
+  resetDotClick,
+  resetTargetSection,
+} from "../../store/paginationDotClick/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getDotClick,
+  getTargetSection,
+} from "../../store/paginationDotClick/selectors";
 
 const ReviewCarousel = ({ heading, anchorName }) => {
+  const dispatch = useDispatch();
   const [reviews, setReviews] = useState([]);
 
+  const dotTargetSection = useSelector(getTargetSection);
+  const dotClick = useSelector(getDotClick);
+  const { ref, inView } = useInView({ threshold: 0.6 });
+  const history = useHistory();
+
   useEffect(() => {
+    if (inView) {
+      if (dotTargetSection === anchorName && dotClick) {
+        dispatch(resetTargetSection());
+        dispatch(resetDotClick());
+      } else if (!dotClick) {
+        pushHashToHistory(history, anchorName);
+      }
+    }
+
     getReviews();
-  }, []);
+  }, [inView, anchorName, history, dotTargetSection, dispatch, dotClick]);
 
   const getReviews = async () => {
     const reviewsDb = await axios("/api/reviews/").then((r) => r.data);
@@ -86,7 +113,7 @@ const ReviewCarousel = ({ heading, anchorName }) => {
   };
 
   return (
-    <div className="carousel__section" id={anchorName}>
+    <section className="carousel__section" id={anchorName} ref={ref}>
       <SectionHeading text={heading} />
       <div className="carousel__wrapper">
         <Slider {...settings}>
@@ -94,7 +121,7 @@ const ReviewCarousel = ({ heading, anchorName }) => {
           {allReviews}
         </Slider>
       </div>
-    </div>
+    </section>
   );
 };
 

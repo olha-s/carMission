@@ -8,6 +8,7 @@ import ReviewCarousel from "../../components/ReviewCarousel/ReviewCarousel";
 import ServicePackages from "../../sections/ServicePackages/ServicePackages";
 import { Helmet } from "react-helmet-async";
 import { loadFeatures } from "../../store/aboutUs/operations";
+import PaginationDots from "../../components/PaginationDots/PaginationDots";
 
 const MainPage = () => {
   const sectionsFromDB = useSelector(getMainSections).filter(
@@ -60,6 +61,7 @@ const MainPage = () => {
       <Helmet>
         <title>Main Page</title>
       </Helmet>
+      <PaginationDots componentsList={filteredReadySections} />
       {filteredReadySections}
     </>
   );
