@@ -39,7 +39,6 @@ const AutoFromUsa = ({ heading, description, anchorName }) => {
     <section className="auto-from-usa__container" id={anchorName} ref={ref}>
       <div className="auto-from-usa__wrapper">
         <h1 className="auto-from-usa__heading">{heading}</h1>
-        <SocialNetworks className="header__networks" />
         <p className="auto-from-usa__description">{description}</p>
         <Button
           className="button-choose-car"
@@ -48,6 +47,7 @@ const AutoFromUsa = ({ heading, description, anchorName }) => {
             dispatch(showFeedbackFormAction);
           }}
         />
+        <SocialNetworks className="header__networks" />
       </div>
     </section>
   );

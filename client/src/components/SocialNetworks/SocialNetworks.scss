@@ -7,6 +7,7 @@
 
 .header__networks {
   position: absolute;
+  top: 250px;
   right: 50px;
   display: flex;
   flex-direction: column;
@@ -15,15 +16,21 @@
   height: 25vh;
 }
 
+@media screen and (min-width: $sm-size) and (max-width: 960px) {
+  .header__networks {
+    top: calc((100vh - 80px) / 2);
+    right: 20px;
+  }
+}
+
 @media screen and (max-width: 640px) {
   .header__networks {
-    right: 1vw;
-    bottom: 1vh;
+    position: initial;
     flex-direction: row;
-    align-content: space-around;
-    align-self: center;
-    justify-content: space-around;
+    align-content: center;
+    justify-content: space-between;
     width: 50vw;
     height: auto;
+    margin: 10px auto;
   }
 }
