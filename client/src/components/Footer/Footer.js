@@ -4,8 +4,8 @@ import Navbar from "../Navbar/Navbar";
 import Logo from "../Logo/Logo";
 import SocialNetworks from "../SocialNetworks/SocialNetworks";
 import { useSelector } from "react-redux";
-import { getLogoData } from "../../store/selectors/logoSelectors";
-import { getNavbarData } from "../../store/selectors/navbarSelectors";
+import { getLogoData } from "../../store/logo/selectors";
+import { getNavbarData } from "../../store/navbar/selectors";
 import { Link } from "react-router-dom";
 
 const Footer = () => {

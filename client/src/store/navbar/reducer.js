@@ -1,4 +1,4 @@
-import { LOAD_NAVBAR, NAVBAR_LOADING } from "./actions";
+import { LOAD_NAVBAR, NAVBAR_LOADING } from "./actionTypes";
 
 const initialState = {
   isLoading: true,

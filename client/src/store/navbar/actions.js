@@ -1,5 +1,4 @@
-export const LOAD_NAVBAR = "LOAD_NAVBAR";
-export const NAVBAR_LOADING = "NAVBAR_LOADING";
+import { LOAD_NAVBAR, NAVBAR_LOADING } from "./actionTypes";
 
 export const setNavbarData = (data) => ({
   type: LOAD_NAVBAR,

@@ -1,4 +1,4 @@
-import { LOAD_LOGO, LOGO_LOADING } from "./actions";
+import { LOAD_LOGO, LOGO_LOADING } from "./actionTypes";
 
 const initialState = {
   isLoading: false,

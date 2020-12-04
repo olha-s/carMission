@@ -1,5 +1,4 @@
-export const LOAD_LOGO = "LOAD_LOGO";
-export const LOGO_LOADING = "LOGO_LOADING";
+import { LOAD_LOGO, LOGO_LOADING } from "./actionTypes";
 
 export const setLogoData = (data) => ({
   type: LOAD_LOGO,

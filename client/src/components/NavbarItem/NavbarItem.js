@@ -12,15 +12,14 @@ const NavbarItem = ({
   contacts,
   sectionId,
   id,
-  isFooter,
+  isFooter
 }) => {
   const dispatch = useDispatch();
   const showFeedbackModal = () => {
     dispatch(showFeedbackFormAction);
   };
-
   const contanctsInfo = contacts
-    .split(/[\\]/)
+    .split(/[/]/)
     .map((e) => <p key={uuidv4()}>{e}</p>);
 
   return (
