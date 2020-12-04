@@ -20,6 +20,7 @@
   //}
 
   &__items-wrapper {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     justify-content: center;
@@ -29,6 +30,18 @@
     margin-top: 103px;
     margin-bottom: 48px;
   }
+
+  &__loader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+  }
+
 
   &__item {
     position: relative;

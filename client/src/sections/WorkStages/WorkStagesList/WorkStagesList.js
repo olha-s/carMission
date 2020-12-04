@@ -1,42 +1,35 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import WorkStageItem from "../WorkStageItem/WorkStageItem";
 import Loader from "../../../components/Loader/Loader";
+import { useSelector } from "react-redux";
+import {
+  getWorkStages,
+  getWorkStagesLoading,
+} from "../../../store/workStages/selectors";
 
 const WorkStagesList = () => {
-  const [workStagesList, setWorkStagesList] = useState([]);
+  const stagesFromDB = useSelector(getWorkStages);
+  const isLoading = useSelector(getWorkStagesLoading);
 
-  useEffect(() => {
-    getWorkStages();
-  }, []);
-
-  const getWorkStages = async () => {
-    const stagesFromServer = await axios("/api/work-stages/").then(
-      (r) => r.data
-    );
-    stagesFromServer.sort((a, b) => a.num - b.num);
-    setWorkStagesList(stagesFromServer);
-  };
-
-  const listToRender = workStagesList.map((stage) => {
+  const listToRender = stagesFromDB.map((stage) => {
     const { num, name, _id: id, iconSrc } = stage;
 
     return (
       <WorkStageItem
         stageName={name}
         stageNum={num}
-        stageLength={workStagesList.length}
+        stageLength={stagesFromDB.length}
         src={iconSrc}
         key={id}
       />
     );
   });
 
-  if (!workStagesList.length) {
-    return <Loader />;
-  }
-
-  return <>{listToRender}</>;
+  return isLoading || !listToRender.length ? (
+    <Loader className="work-stages__loader" />
+  ) : (
+    <>{listToRender}</>
+  );
 };
 
 export default WorkStagesList;
