@@ -7,6 +7,7 @@ import aboutUs from "./aboutUs/reducer";
 import servicePackages from "./servicePackages/reducer";
 import paginationDotClick from "./paginationDotClick/reducer";
 import workStages from "./workStages/reducer";
+import reviewCarousel from "./ReviewCarousel/reduser";
 import errModalReducer from "./ErrorModal/errModalReducer";
 import errObjReducer from "./errorObject/errObjReducer";
 
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   paginationDotClick,
   errModalReducer,
   errObjReducer,
+  reviewCarousel,
 });
 
 export default reducer;

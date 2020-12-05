@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import ReviewItem from "./ReviewItem/ReviewItem";
 import SectionHeading from "../generalComponents/SectionHeading/SectionHeading";
 import Slider from "react-slick";
@@ -20,10 +19,18 @@ import {
   getDotClick,
   getTargetSection,
 } from "../../store/paginationDotClick/selectors";
+import {
+  getReviews,
+  getReviewsIsLoading,
+} from "../../store/ReviewCarousel/selectors";
+import Loader from "../Loader/Loader";
+
 
 const ReviewCarousel = ({ heading, anchorName }) => {
   const dispatch = useDispatch();
-  const [reviews, setReviews] = useState([]);
+  const reviews = useSelector(getReviews);
+  const isLoading = useSelector(getReviewsIsLoading);
+
 
   const dotTargetSection = useSelector(getTargetSection);
   const dotClick = useSelector(getDotClick);
@@ -39,14 +46,7 @@ const ReviewCarousel = ({ heading, anchorName }) => {
         pushHashToHistory(history, anchorName);
       }
     }
-
-    getReviews();
   }, [inView, anchorName, history, dotTargetSection, dispatch, dotClick]);
-
-  const getReviews = async () => {
-    const reviewsDb = await axios("/api/reviews/").then((r) => r.data);
-    setReviews(reviewsDb);
-  };
 
   const allReviews = reviews.map((el) => (
     <ReviewItem
@@ -115,12 +115,12 @@ const ReviewCarousel = ({ heading, anchorName }) => {
   return (
     <section className="carousel__section" id={anchorName} ref={ref}>
       <SectionHeading text={heading} />
-      <div className="carousel__wrapper">
+      {isLoading ? <Loader /> : (<div className="carousel__wrapper">
         <Slider {...settings}>
           {allReviews}
           {allReviews}
         </Slider>
-      </div>
+      </div>)}
     </section>
   );
 };

@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 const mockStore = configureStore();
 const store = mockStore({
   paginationDotClick: { click: false, targetSection: "" },
+  reviewCarousel: { reviews: [] },
 });
 
 jest.mock("react-router-dom", () => ({
@@ -16,11 +17,19 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
-test("ReviewCarousel is rendered is correctly", () => {
-  render(
+
+test("ReviewCarousel is rendered is correctly", () =>{
+const mockDispatch = jest.fn();
+const mockSelector = jest.fn();
+jest.mock("react-redux", () => ({
+    useDispatch: () => mockDispatch,
+    useSelector: () => mockSelector,
+}));
+
+render(
     <Provider store={store}>
       <ReviewCarousel heading="test" />
     </Provider>
-  );
+);
   mockAllIsIntersecting(true);
 });
