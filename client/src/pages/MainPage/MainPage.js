@@ -26,23 +26,18 @@ const MainPage = () => {
     dispatch(loadReviews());
   }, [dispatch]);
 
-  const sectionsComponents = [
+  const sectionsComponents = {
     WorkStages,
     AutoFromUsa,
     AboutUs,
     ReviewCarousel,
     ServicePackages,
-  ];
+  };
 
   const mapComponentsToRender = () => {
     return sectionsFromDB.map((section) => {
       const { description, _id: id, heading, name, reactComponent } = section;
-      const Component = sectionsComponents.find((component) => {
-        if (component.type) {
-          return component.type.name === reactComponent;
-        }
-        return component.name === reactComponent;
-      });
+      const Component = sectionsComponents[reactComponent];
 
       if (Component) {
         return (
