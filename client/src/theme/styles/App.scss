@@ -1,13 +1,54 @@
+@import "src/theme/styles/_variables";
+
 .App {
-  background-image: url("../img/bg-img/main-bg.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
+  &__bg {
+    background-color: $Rectangle67;
+  }
+  &__main-page {
+    background-image: url("../img/bg-img/main-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) and (max-height: 500px){
   .App {
-    background-position: left;
+    &__main-page {
+      background-position: top;
+      background-size: 100vw auto;
+      background-attachment: scroll;
+    }
+  }  
+}
+
+@media screen and (max-width: 768px) and (min-height: 501px){
+  .App {
+    &__main-page {
+      background-position: top left;
+      background-size: auto 100vh;
+      background-attachment: scroll;
+    }
+  }  
+}
+
+@media screen and (max-width: 640px) and (min-height: 411px) {
+  .App {
+    &__main-page {
+    background-position: top left;
+    background-size: auto 100vh;
+    background-attachment: scroll;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) and (max-height: 410px) {
+  .App {
+    &__main-page {
+    background-position: top left;
+    background-size: 100vw auto;
+    background-attachment: scroll;
+    }
   }
 }

@@ -17,15 +17,8 @@ const MainHeader = () => {
 
   const firstMobileSize = 768;
   const isMobileWindowSize = winWidth <= firstMobileSize;
-  const quantOfNavbaItems = navbarData.filter((e) => !e.disabled);
-  const leftSideItems =
-    quantOfNavbaItems.length > 6
-      ? quantOfNavbaItems.slice(0, 5)
-      : quantOfNavbaItems.slice(0, 3);
-  const rightSideItems =
-    quantOfNavbaItems.length > 6
-      ? quantOfNavbaItems.slice(5)
-      : quantOfNavbaItems.slice(3);
+  const leftSideItems = navbarData.filter((e) => e.headerLocation === "left-side");
+  const rightSideItems = navbarData.filter((e) => e.headerLocation === "right-side");
 
   const header = !isMobileWindowSize ? (
       <>

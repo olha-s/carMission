@@ -7,6 +7,14 @@ const NavbarSchema = new Schema(
             type: String,
             required: true
         },
+        headerLocation: {
+            type: String,
+            required: true
+        },
+        footerLocation: {
+            type: String,
+            required: true
+        },
         disabled: {
             type: Boolean,
             required: true

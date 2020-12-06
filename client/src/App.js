@@ -37,11 +37,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <MainHeader />
-      <FeedbackForm />
-      <ErrorModal />
-      <AppRoutes />
-      {winWidth > 640 && <Footer />}
+      <div className="App__bg">
+        <div className="App__main-page">
+          <MainHeader />
+          <FeedbackForm />
+          <ErrorModal />
+          <AppRoutes />
+          {winWidth > 640 && <Footer />}
+        </div>
+      </div>
     </div>
   );
 };
