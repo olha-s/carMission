@@ -1,7 +1,9 @@
 @import "../../theme/styles/variables";
 .carousel{
 &__section{
+  padding-right: 67px;
   padding-bottom: 116px;
+  padding-left: 67px;
   background: $Rectangle67;
 }
   &__wrapper {
@@ -72,8 +74,7 @@
       border: 1px solid $Rectangle48;
     }
   }
-
-@media screen and (min-width: $sm-size){
+@media screen and (min-width: 1021px){
   .slick-slider {
     max-width: calc(100% - 58.7px);
   }
@@ -82,13 +83,38 @@
     height: 18.75px;
   }
 }
-@media screen and (max-width: 640px) and (min-width: 362px) {
+
+@media screen and (max-width: 1020px) and (min-width: 1010px) {
   .slick-slider {
     max-width: calc(100% - 58.7px);
   }
   .arrow__prev, .arrow__next {
     width: 15px;
     height: 15px;
+  }
+}
+@media screen and (max-width: 1009px) and (min-width: 961px) {
+  .slick-slider {
+    max-width: 100%;
+  }
+  .arrow__prev, .arrow__next {
+    width: 15px;
+    height: 15px;
+  }
+}
+@media screen and (max-width: 960px) and (min-width: $sm-size) {
+  .carousel__section{
+    padding-right: 37px;
+    padding-left: 37px;
+  }
+}
+@media screen and (max-width: 640px) and (min-width: 362px) {
+  .slick-slider {
+    max-width: 100%;
+  }
+  .arrow__prev, .arrow__next {
+    width: 10px;
+    height: 10px;
   }
 }
 
