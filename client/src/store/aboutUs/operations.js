@@ -1,7 +1,7 @@
 import { featuresIsLoading, setFeatures } from "./actions";
 import axios from "axios";
 import { saveErrObjAction } from "../errorObject/saveErrObjAction";
-import { openErrModal } from "../ErrorModal/openErrModalAction";
+import { openErrModal } from "../ErrorModal/openErrModal";
 
 export const loadFeatures = () => async (dispatch) => {
   dispatch(featuresIsLoading(true));

@@ -1,4 +1,4 @@
-import { openErrModal } from "../ErrorModal/openErrModalAction";
+import { openErrModal } from "../ErrorModal/openErrModal";
 import { saveErrObjAction } from "../errorObject/saveErrObjAction";
 import axios from "axios";
 import { confirmFeedbackFormAction, hideFeedbackFormAction } from "./actions";

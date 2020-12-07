@@ -2,24 +2,23 @@
 
 .feedback-form {
   position: fixed;
-  top: 33%;
+  top: 28%;
   right: 33%;
-  z-index: 1;
+  z-index: 20;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 34%;
-  height: 34%;
   margin: 0 auto;
   background-color: rgba(131, 149, 170, 1);
   border-radius: 3px;
+
 
   &__name-label {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    margin-top: 35px;
+    width: 34vw;
+    margin-top: 15%;
     color: #c6d1de;
     font-size: 13px;
   }
@@ -28,8 +27,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    margin-top: 10px;
+    width: 34vw;
+    margin-top: 15px;
     color: #c6d1de;
     font-size: 13px;
   }
@@ -40,7 +39,7 @@
   }
 
   &__field {
-    width: 40%;
+    width: 60%;
     margin-top: 5px;
     background: rgba(185, 185, 193, 0.2);
     border-color: transparent;
@@ -76,5 +75,43 @@
     color: #c6d1de;
     font-size: 14px;
     text-align: center;
+  }
+}
+
+@media screen and (min-width: $sm-size) and (max-width: $md-size){
+  .feedback-form {
+    top: 15%;
+    right: 25vw;
+
+    &__name-label {
+      width: 50vw;
+    }
+
+    &__phone-label {
+      width: 50vw;
+    }
+
+    &__field {
+      width: 70%;
+    }
+  }
+}
+
+@media screen and (max-width: $sm-size) {
+  .feedback-form {
+    top: 15%;
+    right: 15vw;
+
+    &__name-label {
+      width: 70vw;
+    }
+
+    &__phone-label {
+      width: 70vw;
+    }
+
+    &__field {
+      width: 70%;
+    }
   }
 }

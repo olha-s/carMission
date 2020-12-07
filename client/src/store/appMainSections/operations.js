@@ -1,7 +1,7 @@
 import axios from "axios";
 import { setMainSections, setIsLoading } from "./actions";
 import { saveErrObjAction } from "../errorObject/saveErrObjAction";
-import { openErrModal } from "../ErrorModal/openErrModalAction";
+import { openErrModal } from "../ErrorModal/openErrModal";
 
 export const loadMainSection = () => async (dispatch) => {
   dispatch(setIsLoading(true));

@@ -7,7 +7,7 @@ const FeedbackConfirmationWindow = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="feedback-form">
+    <div className="feedback-form feedback-form__conf">
       <Button
         className="feedback-form__exit-btn"
         onClick={() => {
