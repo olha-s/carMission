@@ -1,9 +1,12 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Redirect, Switch, Route } from "react-router-dom";
 import Page404 from "../pages/Page404/Page404";
 import MainPage from "../pages/MainPage/MainPage";
+import AdminPage from "../pages/AdminPage/AdminPage";
 
 const AppRoutes = () => {
+  const isAuth = true;
+
   return (
     <Switch>
       <Route exact path="/" component={MainPage} />
@@ -24,10 +27,23 @@ const AppRoutes = () => {
         path="/catalog-in-stock/:carId"
         render={() => <p>full info for car in stock</p>}
       />
-      <Route exact path="/admin" render={() => <p>admin page</p>} />
+      <Route
+        exact
+        path="/admin/login"
+        render={() => <p>full info for car in stock</p>}
+      />
+      <ProtectedRoute
+        authenticated={isAuth}
+        exact
+        path="/admin"
+        component={AdminPage}
+      />
       <Route path="*" component={Page404} />
     </Switch>
   );
 };
 
 export default AppRoutes;
+
+const ProtectedRoute = ({ authenticated, ...props }) =>
+  authenticated ? <Route {...props} /> : <Redirect to="/" />;

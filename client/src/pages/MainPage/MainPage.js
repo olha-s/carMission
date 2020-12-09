@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { getMainSections } from "../../store/appMainSections/selectors";
 import WorkStages from "../../sections/WorkStages/Main/WorkStages";
 import AutoFromUsa from "../../sections/AutoFromUSA/AutoFromUsa";
@@ -7,24 +7,12 @@ import AboutUs from "../../sections/AboutUs/AboutUs";
 import ReviewCarousel from "../../components/ReviewCarousel/ReviewCarousel";
 import ServicePackages from "../../sections/ServicePackages/ServicePackages";
 import { Helmet } from "react-helmet-async";
-import { loadFeatures } from "../../store/aboutUs/operations";
 import PaginationDots from "../../components/PaginationDots/PaginationDots";
-import { loadPackages } from "../../store/servicePackages/operations";
-import { loadWorkStages } from "../../store/workStages/operations";
-import { loadReviews } from "../../store/ReviewCarousel/operations";
 
 const MainPage = () => {
   const sectionsFromDB = useSelector(getMainSections).filter(
     (section) => !section.disabled
   );
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadFeatures());
-    dispatch(loadPackages());
-    dispatch(loadWorkStages());
-    dispatch(loadReviews());
-  }, [dispatch]);
 
   const sectionsComponents = {
     WorkStages,

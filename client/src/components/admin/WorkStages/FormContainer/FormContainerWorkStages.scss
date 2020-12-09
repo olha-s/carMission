@@ -1,0 +1,13 @@
+@import "src/theme/styles/variables";
+
+.admin {
+  &__form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__container-head {
+    margin: 10px 0;
+  }
+}

@@ -13,19 +13,29 @@ import { loadMainSection } from "./store/appMainSections/operations";
 import "./theme/styles/App.scss";
 import FeedbackForm from "./components/FeedbackForm/Main/FeedbackForm";
 import ErrorModal from "./components/ErrorModal/ErrorModal";
+import { loadFeatures } from "./store/aboutUs/operations";
+import { loadPackages } from "./store/servicePackages/operations";
+import { loadWorkStages } from "./store/workStages/operations";
+import { loadReviews } from "./store/ReviewCarousel/operations";
+import { useHistory } from "react-router-dom";
 
 const App = () => {
   const dispatch = useDispatch();
+  const { location } = useHistory();
 
   useEffect(() => {
     dispatch(loadNavbarData());
     dispatch(loadMainSection());
     dispatch(loadLogoData());
+    dispatch(loadFeatures());
+    dispatch(loadPackages());
+    dispatch(loadWorkStages());
+    dispatch(loadReviews());
   }, [dispatch]);
 
   const isLogoLoading = useSelector(getIsLogoLoading);
   const isNavbarLoading = useSelector(getIsNavbarLoading);
-  const {width: winWidth} = UseWinSize();
+  const { width: winWidth } = UseWinSize();
 
   if (isNavbarLoading || isLogoLoading) {
     return (
@@ -39,11 +49,11 @@ const App = () => {
     <div className="App">
       <div className="App__bg">
         <div className="App__main-page">
-          <MainHeader />
+          {location.pathname !== "/admin" && <MainHeader />}
           <FeedbackForm />
           <ErrorModal />
           <AppRoutes />
-          {winWidth > 640 && <Footer />}
+          {winWidth > 640 || (location.pathname !== "/admin" && <Footer />)}
         </div>
       </div>
     </div>

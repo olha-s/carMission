@@ -1,0 +1,22 @@
+@import "src/theme/styles/variables";
+@import "src/theme/styles/mixins";
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0 20px;
+  border-bottom: 1px solid $Rectangle48;
+
+  &__head {
+    color: $Rectangle48;
+    font-weight: bold;
+    font-size: 40px;
+    font-family: $headings-font;
+  }
+
+  &__btn {
+
+  }
+}
