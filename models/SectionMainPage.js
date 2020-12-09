@@ -8,7 +8,7 @@ const SectionMainPageSchema = new Schema({
   },
   description: {
     type: String,
-    default: null
+    default: ""
   },
   disabled: {
     type: Boolean,
