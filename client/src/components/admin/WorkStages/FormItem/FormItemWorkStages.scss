@@ -22,4 +22,8 @@
     margin-bottom: 20px;
     font-family: $content-font;
   }
+
+  &__form-textarea {
+    height: auto;
+  }
 }
