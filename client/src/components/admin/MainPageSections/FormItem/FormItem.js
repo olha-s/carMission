@@ -5,7 +5,6 @@ import AdminFormField from "../../AdminFormField/AdminFormField";
 import Select from "react-select";
 
 const FormItem = ({ heading, description, index, disabled }) => {
-  console.log("disabled - - - - ", disabled);
   return (
     <Formik
       initialValues={{ heading, description, index, disabled }}
@@ -39,10 +38,14 @@ const FormItem = ({ heading, description, index, disabled }) => {
           />
           <div>
             <p>Скрыть секцию на странице</p>
-            <Select className="admin__input" placeholder={disabled.toString()} options={[
-              { value: "true", label: "true" },
-              { value: "false", label: "false" }
-            ]}/>
+            <Select
+              className="admin__input"
+              placeholder={disabled.toString()}
+              options={[
+                { value: "true", label: "true" },
+                { value: "false", label: "false" },
+              ]}
+            />
           </div>
           <Field
             type="submit"

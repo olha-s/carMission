@@ -3,7 +3,12 @@ const router = express.Router();
 const passport = require("passport");
 
 //Import controllers
-const { addFeature, getFeatures } = require("../controllers/features");
+const {
+  addFeature,
+  getFeatures,
+  updateFeature,
+  deleteFeature,
+} = require("../controllers/features");
 
 // @route   POST api/features
 // @desc    Create new category
@@ -14,5 +19,23 @@ router.post("/", addFeature);
 // @desc    GET existing categories
 // @access  Public
 router.get("/", getFeatures);
+
+// @route   PUT api/features/:id
+// @desc    Update existing comment
+// @access  Private
+router.put(
+  "/:id",
+  // passport.authenticate("jwt", { session: false }),
+  updateFeature
+);
+
+// @route   DELETE api/features/:id
+// @desc    Delete existing comment
+// @access  Private
+router.delete(
+  "/:id",
+  // passport.authenticate("jwt", { session: false }),
+  deleteFeature
+);
 
 module.exports = router;

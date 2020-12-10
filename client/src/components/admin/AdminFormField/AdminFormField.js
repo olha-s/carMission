@@ -21,7 +21,7 @@ const AdminFormField = ({
           fieldClassName ? `admin__input ${fieldClassName}` : "admin__input"
         }
       />
-      {errors.name && <span>{errors.name}</span>}
+      {errors[name] && <span>{errors[name]}</span>}
     </label>
   );
 };
