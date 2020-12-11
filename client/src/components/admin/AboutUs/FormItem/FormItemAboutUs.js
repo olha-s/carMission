@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import useUpdateTimeout from "../../../../utils/hooks/useUpdateTimeout";
 import UpdateConfirmation from "../../updateConfirmation/UpdateConfirmation";
 import { validationSchema } from "../ValidationSchema";
+import Button from "../../../generalComponents/Button/Button";
 
 const FormItemWorkStages = ({ obj }) => {
   const { imgPath, title: propsTitle, text, isMain, _id: id } = obj;
@@ -64,14 +65,24 @@ const FormItemWorkStages = ({ obj }) => {
             errors={errors}
             labelName={isMain ? "Текстовый контент" : "Подпись к картинке"}
           />
-          {isUpdated && <UpdateConfirmation />}
-          <Field
-            type="submit"
-            disabled={isUpdated}
-            name="submit"
-            className="admin__submit-btn"
-            value="Submit changes"
-          />
+
+          <div className="admin__buttons-box">
+            <Button
+              className="admin__delete-btn"
+              text="Delete item"
+              onClick={(event) => {
+                event.preventDefault();
+              }}
+            />
+            <Field
+              type="submit"
+              disabled={isUpdated}
+              name="submit"
+              className="admin__submit-btn"
+              value="Submit changes"
+            />
+            {isUpdated && <UpdateConfirmation />}
+          </div>
         </Form>
       )}
     </Formik>

@@ -53,7 +53,7 @@ const App = () => {
           <FeedbackForm />
           <ErrorModal />
           <AppRoutes />
-          {winWidth > 640 || (location.pathname !== "/admin" && <Footer />)}
+          {(winWidth > 640 || location.pathname !== "/admin") && <Footer />}
         </div>
       </div>
     </div>
