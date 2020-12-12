@@ -5,22 +5,36 @@ const passport = require("passport");
 //Import controllers
 const {
     addNavbarItem,
-    getNavbarItem,
-    deleteNavbarItem
+    getNavbarItems,
+    deleteNavbarItem,
+    updateNavbarItem
 } = require("../controllers/navbar");
 
-// @route   POST /catalog
-// @desc    Create new category
-// @access  Private
-router.post("/", addNavbarItem);
-
-// @route   GET /catalog
-// @desc    GET existing categories
+// @route   GET /navbar
+// @desc    GET existing navbar items
 // @access  Public
-router.get("/", getNavbarItem);
+router.get("/", getNavbarItems);
 
-// @route   DELETE /links/:id
-// @desc    DELETE existing links
+// @route   POST /navbar
+// @desc    Create new navbar item
+// @access  Private
+router.post(
+    "/", 
+    // passport.authenticate("jwt-admin", { session: false }),
+    addNavbarItem
+);
+
+// @route   PUT /navbar/:id
+// @desc    Update existing navbar item
+// @access  Private
+router.put(
+    "/:id",
+    // passport.authenticate("jwt-admin", { session: false }),
+    updateNavbarItem
+);
+
+// @route   DELETE /navbar/:id
+// @desc    DELETE existing navbar item
 // @access  Private
 router.delete(
     "/:id",

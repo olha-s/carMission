@@ -30,7 +30,6 @@ const servicePackages = require("./routes/servicePackages");
 const features = require("./routes/features");
 const navbar = require("./routes/navbar");
 const logo = require("./routes/logo");
-const loader = require("./routes/loader");
 const socialNetworks = require("./routes/socialNetworks");
 const feedbacks = require("./routes/feedbacks");
 
@@ -83,7 +82,6 @@ app.use("/api/navbar", navbar);
 app.use("/api/logo", logo);
 app.use("/api/service-packages", servicePackages);
 app.use("/api/features", features);
-app.use("/api/loader", loader);
 app.use("/api/social-networks", socialNetworks);
 app.use("/api/feedbacks", feedbacks);
 

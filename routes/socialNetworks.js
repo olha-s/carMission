@@ -1,27 +1,54 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport"); // multer for parsing multipart form data (files)
 
 //Import controllers
 const {
     addSocialNetworksData,
     getSocialNetworksData,
-    deleteAllSocialNetworksData
+    getSocialNetworksItem,
+    updateSocialNetworksItem,
+    deleteSocialNetworksItem
+
 } = require("../controllers/socialNetworks");
 
-// @route   POST /catalog
-// @desc    Create new category
-// @access  Private
-router.post("/", addSocialNetworksData);
-
-// @route   GET /catalog
-// @desc    GET existing categories
+// @route   GET /social-networks
+// @desc    GET existing social-networks data
 // @access  Public
 router.get("/", getSocialNetworksData);
 
-// @route   DELETE /sections-main
-// @desc    Delete all stages from collection
+// @route   GET /social-networks/:id
+// @desc    GET item by id
+// @access  Public
+router.get("/:id", getSocialNetworksItem);
+
+// @route   POST /social-networks
+// @desc    Create new social-networks item
 // @access  Private
-router.delete("/", deleteAllSocialNetworksData);
+router.post(
+    "/", 
+    // passport.authenticate("jwt-admin", { session: false }),
+    addSocialNetworksData
+);
+
+// @route   PUT /social-networks/:id
+// @desc    Update existing social network info
+// @access  Private
+router.put(
+    "/:id",
+    // passport.authenticate("jwt-admin", { session: false }),
+    updateSocialNetworksItem
+);
+
+// @route   DELETE /social-networks/:id
+// @desc    DELETE existing social network item
+// @access  Private
+router.delete(
+    "/:id",
+    // passport.authenticate("jwt-admin", { session: false }),
+    deleteSocialNetworksItem
+);
+
 
 
 module.exports = router;
