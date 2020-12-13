@@ -1,0 +1,35 @@
+@import "src/theme/styles/variables";
+
+.admin-sidebar {
+  align-self: start;
+  width: 20%;
+  margin-top: 50px;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+
+  }
+
+  &__link {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px 0;
+    color: $Rectangle67;
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: $Rectangle48;
+    transition: .3s;
+
+    &--active {
+      color: $Rectangle48;
+      background-color: $Rectangle67;
+    }
+  }
+}

@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
 import AppRoutes from "./routes/AppRoutes";
-import MainHeader from "./components/MainHeader/MainHeader";
-import Footer from "./components/Footer/Footer";
 import Loader from "./components/Loader/Loader";
-import UseWinSize from "./utils/hooks/UseWinSize";
 import { loadLogoData } from "./store/logo/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsLogoLoading } from "./store/logo/selectors";
@@ -17,11 +14,9 @@ import { loadFeatures } from "./store/aboutUs/operations";
 import { loadPackages } from "./store/servicePackages/operations";
 import { loadWorkStages } from "./store/workStages/operations";
 import { loadReviews } from "./store/ReviewCarousel/operations";
-import { useHistory } from "react-router-dom";
 
-const App = () => {
+const App = ({ match }) => {
   const dispatch = useDispatch();
-  const { location } = useHistory();
 
   useEffect(() => {
     dispatch(loadNavbarData());
@@ -35,7 +30,6 @@ const App = () => {
 
   const isLogoLoading = useSelector(getIsLogoLoading);
   const isNavbarLoading = useSelector(getIsNavbarLoading);
-  const { width: winWidth } = UseWinSize();
 
   if (isNavbarLoading || isLogoLoading) {
     return (
@@ -49,11 +43,9 @@ const App = () => {
     <div className="App">
       <div className="App__bg">
         <div className="App__main-page">
-          {location.pathname !== "/admin" && <MainHeader />}
           <FeedbackForm />
           <ErrorModal />
           <AppRoutes />
-          {(winWidth > 640 || location.pathname !== "/admin") && <Footer />}
         </div>
       </div>
     </div>

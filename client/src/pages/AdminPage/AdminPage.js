@@ -1,18 +1,17 @@
 import React from "react";
 import AdminHeader from "../../components/admin/AdminHeader/AdminHeader";
-import SideBar from "../../components/admin/SideBar/SideBar";
-import FormContainerWorkStages from "../../components/admin/WorkStages/FormContainer/FormContainerWorkStages";
-import FormContainerMainPageSections from "../../components/admin/MainPageSections/FormContainer/FormContainer";
-import FormContainerAboutUs from "../../components/admin/AboutUs/FormContainer/FormContainerAboutUs";
+import SideBar from "../../components/admin/SideBar/Main/SideBar";
+import AdminRoutes from "../../routes/AdminRoutes";
+import "./AdminPage.scss";
 
 const AdminPage = () => {
   return (
     <>
       <AdminHeader />
-      <SideBar />
-      <FormContainerMainPageSections/>
-      <FormContainerAboutUs />
-      <FormContainerWorkStages />
+      <div className="admin-wrapper">
+        <SideBar />
+        <AdminRoutes />
+      </div>
     </>
   );
 };
