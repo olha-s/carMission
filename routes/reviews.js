@@ -5,7 +5,9 @@ const passport = require("passport");
 //Import controllers
 const {
   addReview,
-  getReviews
+  getReviews,
+  updateReview,
+  deleteReview,
 } = require("../controllers/reviews");
 
 // @route   POST /catalog
@@ -20,5 +22,24 @@ router.post(
 // @desc    GET existing categories
 // @access  Public
 router.get("/", getReviews);
+// @route   PUT api/features/:id
+// @desc    Update existing comment
+// @access  Private
+
+
+router.put(
+  "/:id",
+  // passport.authenticate("jwt", { session: false }),
+  updateReview
+);
+
+// @route   DELETE api/features/:id
+// @desc    Delete existing comment
+// @access  Private
+router.delete(
+  "/:id",
+  // passport.authenticate("jwt", { session: false }),
+  deleteReview
+);
 
 module.exports = router;

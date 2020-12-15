@@ -95,7 +95,7 @@
 }
 @media screen and (max-width: 1009px) and (min-width: 961px) {
   .slick-slider {
-    max-width: 100%;
+    max-width: calc(100% - 58.7px);
   }
   .arrow__prev, .arrow__next {
     width: 15px;
@@ -107,10 +107,17 @@
     padding-right: 37px;
     padding-left: 37px;
   }
-}
-@media screen and (max-width: 640px) and (min-width: 362px) {
   .slick-slider {
     max-width: 100%;
+  }
+}
+@media screen and (max-width: 640px) and (min-width: 362px) {
+  .carousel__section{
+    padding-right: 27px;
+    padding-left: 27px;
+  }
+  .slick-slider {
+    max-width: calc(100% - 54px);
   }
   .arrow__prev, .arrow__next {
     width: 10px;
@@ -119,7 +126,11 @@
 }
 
 @media screen and (max-width: 361px) {
+  .carousel__section{
+    padding-right: 17px;
+    padding-left: 17px;
+  }
   .slick-slider {
-    width: 320px;
+    width: 275px;
   }
 }
