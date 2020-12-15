@@ -10,6 +10,7 @@ import workStages from "./workStages/reducer";
 import reviewCarousel from "./ReviewCarousel/reduser";
 import errModalReducer from "./ErrorModal/errModalReducer";
 import errObjReducer from "./errorObject/errObjReducer";
+import auth from "./auth/reducer";
 
 const reducer = combineReducers({
   appMainSections,
@@ -23,6 +24,7 @@ const reducer = combineReducers({
   errModalReducer,
   errObjReducer,
   reviewCarousel,
+  auth,
 });
 
 export default reducer;

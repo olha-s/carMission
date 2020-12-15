@@ -14,8 +14,9 @@ import { loadFeatures } from "./store/aboutUs/operations";
 import { loadPackages } from "./store/servicePackages/operations";
 import { loadWorkStages } from "./store/workStages/operations";
 import { loadReviews } from "./store/ReviewCarousel/operations";
+import { checkToken } from "./store/auth/operations";
 
-const App = ({ match }) => {
+const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const App = ({ match }) => {
     dispatch(loadPackages());
     dispatch(loadWorkStages());
     dispatch(loadReviews());
+    dispatch(checkToken());
   }, [dispatch]);
 
   const isLogoLoading = useSelector(getIsLogoLoading);

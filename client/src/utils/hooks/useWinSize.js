@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const UseWinSize = () => {
+const useWinSize = () => {
   const initScreen = {
     width: window.innerWidth,
     height: window.innerHeight,
@@ -26,4 +26,4 @@ const UseWinSize = () => {
   return winSize;
 };
 
-export default UseWinSize;
+export default useWinSize;

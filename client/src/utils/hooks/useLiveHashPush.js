@@ -10,10 +10,10 @@ import {
   resetDotClick,
   resetTargetSection,
 } from "../../store/paginationDotClick/actions";
-import UseWinSize from "./UseWinSize";
+import useWinSize from "./useWinSize";
 
 const useLiveHashPush = (anchorName) => {
-  const { width } = UseWinSize();
+  const { width } = useWinSize();
   const { ref, inView } = useInView({ threshold: width < 961 ? 0.2 : 0.6 });
   const dispatch = useDispatch();
   const history = useHistory();

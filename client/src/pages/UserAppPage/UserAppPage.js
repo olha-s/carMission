@@ -2,10 +2,10 @@ import React from "react";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import UserRoutes from "../../routes/UserRoutes";
 import Footer from "../../components/Footer/Footer";
-import UseWinSize from "../../utils/hooks/UseWinSize";
+import useWinSize from "../../utils/hooks/useWinSize";
 
 const UserAppPage = () => {
-  const { width: winWidth } = UseWinSize();
+  const { width: winWidth } = useWinSize();
 
   return (
     <>

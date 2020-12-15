@@ -32,7 +32,7 @@ const navbar = require("./routes/navbar");
 const logo = require("./routes/logo");
 const socialNetworks = require("./routes/socialNetworks");
 const feedbacks = require("./routes/feedbacks");
-
+const adminUsers = require("./routes/adminUsers");
 
 const app = express();
 
@@ -45,7 +45,11 @@ const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose
-  .connect(db, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology:true })
+  .connect(db, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
@@ -75,6 +79,7 @@ app.use("/api/customers", customers);
 // app.use("/api/shipping-methods", shippingMethods);
 // app.use("/api/payment-methods", paymentMethods);
 // app.use("/api/partners", partners);
+app.use("/api/admin-users", adminUsers);
 app.use("/api/sections-main", sectionsMainPage);
 app.use("/api/reviews", reviews);
 app.use("/api/work-stages", workStages);
@@ -84,7 +89,6 @@ app.use("/api/service-packages", servicePackages);
 app.use("/api/features", features);
 app.use("/api/social-networks", socialNetworks);
 app.use("/api/feedbacks", feedbacks);
-
 
 // Set static folder
 app.use(express.static("client/build"));

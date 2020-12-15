@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import "./MainFeature.scss";
-import useWinSize from "../../../../utils/hooks/UseWinSize";
+import useWinSize from "../../../../utils/hooks/useWinSize";
 import PropTypes from "prop-types";
 import MainFeatureImage from "./components/MainFeatureImage/MainFeatureImage";
 import MainFeatureText from "./components/MainFeatureText/MainFeatureText";
