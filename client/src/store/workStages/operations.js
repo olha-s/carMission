@@ -1,7 +1,8 @@
-import { setStages, setStagesLoading } from "./actions";
+import { setStages, setStagesLoading, updateStages } from "./actions";
 import axios from "axios";
 import { saveErrObjAction } from "../errorObject/saveErrObjAction";
 import { openErrModal } from "../ErrorModal/openErrModal";
+import { getWorkStages } from "./selectors";
 
 export const loadWorkStages = () => async (dispatch) => {
   dispatch(setStagesLoading(true));
@@ -20,4 +21,11 @@ export const loadWorkStages = () => async (dispatch) => {
 
   dispatch(setStages(stagesFromDB));
   dispatch(setStagesLoading(false));
+};
+
+export const filterWorkStages = (id) => (dispatch, getStore) => {
+  const stages = getWorkStages(getStore());
+
+  const filtered = stages.filter((stage) => stage._id !== id);
+  dispatch(updateStages(filtered));
 };

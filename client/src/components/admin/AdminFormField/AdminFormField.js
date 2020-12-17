@@ -1,5 +1,6 @@
 import React from "react";
 import { Field } from "formik";
+import "./AdminFormField.scss";
 
 const AdminFormField = ({
   as,
@@ -7,21 +8,24 @@ const AdminFormField = ({
   errors,
   type,
   labelName,
-  className,
+  labelClassName,
   fieldClassName,
+  errorClassName,
 }) => {
   return (
-    <label className={className}>
-      <span style={{ display: "block" }}>{labelName}</span>
+    <label className={labelClassName || "admin__label"}>
+      <span className="admin__label-name">{labelName}</span>
       <Field
         as={as}
         name={name}
         type={type}
-        className={
-          fieldClassName ? `admin__input ${fieldClassName}` : "admin__input"
-        }
+        className={fieldClassName || "admin__input"}
       />
-      {errors[name] && <span>{errors[name]}</span>}
+      {errors[name] && (
+        <span className={errorClassName || "admin__error-msg"}>
+          {errors[name]}
+        </span>
+      )}
     </label>
   );
 };

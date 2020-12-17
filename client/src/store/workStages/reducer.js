@@ -1,4 +1,9 @@
-import { LOADING_STAGES, SET_IS_LOADING_STAGES } from "./actionTypes";
+import {
+  ADD_NEW_STAGE,
+  LOADING_STAGES,
+  UPDATE_STAGE,
+  SET_IS_LOADING_STAGES,
+} from "./actionTypes";
 
 const initialState = {
   stages: [],
@@ -16,6 +21,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.payload,
+      };
+    case ADD_NEW_STAGE:
+      return {
+        ...state,
+        stages: [...state.stages, action.payload],
+      };
+    case UPDATE_STAGE:
+      return {
+        ...state,
+        stages: action.payload,
       };
     default:
       return state;
