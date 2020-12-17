@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import FormContainerMainPageSections from "../components/admin/MainPageSections/FormContainer/FormContainer";
 import FormContainerAboutUs from "../components/admin/AboutUs/FormContainer/FormContainerAboutUs";
 import FormContainerWorkStages from "../components/admin/WorkStages/FormContainer/FormContainerWorkStages";
+import FormContainerServicePakages from "../components/admin/ServicePakages/FormContainer/FormContainerServicePackages";
 import Page404 from "../pages/Page404/Page404";
 
 const AdminRoutes = () => {
@@ -23,7 +24,7 @@ const AdminRoutes = () => {
       <Route
         exact
         path="/admin/service-packages"
-        component={FormContainerWorkStages}
+        component={FormContainerServicePakages}
       />
       <Route exact path="/admin/reviews" component={FormContainerWorkStages} />
       <Route exact path="/admin/blog" component={FormContainerWorkStages} />
