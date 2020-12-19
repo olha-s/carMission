@@ -37,7 +37,7 @@ router.put(
 // @desc    Delete existing comment
 // @access  Private
 router.delete(
-  "/:id",
+  "/delete/:id",
   // passport.authenticate("jwt", { session: false }),
   deleteReview
 );

@@ -104,7 +104,7 @@
 
 @media screen and (max-width: 361px) {
   .review__wrapper {
-    width: 266px;
+    min-width: 266px;
     margin-right: 3px;
     margin-left: 3px;
   }

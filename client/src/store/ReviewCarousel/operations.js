@@ -1,7 +1,8 @@
-import {setReviews, ReviewsIsLoading} from "./actions";
+import {setReviews, ReviewsIsLoading, updateReviews} from "./actions";
 import axios from "axios";
 import {saveErrObjAction} from "../errorObject/saveErrObjAction";
 import {openErrModal} from "../ErrorModal/openErrModal";
+import { getReviews } from "./selectors";
 
 export const loadReviews = () => (dispatch) => {
     dispatch(ReviewsIsLoading(true));
@@ -16,3 +17,9 @@ export const loadReviews = () => (dispatch) => {
     });
 };
 
+export const filterReviews = (id) => (dispatch, getStore) => {
+    const reviews = getReviews(getStore());
+
+    const filtered = reviews.filter((review) => review._id !== id);
+    dispatch(updateReviews(filtered));
+};
