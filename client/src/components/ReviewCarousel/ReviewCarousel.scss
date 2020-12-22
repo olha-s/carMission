@@ -8,13 +8,11 @@
 }
   &__wrapper {
     max-width: 1088px;
-    margin: 0 auto;
+    margin: 52px auto 0 auto;
    }
 }
 
-.slick-slider {
-  margin: 52px auto 0 auto;
-}
+
 .arrow__prev, .arrow__next{
   position: absolute;
   top: 50%;

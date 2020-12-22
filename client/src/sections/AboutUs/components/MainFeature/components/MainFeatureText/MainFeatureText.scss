@@ -16,7 +16,7 @@
 @media screen and (min-width: $sm-size) and (max-width: 960px) {
   .about-us__main-feature-text {
     margin: 10px 0;
-    padding: 0;
+    padding: 0 10px;
     font-size: 14px;
     line-height: 19px;
     text-align: justify;
@@ -35,7 +35,7 @@
 @media screen and (max-width: 640px) {
   .about-us__main-feature-text {
     margin: 5px 0;
-    padding: 0 3px;
+    padding: 0 15px;
     font-size: 12px;
     line-height: 16px;
     text-align: justify;

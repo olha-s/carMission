@@ -6,11 +6,11 @@ import Image from "../../../components/Image/Image";
 import PropTypes from "prop-types";
 
 const WorkStageItem = ({ stageNum, stageName, stageLength, src }) => {
+  const even = stageNum % 2 === 0;
+
   return (
-    <div
-      className={`work-stages__item work-stages__slide work-stages__slide--${stageNum}`}
-    >
-      {stageNum % 2 === 0 && (
+    <div className="work-stages__item">
+      {even && (
         <WorkStageName
           stageName={stageName}
           classModifier="work-stages__item-name--even"
@@ -22,11 +22,17 @@ const WorkStageItem = ({ stageNum, stageName, stageLength, src }) => {
         {stageNum < stageLength && (
           <Arrow className="work-stages__icon-arrow" />
         )}
-        <span className="work-stages__stage-number">
+        <span
+          className={
+            even
+              ? "work-stages__stage-number work-stages__stage-number--even"
+              : "work-stages__stage-number work-stages__stage-number--odd"
+          }
+        >
           {stageNum < 10 ? `0${stageNum}` : stageNum}
         </span>
       </div>
-      {stageNum % 2 !== 0 && (
+      {!even && (
         <WorkStageName
           stageName={stageName}
           classModifier="work-stages__item-name--odd"

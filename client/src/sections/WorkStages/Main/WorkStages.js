@@ -19,7 +19,7 @@ const WorkStages = ({ description, heading, anchorName }) => {
   return (
     <section id={anchorName} className="work-stages" ref={trackRef}>
       <div className="work-stages__content">
-        <SectionHeading text={heading} />
+        <SectionHeading text={heading} className="work-stages__head" />
         <div className="work-stages__items-wrapper">
           <WorkStagesList />
         </div>

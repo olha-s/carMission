@@ -94,12 +94,16 @@
     transform: translateX(-50%);
   }
 
-  &__item:nth-child(odd) &__graphics-wrapper &__stage-number {
-    top: calc(100% + 8px);
+  &__stage-number {
+    &--odd {
+      top: calc(100% + 5px);
+    }
   }
 
-  &__item:nth-child(even) &__graphics-wrapper &__stage-number {
-    bottom: calc(100% + 8px);
+  &__stage-number {
+    &--even {
+      bottom: calc(100% + 5px);
+    }
   }
 
   &__graphics-wrapper {
@@ -139,6 +143,10 @@
   }
 }
 
+.slick-list, .slick-track {
+  touch-action: pan-y;
+}
+
 @media screen and (min-width: $sm-size) and (max-width: 960px) {
   .work-stages {
     &__items-wrapper {
@@ -148,12 +156,16 @@
       height: calc(342px * 2);
     }
 
-    &__item:nth-child(odd) &__graphics-wrapper &__stage-number {
-      top: calc(100% + 5px);
+    &__stage-number {
+      &--odd {
+        top: calc(100% + 5px);
+      }
     }
 
-    &__item:nth-child(even) &__graphics-wrapper &__stage-number {
-      bottom: calc(100% + 5px);
+    &__stage-number {
+      &--even {
+        bottom: calc(100% + 5px);
+      }
     }
 
     &__icon-arrow {
@@ -164,55 +176,33 @@
 
 @media screen and (max-width: 640px) {
   .work-stages {
+
     &__items-wrapper {
       position: relative;
       display: block;
-      width: 100%;
-      height: 235px;
-      overflow: hidden;
+      min-width: 320px;
+      height: initial;
     }
 
-    &__slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 7;
-      background-color: $Rectangle67;
-      transform: translateX(190px);
-      animation: opaqTransition 18s cubic-bezier(0, 0, 0, 0.97) infinite;
+    &__slider {
+      margin: 0 auto;
+    }
 
-      &--2 {
-        z-index: 6;
-        animation-delay: 3s;
-      }
+    &__head {
+      font-size: 30px;
+    }
 
-      &--3 {
-        z-index: 5;
-        animation-delay: 6s;
-      }
 
-      &--4 {
-        z-index: 4;
-        animation-delay: 9s;
-      }
-
-      &--5 {
-        z-index: 3;
-        animation-delay: 12s;
-      }
-
-      &--6 {
-        z-index: 2;
-        animation-delay: 15s;
+    &__stage-number {
+      &--odd {
+        top: calc(100% + 5px);
       }
     }
 
-    &__item:nth-child(odd) &__graphics-wrapper &__stage-number {
-      top: calc(100% + 5px);
-    }
-
-    &__item:nth-child(even) &__graphics-wrapper &__stage-number {
-      bottom: calc(100% + 5px);
+    &__stage-number {
+      &--even {
+        bottom: calc(100% + 5px);
+      }
     }
 
     &__icon-arrow {
@@ -221,17 +211,3 @@
   }
 }
 
-@keyframes opaqTransition {
-  3% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(0);
-  }
-  28% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
