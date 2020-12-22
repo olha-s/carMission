@@ -11,7 +11,7 @@ import { addNewReview } from "../../../../store/ReviewCarousel/actions";
 import { filterReviews } from "../../../../store/ReviewCarousel/operations";
 
 const FormItemReviewCarousel = ({ obj, isNew }) => {
-const { customerPhoto, customerName, carInfo, reviewText, _id: id } = obj;
+const { customerPhoto, customerName, carInfo, reviewText } = obj;
 
   const dispatch = useDispatch();
   const [isDeleted, setIsDeleted] = useState(false);
@@ -20,14 +20,14 @@ const { customerPhoto, customerName, carInfo, reviewText, _id: id } = obj;
     e.preventDefault();
 
     const deleted = await axios
-      .delete(`/api/reviews/delete/${id}`)
+      .delete(`/api/reviews/delete/${obj._id}`)
       .catch((err) => {
         toastr.error(err.message);
       });
 
     if (deleted.status === 200) {
-      toastr.success("Успешно", `Отзыв с id "${id}" удалён в базе данных`);
-      dispatch(filterReviews(id));
+      toastr.success("Успешно", `Отзыв с id "${obj._id}" удалён c базы данных`);
+      dispatch(filterReviews(obj._id));
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
@@ -40,12 +40,12 @@ const { customerPhoto, customerName, carInfo, reviewText, _id: id } = obj;
   };
 
   const handleUpdate = async (values) => {
-    const updatedObj = {
+   const updatedObj = {
       ...obj,
       ...values,
     };
     const updatedReview = await axios
-      .put(`/api/reviews/${id}`, updatedObj)
+      .put(`/api/reviews/${obj._id}`, updatedObj)
       .catch((err) => {
         toastr.error(err.message);
       });
@@ -53,7 +53,7 @@ const { customerPhoto, customerName, carInfo, reviewText, _id: id } = obj;
     if (updatedReview.status === 200) {
         toastr.success(
         "Успешно",
-        `Отзыв с id "${id}" изменён в базе данных`
+        `Отзыв с id "${obj._id}" изменён в базе данных`
       );
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
@@ -61,16 +61,16 @@ const { customerPhoto, customerName, carInfo, reviewText, _id: id } = obj;
   };
 
   const handleAddToDB = async (values) => {
+
     const newReview = await axios
       .post("/api/reviews/", values)
       .catch((err) => {
         toastr.error(err.message);
       });
-
     if (newReview.status === 200) {
       toastr.success("Успешно", "Отзыв добавлен в базу данных");
       dispatch(addNewReview(newReview.data));
-    } else {
+      } else {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
   };
@@ -86,14 +86,14 @@ const { customerPhoto, customerName, carInfo, reviewText, _id: id } = obj;
       validateOnChange={false}
       validateOnBlur={false}
       onSubmit={isNew ? handleAddToDB : handleUpdate}
-    >
-      {({ errors, touched, submitting }) => (
-        <Form className="admin-reviews__form-item">
+      >
+      {({ errors, touched, isValid, isSubmitting}) => (
+       <Form className="admin-reviews__form-item" noValidate>
           <AdminFormField
             labelClassName="admin-reviews__form-label"
             fieldClassName="admin-reviews__form-input"
             errorClassName="admin-reviews__form-error"
-            type="input"
+            type="text"
             name="customerPhoto"
             errors={errors}
             labelName="Путь к фото"
@@ -128,10 +128,10 @@ const { customerPhoto, customerName, carInfo, reviewText, _id: id } = obj;
           />
 
           <Field
+            disabled={isSubmitting}
             type="submit"
             name="submit"
             className="admin-reviews__submit-btn"
-            disabled={submitting}
             value={isNew ? "Создать отзыв" : "Подтвердить изменения"}
           />
           <Button

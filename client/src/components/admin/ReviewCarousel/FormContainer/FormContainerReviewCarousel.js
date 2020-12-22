@@ -6,7 +6,6 @@ import SectionHeading from "../../../generalComponents/SectionHeading/SectionHea
 import "./FormContainerReviewCarousel.scss"
 import Button from "../../../generalComponents/Button/Button";
 
-
 const FormContainerReviewCarousel = () => {
   const [formList, setFormList] = useState([]);
   const data = useSelector(getReviews);

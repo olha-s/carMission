@@ -1,27 +1,24 @@
 import * as yup from "yup";
 
 export const validationSchema = yup.object().shape({
-  title: yup
-    .string()
-    .required("Required field!")
-    .min(3)
-    .max(50, "Length err! String must contain 3-50 chars"),
   customerPhoto: yup
-    .string()
-    .required("Required field!")
-    .min(15)
-    .max(50, "Length err! String must contain 15-50 chars"),
+    .string("Введите текст")
+    .typeError("Введите текст")
+    .strict(true)
+    .required("Обязательное поле"),
   customerName: yup
-    .string()
-    .required("Required field!")
-    .min(2, "Minimum length is 2 symbols"),
+    .string("Введите текст")
+    .typeError("Введите текст")
+    .strict(true)
+    .required("Обязательное поле"),
   carInfo: yup
-    .string()
-    .required("Required field!")
-    .min(2, "Minimum length is 2 symbols"),
+    .string("Введите текст")
+    .typeError("Введите текст")
+    .strict(true)
+    .required("Обязательное поле"),
   reviewText: yup
-    .string()
-    .required("Required field!")
-    .min(2, "Minimum length is 2 symbols")
-    .max(100, "Length err! String must contain 2-100 chars"),
+    .string("Введите текст")
+    .typeError("Введите текст")
+    .strict(true)
+    .required("Обязательное поле"),
 });

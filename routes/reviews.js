@@ -15,6 +15,7 @@ const {
 // @access  Private
 router.post(
   "/",
+  passport.authenticate("jwt", { session: false }),
   addReview
 );
 
@@ -29,7 +30,7 @@ router.get("/", getReviews);
 
 router.put(
   "/:id",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   updateReview
 );
 
@@ -38,7 +39,7 @@ router.put(
 // @access  Private
 router.delete(
   "/delete/:id",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   deleteReview
 );
 
