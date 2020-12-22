@@ -1,15 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const SideBarItem = ({ id }) => {
+const SideBarItem = ({ route, heading }) => {
   return (
     <li className="admin-sidebar__item">
       <NavLink
-        to={`/admin/${id}`}
+        to={`/admin/${route}`}
         activeClassName="admin-sidebar__link--active"
         className="admin-sidebar__link"
       >
-        {id}
+        {heading}
       </NavLink>
     </li>
   );
