@@ -13,32 +13,32 @@
   }
 }
 
-@media screen and (max-width: 768px) and (max-height: 500px){
+@media screen and (max-width: 768px) and (max-height: 500px) {
   .App {
     &__main-page {
       background-position: top;
       background-size: 100vw auto;
       background-attachment: scroll;
     }
-  }  
+  }
 }
 
-@media screen and (max-width: 768px) and (min-height: 501px){
+@media screen and (max-width: 768px) and (min-height: 501px) {
   .App {
     &__main-page {
       background-position: top left;
       background-size: auto 100vh;
       background-attachment: scroll;
     }
-  }  
+  }
 }
 
 @media screen and (max-width: 640px) and (min-height: 411px) {
   .App {
     &__main-page {
-    background-position: top left;
-    background-size: auto 100vh;
-    background-attachment: scroll;
+      background-position: top left;
+      background-size: auto 100vh;
+      background-attachment: scroll;
     }
   }
 }
@@ -46,9 +46,9 @@
 @media screen and (max-width: 640px) and (max-height: 410px) {
   .App {
     &__main-page {
-    background-position: top left;
-    background-size: 100vw auto;
-    background-attachment: scroll;
+      background-position: top left;
+      background-size: 100vw auto;
+      background-attachment: scroll;
     }
   }
 }

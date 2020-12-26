@@ -11,8 +11,12 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   const logoInfo = useSelector(getLogoData);
   const navbarItems = useSelector(getNavbarData);
-  const leftSideItems = navbarItems.filter((e) => e.footerLocation === "left-side");
-  const rightSideItems = navbarItems.filter((e) => e.footerLocation === "right-side");
+  const leftSideItems = navbarItems.filter(
+    (e) => e.footerLocation === "left-side"
+  );
+  const rightSideItems = navbarItems.filter(
+    (e) => e.footerLocation === "right-side"
+  );
 
   return (
     <div className="footer__bg">

@@ -1,5 +1,5 @@
 import React from "react";
-import {render} from "@testing-library/react";
+import { render } from "@testing-library/react";
 import SectionHeading from "./SectionHeading";
 
 const mockText = "Title";

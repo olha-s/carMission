@@ -5,13 +5,13 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { validationSchema } from "../ValidationSchema";
 import Button from "../../../generalComponents/Button/Button";
-import "./FormItemReviewCarousel.scss"
+import "./FormItemReviewCarousel.scss";
 import { toastr } from "react-redux-toastr";
 import { addNewReview } from "../../../../store/ReviewCarousel/actions";
 import { filterReviews } from "../../../../store/ReviewCarousel/operations";
 
 const FormItemReviewCarousel = ({ obj, isNew }) => {
-const { customerPhoto, customerName, carInfo, reviewText } = obj;
+  const { customerPhoto, customerName, carInfo, reviewText } = obj;
 
   const dispatch = useDispatch();
   const [isDeleted, setIsDeleted] = useState(false);
@@ -40,7 +40,7 @@ const { customerPhoto, customerName, carInfo, reviewText } = obj;
   };
 
   const handleUpdate = async (values) => {
-   const updatedObj = {
+    const updatedObj = {
       ...obj,
       ...values,
     };
@@ -51,7 +51,7 @@ const { customerPhoto, customerName, carInfo, reviewText } = obj;
       });
 
     if (updatedReview.status === 200) {
-        toastr.success(
+      toastr.success(
         "Успешно",
         `Отзыв с id "${obj._id}" изменён в базе данных`
       );
@@ -61,16 +61,13 @@ const { customerPhoto, customerName, carInfo, reviewText } = obj;
   };
 
   const handleAddToDB = async (values) => {
-
-    const newReview = await axios
-      .post("/api/reviews/", values)
-      .catch((err) => {
-        toastr.error(err.message);
-      });
+    const newReview = await axios.post("/api/reviews/", values).catch((err) => {
+      toastr.error(err.message);
+    });
     if (newReview.status === 200) {
       toastr.success("Успешно", "Отзыв добавлен в базу данных");
       dispatch(addNewReview(newReview.data));
-      } else {
+    } else {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
   };
@@ -86,9 +83,9 @@ const { customerPhoto, customerName, carInfo, reviewText } = obj;
       validateOnChange={false}
       validateOnBlur={false}
       onSubmit={isNew ? handleAddToDB : handleUpdate}
-      >
-      {({ errors, touched, isValid, isSubmitting}) => (
-       <Form className="admin-reviews__form-item" noValidate>
+    >
+      {({ errors, touched, isValid, isSubmitting }) => (
+        <Form className="admin-reviews__form-item" noValidate>
           <AdminFormField
             labelClassName="admin-reviews__form-label"
             fieldClassName="admin-reviews__form-input"
@@ -146,4 +143,3 @@ const { customerPhoto, customerName, carInfo, reviewText } = obj;
 };
 
 export default FormItemReviewCarousel;
-

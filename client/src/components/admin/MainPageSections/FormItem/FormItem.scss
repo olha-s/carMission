@@ -9,7 +9,8 @@
     color: $Rectangle48;
   }
 
-  &__buttons-box, &__input {
+  &__buttons-box,
+  &__input {
     width: 50vw;
   }
 
@@ -20,7 +21,9 @@
     justify-content: space-around;
   }
 
-  &__submit-btn, &__add-btn, &__delete-btn {
+  &__submit-btn,
+  &__add-btn,
+  &__delete-btn {
     width: 10vw;
     font-family: $content-font;
     border: none;
@@ -28,7 +31,9 @@
     cursor: pointer;
   }
 
-  &__submit-btn:hover, &__add-btn:hover, &__delete-btn:hover {
+  &__submit-btn:hover,
+  &__add-btn:hover,
+  &__delete-btn:hover {
     color: white;
     font-weight: bold;
     text-shadow: 1px 1px 1px $Rectangle68;
@@ -39,6 +44,7 @@
   }
 
   &__add-btn {
+    margin-bottom: 30px;
     background: dodgerblue;
   }
 

@@ -1,19 +1,19 @@
 @import "../../theme/styles/variables";
-.carousel{
-&__section{
-  padding-right: 67px;
-  padding-bottom: 116px;
-  padding-left: 67px;
-  background: $Rectangle67;
-}
+.carousel {
+  &__section {
+    padding-right: 67px;
+    padding-bottom: 116px;
+    padding-left: 67px;
+    background: $Rectangle67;
+  }
   &__wrapper {
     max-width: 1088px;
     margin: 52px auto 0 auto;
-   }
+  }
 }
 
-
-.arrow__prev, .arrow__next{
+.arrow__prev,
+.arrow__next {
   position: absolute;
   top: 50%;
   background: transparent;
@@ -24,7 +24,7 @@
   outline: none;
   cursor: pointer;
 }
-.arrow__prev{
+.arrow__prev {
   left: -30px;
   transform: rotate(-135deg) translate(-50%, 50%);
 }
@@ -37,46 +37,47 @@
   justify-content: center;
 }
 
-  .slick-dots {
-    bottom: auto;
+.slick-dots {
+  bottom: auto;
 
-    & li {
-      width: fit-content;
-      height: fit-content;
-      margin: 13px 18px 0 18px;
-    }
-
-    & li button {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-
-    & li button:before {
-      top: 50%;
-      left: 50%;
-      width: 7px;
-      height: 7px;
-      background-color: $Rectangle48;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 1;
-      content: " ";
-    }
-
-    & li.slick-active button:before {
-      opacity: 1;
-    }
-
-    & li.slick-active button {
-      border: 1px solid $Rectangle48;
-    }
+  & li {
+    width: fit-content;
+    height: fit-content;
+    margin: 13px 18px 0 18px;
   }
-@media screen and (min-width: 1021px){
+
+  & li button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  & li button:before {
+    top: 50%;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    background-color: $Rectangle48;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    content: " ";
+  }
+
+  & li.slick-active button:before {
+    opacity: 1;
+  }
+
+  & li.slick-active button {
+    border: 1px solid $Rectangle48;
+  }
+}
+@media screen and (min-width: 1021px) {
   .slick-slider {
     max-width: calc(100% - 58.7px);
   }
-  .arrow__prev, .arrow__next {
+  .arrow__prev,
+  .arrow__next {
     width: 18.75px;
     height: 18.75px;
   }
@@ -86,7 +87,8 @@
   .slick-slider {
     max-width: calc(100% - 58.7px);
   }
-  .arrow__prev, .arrow__next {
+  .arrow__prev,
+  .arrow__next {
     width: 15px;
     height: 15px;
   }
@@ -95,13 +97,14 @@
   .slick-slider {
     max-width: 100%;
   }
-  .arrow__prev, .arrow__next {
+  .arrow__prev,
+  .arrow__next {
     width: 15px;
     height: 15px;
   }
 }
 @media screen and (max-width: 960px) and (min-width: $sm-size) {
-  .carousel__section{
+  .carousel__section {
     padding-right: 37px;
     padding-left: 37px;
   }
@@ -110,25 +113,26 @@
   }
 }
 @media screen and (max-width: 640px) and (min-width: 362px) {
-  .carousel__section{
+  .carousel__section {
     padding-right: 27px;
     padding-left: 27px;
   }
   .slick-slider {
     max-width: 100%;
   }
-  .arrow__prev, .arrow__next {
+  .arrow__prev,
+  .arrow__next {
     width: 10px;
     height: 10px;
   }
 }
 
 @media screen and (max-width: 361px) {
-  .carousel__section{
+  .carousel__section {
     padding-right: 17px;
     padding-left: 17px;
   }
   .slick-slider {
-   min-width: 275px;
+    min-width: 275px;
   }
 }

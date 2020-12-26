@@ -47,7 +47,8 @@
     font-size: 24px;
     background-color: $Rectangle67;
     border-radius: 5px;
-    &::before, &::after {
+    &::before,
+    &::after {
       position: absolute;
       top: 8%;
       right: 5%;
@@ -61,7 +62,7 @@
     }
     &::after {
       transform: rotate(135deg);
-    } 
+    }
 
     &__window {
       position: fixed;

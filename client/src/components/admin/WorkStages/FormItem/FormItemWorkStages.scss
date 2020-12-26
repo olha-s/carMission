@@ -1,8 +1,6 @@
 @import "src/theme/styles/variables";
 
 .admin-stages {
-
-
   &__form-item {
     position: relative;
     display: flex;
@@ -31,7 +29,7 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
 
     &:hover {
       background: greenyellow;
@@ -57,7 +55,7 @@
     font-size: 40px;
     background: none;
     border: none;
-    transition: .3s;
+    transition: 0.3s;
 
     &:hover {
       color: red;

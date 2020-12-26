@@ -42,7 +42,6 @@
     margin: auto;
   }
 
-
   &__item {
     position: relative;
     display: flex;
@@ -143,7 +142,8 @@
   }
 }
 
-.slick-list, .slick-track {
+.slick-list,
+.slick-track {
   touch-action: pan-y;
 }
 
@@ -176,7 +176,6 @@
 
 @media screen and (max-width: 640px) {
   .work-stages {
-
     &__items-wrapper {
       position: relative;
       display: block;
@@ -191,7 +190,6 @@
     &__head {
       font-size: 30px;
     }
-
 
     &__stage-number {
       &--odd {
@@ -210,4 +208,3 @@
     }
   }
 }
-

@@ -35,7 +35,7 @@ Navbar.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   mobileNavbar: PropTypes.bool,
-  isFooter: PropTypes.bool
+  isFooter: PropTypes.bool,
 };
 
 Navbar.defaultProps = {
@@ -43,8 +43,7 @@ Navbar.defaultProps = {
   className: "",
   onClick: () => {},
   mobileNavbar: false,
-  isFooter: false
-
+  isFooter: false,
 };
 
 export default Navbar;

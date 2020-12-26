@@ -17,19 +17,18 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
-
-test("ReviewCarousel is rendered is correctly", () =>{
-const mockDispatch = jest.fn();
-const mockSelector = jest.fn();
-jest.mock("react-redux", () => ({
+test("ReviewCarousel is rendered is correctly", () => {
+  const mockDispatch = jest.fn();
+  const mockSelector = jest.fn();
+  jest.mock("react-redux", () => ({
     useDispatch: () => mockDispatch,
     useSelector: () => mockSelector,
-}));
+  }));
 
-render(
+  render(
     <Provider store={store}>
       <ReviewCarousel heading="test" />
     </Provider>
-);
+  );
   mockAllIsIntersecting(true);
 });

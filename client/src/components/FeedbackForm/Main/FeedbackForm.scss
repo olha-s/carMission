@@ -12,7 +12,6 @@
   background-color: rgba(131, 149, 170, 1);
   border-radius: 3px;
 
-
   &__name-label {
     display: flex;
     flex-direction: column;
@@ -78,7 +77,7 @@
   }
 }
 
-@media screen and (min-width: $sm-size) and (max-width: $md-size){
+@media screen and (min-width: $sm-size) and (max-width: $md-size) {
   .feedback-form {
     top: 15%;
     right: 25vw;

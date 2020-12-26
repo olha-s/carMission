@@ -6,22 +6,42 @@ const passport = require("passport");
 const {
   addSectionMainPage,
   getSectionsMainPage,
+  deleteSectionMainPage,
   deleteAllSectionsMainPage,
+  updateSectionMainPage
 } = require("../controllers/sectionsMainPage");
 
 // @route   POST /sections-main
-// @desc    Create new work stage
+// @desc    Create new section on page
 // @access  Private
 router.post("/", addSectionMainPage);
 
 // @route   GET /sections-main
-// @desc    GET existing stages
+// @desc    GET existing sections
 // @access  Public
 router.get("/", getSectionsMainPage);
 
 // @route   DELETE /sections-main
-// @desc    Delete all stages from collection
+// @desc    Delete all sections from collection
 // @access  Private
 router.delete("/", deleteAllSectionsMainPage);
+
+// @route   DELETE /sections-main
+// @desc    Delete one section from collection
+// @access  Private
+router.delete("/:id",
+  // passport.authenticate("jwt", { session: false }),
+  deleteSectionMainPage
+);
+
+// @route   PUT /sections-main
+// @desc    Update a section in collection
+// @access  Private
+
+router.put(
+  "/:id",
+  // passport.authenticate("jwt", { session: false }),
+  updateSectionMainPage
+);
 
 module.exports = router;

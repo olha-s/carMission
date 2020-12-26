@@ -12,7 +12,7 @@ const NavbarItem = ({
   contacts,
   sectionId,
   id,
-  isFooter
+  isFooter,
 }) => {
   const dispatch = useDispatch();
   const showFeedbackModal = () => {

@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 import { getReviews } from "../../../../store/ReviewCarousel/selectors";
 import FormItemReviewCarousel from "../FormItem/FormItemReviewCarousel";
 import SectionHeading from "../../../generalComponents/SectionHeading/SectionHeading";
-import "./FormContainerReviewCarousel.scss"
+import "./FormContainerReviewCarousel.scss";
 import Button from "../../../generalComponents/Button/Button";
 
 const FormContainerReviewCarousel = () => {
   const [formList, setFormList] = useState([]);
   const data = useSelector(getReviews);
-  
+
   useEffect(() => {
     const mapFormToRender = () => {
       return data.map((review) => {
@@ -25,7 +25,7 @@ const FormContainerReviewCarousel = () => {
       customerName: "",
       carInfo: "",
       reviewText: "",
-      };
+    };
 
     return <FormItemReviewCarousel obj={empty} isNew key={Date.now()} />;
   };
