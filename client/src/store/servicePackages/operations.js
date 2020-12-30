@@ -1,7 +1,8 @@
-import { packagesIsLoading, setPackages } from "./actions";
+import { packagesIsLoading, setPackages, updatePackages } from "./actions";
 import axios from "axios";
 import { saveErrObjAction } from "../errorObject/saveErrObjAction";
 import { openErrModal } from "../ErrorModal/openErrModal";
+import { getPackages } from "./selectors";
 
 export const loadPackages = () => async (dispatch) => {
   dispatch(packagesIsLoading(true));
@@ -18,4 +19,13 @@ export const loadPackages = () => async (dispatch) => {
 
   dispatch(setPackages(servicePackagesFromServer));
   dispatch(packagesIsLoading(false));
+};
+
+export const filterServicePackages = (id) => (dispatch, getStore) => {
+  const packages = getPackages(getStore());
+
+  const filtered = packages.filter(
+    (servicePackage) => servicePackage.id === id
+  );
+  dispatch(updatePackages(filtered));
 };
