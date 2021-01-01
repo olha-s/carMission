@@ -38,10 +38,12 @@ const FormContainerMainPageSections = () => {
   };
 
   return (
-    <div className="admin__form-container">
+    <div className="admin">
       <div className="admin__container-head">
         <SectionHeading text="Секции главной страницы" />
       </div>
+      <div className="admin__form-container">
+
       {formList}
       {sectionCreationStatus === "creating" ? (
         <FormItem
@@ -60,7 +62,7 @@ const FormContainerMainPageSections = () => {
           setSectionCreationStatus("creating");
         }}
       />
-    </div>
+    </div></div>
   );
 };
 

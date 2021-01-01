@@ -143,9 +143,9 @@ const FormItem = ({ obj, sectionCreationStatus, setSectionCreationStatus }) => {
             labelName="Название реакт-компонента"
           />
 
-          <label className="admin__form-label admin__input">
-            <Field type="checkbox" name="disabled" />
-            &nbsp;Скрыть секцию на странице
+          <label className="admin__label admin__checkbox-label">
+            <Field className="admin__input admin__checkbox-input" type="checkbox" name="disabled" />
+           <span className="admin__label-name admin__checkbox-label-name">&nbsp;Скрыть секцию на странице</span>
           </label>
 
           {sectionCreationStatus === "creating" ||
@@ -153,7 +153,7 @@ const FormItem = ({ obj, sectionCreationStatus, setSectionCreationStatus }) => {
             <div className="admin__buttons-box">
               <Button
                 className="admin__delete-btn"
-                text="Cancel"
+                text="&#10005;"
                 onClick={(event) => {
                   event.preventDefault();
                   setSectionCreationStatus("no");
@@ -170,7 +170,7 @@ const FormItem = ({ obj, sectionCreationStatus, setSectionCreationStatus }) => {
             <div className="admin__buttons-box">
               <Button
                 className="admin__delete-btn"
-                text="Delete item"
+                text="&#10005;"
                 onClick={(event) => {
                   event.preventDefault();
                   deleteSection();
@@ -178,7 +178,6 @@ const FormItem = ({ obj, sectionCreationStatus, setSectionCreationStatus }) => {
               />
               <Field
                 type="submit"
-                // disabled={isUpdated}
                 name="submit"
                 className="admin__submit-btn"
                 value="Submit changes"

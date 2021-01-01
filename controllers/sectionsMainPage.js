@@ -63,12 +63,13 @@ exports.deleteSectionMainPage = (req, res, next) => {
       .json({
         message: "you've just deleted section from sections collection",
       })
-      .catch((err) => {
-        res.status(400).json({
-          message: `Error happened on server: "${err}" `,
-        });
+
+  })
+    .catch((err) => {
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `,
       });
-  });
+    });
 };
 
 exports.deleteAllSectionsMainPage = (req, res, next) => {
@@ -78,10 +79,11 @@ exports.deleteAllSectionsMainPage = (req, res, next) => {
       .json({
         message: "you've just deleted all data from collection",
       })
-      .catch((err) => {
-        res.status(400).json({
-          message: `Error happened on server: "${err}" `,
-        });
-      });
-  });
+
+  })
+    .catch((err) => {
+      res.status(400).json({
+        message: `Error happened on server: "${err}"`
+      })
+    });
 };
