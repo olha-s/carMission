@@ -1,4 +1,9 @@
-import { LOADING_FEATURES, TOGGLE_IS_LOADING_FEATURES } from "./actionTypes";
+import {
+  ADD_NEW_FEATURE,
+  LOADING_FEATURES,
+  TOGGLE_IS_LOADING_FEATURES,
+  UPDATE_FEATURE,
+} from "./actionTypes";
 
 const initialState = {
   features: [],
@@ -16,6 +21,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.payload,
+      };
+    case ADD_NEW_FEATURE:
+      return {
+        ...state,
+        features: [...state.features, action.payload],
+      };
+    case UPDATE_FEATURE:
+      return {
+        ...state,
+        features: action.payload,
       };
     default:
       return state;

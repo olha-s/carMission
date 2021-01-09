@@ -1,92 +1,158 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import AdminFormField from "../../AdminFormField/AdminFormField";
 import axios from "axios";
-import { saveErrObjAction } from "../../../../store/errorObject/saveErrObjAction";
-import { openErrModal } from "../../../../store/ErrorModal/openErrModal";
 import { useDispatch } from "react-redux";
-import useUpdateTimeout from "../../../../utils/hooks/useUpdateTimeout";
-import UpdateConfirmation from "../../updateConfirmation/UpdateConfirmation";
-import { validationSchema } from "../ValidationSchema";
+import * as yup from "yup";
+import "./FormItemAboutUs.scss";
+import AdminFormField from "../../AdminFormField/AdminFormField";
 import Button from "../../../generalComponents/Button/Button";
+import { toastr } from "react-redux-toastr";
+import { filterAboutUs } from "../../../../store/aboutUs/operations";
+import { addNewFeature } from "../../../../store/aboutUs/actions";
 
-const FormItemWorkStages = ({ obj }) => {
-  const { imgPath, title: propsTitle, text, isMain, _id: id } = obj;
+export const validationSchema = yup.object().shape({
+  imgPath: yup
+    .string()
+    .required("Обязательное поле!")
+    .min(15)
+    .max(50, "Ошибка длины! Строка должна содержать 15-50 знаков"),
+  title: yup
+    .string()
+    .required("Обязательное поле!")
+    .min(15)
+    .max(600, "Ошибка длины! Строка должна содержать 15-600 знаков"),
+});
+
+const FormItemAboutUs = ({ sourceObj, isNew }) => {
+  const { imgPath, title: propsTitle, text, isMain } = sourceObj;
   const title = text && !propsTitle ? text : propsTitle;
   const dispatch = useDispatch();
-  const [isUpdated, setIsUpdated] = useState(false);
-  const timeOut = useUpdateTimeout(setIsUpdated);
+  const [isDeleted, setIsDeleted] = useState(false);
 
-  useEffect(() => {
-    return () => clearTimeout(timeOut);
-  }, [timeOut]);
+  const handleDeleteFromDB = async (e) => {
+    e.preventDefault();
 
-  const onSubmit = async (values) => {
-    const updatedObj = isMain
-      ? { ...obj, imgPath: values.imgPath, text: values.title }
-      : { ...obj, ...values };
+    const deleted = await axios
+      .delete(`/api/features/delete/${sourceObj._id}`)
+      .catch((err) => {
+        toastr.error(err.message);
+      });
 
-    const featureToServer = await axios({
-      method: "PUT",
-      url: `/api/features/${id}`,
-      data: updatedObj,
-    }).catch((err) => {
-      dispatch(saveErrObjAction(err));
-      dispatch(openErrModal);
-    });
-
-    if (featureToServer.status === 200) {
-      setIsUpdated(true);
+    if (deleted.status === 200) {
+      toastr.success("Успешно", "Преимущество удалено из базы данных");
+      dispatch(filterAboutUs(sourceObj._id));
+    } else {
+      toastr.warning("Хм...", "Что-то пошло не так");
     }
   };
+
+  const handleDeleteNew = (e) => {
+    e.preventDefault();
+    setIsDeleted(true);
+    toastr.success("Успешно", "Преимущество удалено до внесения в базу данных");
+  };
+
+  const handleUpdate = async (values) => {
+    const { title } = values;
+    if (isMain) {
+      values.text = title;
+      values.title = "";
+    }
+
+    const updatedObj = {
+      ...sourceObj,
+      ...values,
+    };
+
+    const updatedFeature = await axios
+      .put(`/api/features/${sourceObj._id}`, updatedObj)
+      .catch((err) => {
+        toastr.error(err.message);
+      });
+
+    if (updatedFeature.status === 200) {
+      toastr.success("Успешно", "Преимущество изменено в базе данных");
+      values.title = updatedObj.text;
+    } else {
+      toastr.warning("Хм...", "Что-то пошло не так");
+    }
+  };
+
+  const handlePostToDB = async (values) => {
+    const newObj = { ...values, isMain: false };
+    const newFeature = await axios
+      .post("/api/features/", newObj)
+      .catch((err) => {
+        toastr.error(err.message);
+      });
+
+    if (newFeature.status === 200) {
+      toastr.success("Успешно", "Преимущество добавлено в базу данных");
+      dispatch(addNewFeature(newFeature.data));
+    } else {
+      toastr.warning("Хм...", "Что-то пошло не так");
+    }
+  };
+
+  if (isDeleted) {
+    return null;
+  }
 
   return (
     <Formik
       initialValues={{ imgPath, title }}
       validationSchema={validationSchema}
-      validateOnChange={false}
       validateOnBlur={false}
-      onSubmit={onSubmit}
+      validateOnChange={false}
+      onSubmit={isNew ? handlePostToDB : handleUpdate}
     >
       {({ errors, touched }) => (
-        <Form className="admin__form-item">
+        <Form
+          className={
+            isMain
+              ? "admin-about-us__form-main-item"
+              : "admin-about-us__form-item"
+          }
+        >
           <AdminFormField
-            className="admin__form-label"
+            labelClassName="admin-about-us__form-label"
+            fieldClassName="admin-about-us__form-input"
+            errorClassName="admin-about-us__form-error"
             type="input"
             name="imgPath"
             errors={errors}
             labelName="Путь к картинке"
           />
           <AdminFormField
+            labelClassName="admin-about-us__form-label"
+            fieldClassName={
+              isMain
+                ? "admin-about-us__form-textarea"
+                : "admin-about-us__form-input"
+            }
+            errorClassName="admin-about-us__form-error"
             as={isMain ? "textarea" : "input"}
             type={isMain ? "textarea" : "input"}
-            fieldClassName={isMain ? "admin__form-textarea" : ""}
             name="title"
             errors={errors}
             labelName={isMain ? "Текстовый контент" : "Подпись к картинке"}
           />
 
-          <div className="admin__buttons-box">
-            <Button
-              className="admin__delete-btn"
-              text="Delete item"
-              onClick={(event) => {
-                event.preventDefault();
-              }}
-            />
-            <Field
-              type="submit"
-              disabled={isUpdated}
-              name="submit"
-              className="admin__submit-btn"
-              value="Submit changes"
-            />
-            {isUpdated && <UpdateConfirmation />}
-          </div>
+          <Field
+            type="submit"
+            name="submit"
+            className="admin-about-us__submit-btn"
+            value={isNew ? "Создать преимущество" : "Подтвердить изменения"}
+          />
+          <Button
+            className="admin-about-us__delete-btn"
+            text="&#10005;"
+            onClick={isNew ? handleDeleteNew : handleDeleteFromDB}
+          />
         </Form>
       )}
     </Formik>
   );
 };
 
-export default FormItemWorkStages;
+export default FormItemAboutUs;
