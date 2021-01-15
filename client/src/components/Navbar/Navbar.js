@@ -11,9 +11,9 @@ const Navbar = ({ items, className, onClick, mobileNavbar, isFooter }) => {
         className={className}
         textContent={e.textContent}
         contacts={e.contacts}
-        sectionId={e.sectionId}
+        sectionId={`#${e.sectionId}`}
         id={uuidv4()}
-        key={uuidv4()}
+        key={e._id}
         isFooter={e.contacts && isFooter}
       />
     ) : null

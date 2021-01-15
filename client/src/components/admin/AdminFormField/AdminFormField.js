@@ -11,6 +11,7 @@ const AdminFormField = ({
   labelClassName,
   fieldClassName,
   errorClassName,
+  placeholder,
 }) => {
   return (
     <label className={labelClassName || "admin__label"}>
@@ -20,6 +21,7 @@ const AdminFormField = ({
         name={name}
         type={type}
         className={fieldClassName || "admin__input"}
+        placeholder={placeholder}
       />
       {errors[name] && (
         <span className={errorClassName || "admin__error-msg"}>

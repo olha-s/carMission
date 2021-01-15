@@ -6,7 +6,7 @@ const passport = require("passport");
 const {
   addServicePackage,
   getServicePackages,
-  updateServicePackages,
+  updateServicePackage,
   deleteServicePackage,
 } = require("../controllers/servicePackages");
 
@@ -21,7 +21,7 @@ router.post("/", addServicePackage);
 router.put(
   "/:id",
   passport.authenticate("jwt", { session: false }),
-  updateServicePackages
+  updateServicePackage
 );
 
 // @route   DELETE /service-packages

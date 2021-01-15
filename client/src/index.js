@@ -9,7 +9,7 @@ import { HelmetProvider } from "react-helmet-async";
 import store from "./store/store";
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <HelmetProvider>
         <BrowserRouter>
@@ -17,7 +17,8 @@ ReactDOM.render(
         </BrowserRouter>
       </HelmetProvider>
     </Provider>
-  </React.StrictMode>,
+  // </React.StrictMode>
+  ,
   document.getElementById("root")
 );
 

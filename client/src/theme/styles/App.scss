@@ -2,6 +2,7 @@
 
 .App {
   &__bg {
+    min-height: 100vh;
     background-color: $Rectangle67;
   }
   &__main-page {

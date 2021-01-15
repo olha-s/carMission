@@ -46,23 +46,46 @@
     padding: 15px 20px;
     font-size: 24px;
     background-color: $Rectangle67;
-    border-radius: 5px;
-    &::before,
-    &::after {
+    border-radius: 15px;
+    animation-name: show-menu;
+    animation-duration: 0.5s;
+
+    @keyframes show-menu {
+      0%   {transform: translateX(-100%);}
+      100% {transform: translateX(0%);}
+    }
+
+    &::before, &::after {
       position: absolute;
       top: 8%;
       right: 5%;
       width: 25px;
       padding: 1px 0;
       background-color: $Rectangle48;
+      animation-duration: 0.8s;
       content: "";
     }
     &::before {
       transform: rotate(45deg);
+      animation-name: navbar-before;
     }
     &::after {
       transform: rotate(135deg);
+      animation-name: navbar-after;
+    } 
+
+    @keyframes navbar-after {
+      0%   {transform: translateY(-400%) rotate(45deg);}
+      100% {transform: translateY(0%) rotate(135deg);}
     }
+    @keyframes navbar-before {
+      0%   {transform: translateY(-400%) rotate(135deg);}
+      100% {transform: translateY(0%) rotate(45deg);}
+    }
+
+
+
+    
 
     &__window {
       position: fixed;

@@ -7,39 +7,64 @@ import { useSelector } from "react-redux";
 import { getLogoData } from "../../store/logo/selectors";
 import { getNavbarData } from "../../store/navbar/selectors";
 import { Link } from "react-router-dom";
+import useWinSize from "../../utils/hooks/useWinSize";
 
 const Footer = () => {
   const logoInfo = useSelector(getLogoData);
   const navbarItems = useSelector(getNavbarData);
-  const leftSideItems = navbarItems.filter(
-    (e) => e.footerLocation === "left-side"
-  );
-  const rightSideItems = navbarItems.filter(
-    (e) => e.footerLocation === "right-side"
-  );
+  const { width: winWidth } = useWinSize();
+  const sortByNumberInNavbar = (arr) => {
+    arr.sort((a, b) => +a.numberInNavbar > +b.numberInNavbar ? 1 : -1);
+  }
+  sortByNumberInNavbar(navbarItems);
+  const leftSideItems = navbarItems.filter((e) => e.footerLocation === "left-side");
+  const rightSideItems = navbarItems.filter((e) => e.footerLocation === "right-side");
+  const firstMobileSize = 640;
+  const isMobileDevice = winWidth <= firstMobileSize;
+  const footerContent = isMobileDevice
+      ?
+        <>
+          <Navbar className="footer" items={navbarItems} isFooter={true} />
+          <div className="footer__info-block">
+            <div className="footer__line"></div>
+            <SocialNetworks className="footer__networks" />
+          </div>
+          <div className="footer__logo-bg">
+            <Logo
+              className="logo footer__logo"
+              src={logoInfo.path}Link
+              id={logoInfo.id}
+              alt={logoInfo.alt}
+            />
+          </div>
+        </>
+      :
+      <>
+        <Navbar className="footer--left-side footer" items={leftSideItems} />
+        <div className="footer__info-block">
+          <Link to="/" className="footer__logo-link">
+            <Logo
+              className="logo"
+              src={logoInfo.path}
+              id={logoInfo.id}
+              alt={logoInfo.alt}
+            />
+          </Link>
+          <div className="footer__line"></div>
+          <SocialNetworks className="footer__networks" />
+        </div>
+        <Navbar
+          className="footer--right-side footer"
+          items={rightSideItems}
+          isFooter={true}
+        />
+      </>;
 
   return (
     <div className="footer__bg">
       <div className="footer__container">
         <div className="footer__block" id="footer">
-          <Navbar className="footer--left-side footer" items={leftSideItems} />
-          <div className="footer__info-block">
-            <Link to="/" className="footer__logo-link">
-              <Logo
-                className="logo"
-                src={logoInfo.path}
-                id={logoInfo.id}
-                alt={logoInfo.alt}
-              />
-            </Link>
-            <div className="footer__line"></div>
-            <SocialNetworks className="footer__networks" />
-          </div>
-          <Navbar
-            className="footer--right-side footer"
-            items={rightSideItems}
-            isFooter={true}
-          />
+          {footerContent}
         </div>
       </div>
     </div>

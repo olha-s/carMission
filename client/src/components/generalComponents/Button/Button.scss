@@ -221,13 +221,29 @@
       width: 28px;
       padding: 1px 0;
       background: $Rectangle46;
+      animation-duration: 0.5s;
       content: "";
+  
     }
     &::after {
       top: 300%;
+      animation-name: after-burger;
+
     }
     &::before {
       top: -300%;
+      animation-name: before-burger;
     }
+    @keyframes after-burger {
+      0%   {transform: translateX(100%);}
+      100% {transform: translateX(0%);}
+    }
+
+
+    @keyframes before-burger {
+      0%   {transform: translateX(-100%);}
+      100% {transform: translateX(0%);}
+    }
+
   }
 }
