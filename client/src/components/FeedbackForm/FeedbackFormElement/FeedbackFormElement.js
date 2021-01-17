@@ -36,23 +36,25 @@ const FeedbackFormElement = () => {
       }}
     >
       {({ errors, touched }) => (
+        <div className="feedback-form__wrapper" onClick={(event) => {if (event.target===event.currentTarget) {dispatch(hideFeedbackFormAction)}}}>
         <Form className="feedback-form">
           <Button
             className="feedback-form__exit-btn"
             text="&#215;"
             onClick={hideFeedbackForm}
           />
+
+          <p className="feedback-form__heading">Обратная связь</p>
+
           <label className="feedback-form__name-label">
-            Имя
-            <Field name="name" className="feedback-form__field" />
+            <Field name="name" className="feedback-form__field" placeholder="Имя"/>
             {touched.name && errors.name ? (
               <span className="error-message"> {errors.name}</span>
             ) : null}
           </label>
 
           <label className="feedback-form__phone-label">
-            Ваш номер
-            <Field name="phone" className="feedback-form__field" />
+            <Field name="phone" className="feedback-form__field" placeholder="Ваш номер" />
             {touched.phone && errors.phone ? (
               <span className="error-message"> {errors.phone}</span>
             ) : null}
@@ -63,10 +65,11 @@ const FeedbackFormElement = () => {
               name="send-button"
               type="submit"
               value="Отправить"
-              className="feedback-form__conf-button"
+              className="feedback-form__button-field"
             />
           </label>
         </Form>
+        </div>
       )}
     </Formik>
   );

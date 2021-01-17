@@ -7,6 +7,7 @@ const FeedbackConfirmationWindow = () => {
   const dispatch = useDispatch();
 
   return (
+    <div className="feedback-form__wrapper"  onClick={(event) => {if (event.target===event.currentTarget) {dispatch(hideFeedbackFormAction)}}}>
     <div className="feedback-form feedback-form__conf">
       <Button
         className="feedback-form__exit-btn"
@@ -20,6 +21,7 @@ const FeedbackConfirmationWindow = () => {
         {" "}
         Мы свяжемся с вами в течении 5 минут !
       </p>
+    </div>
     </div>
   );
 };

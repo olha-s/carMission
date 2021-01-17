@@ -1,23 +1,51 @@
 @import "../../../theme/styles/variables";
 
 .feedback-form {
-  position: fixed;
-  top: 28%;
-  right: 33%;
-  z-index: 20;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
-  background-color: rgba(131, 149, 170, 1);
-  border-radius: 3px;
+  background:
+          linear-gradient(#101214, #101214)
+          padding-box,
+          linear-gradient(
+                          274.95deg,
+                          #bebfc0 2.76%,
+                          #7d7e80 32.64%,
+                          #dddedf 60.28%,
+                          #646567 97.25%
+          )
+          border-box;
+  border-radius: 5px;
+
+
+
+  &__wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  &__heading {
+    margin-top: 50px;
+    color: white;
+    font-weight: 600;
+    font-size: 30px;
+  }
 
   &__name-label {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 34vw;
-    margin-top: 15%;
+    margin-top: 5%;
     color: #c6d1de;
     font-size: 13px;
   }
@@ -34,15 +62,56 @@
 
   &__button-label {
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+  }
+
+  &__button-field {
+    padding: 12px 49.54px;
+    color: $Rectangle48;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: $content-font;
+    line-height: 19px;
+    text-align: center;
+    background:
+            linear-gradient(#111315, #111315)
+            padding-box,
+
+    linear-gradient(
+                    274.95deg,
+                    #bebfc0 2.76%,
+                    #7d7e80 32.64%,
+                    #dddedf 60.28%,
+                    #646567 97.25%
+    )
+    border-box;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    outline: none;
+    transition: 0.3s;
+  }
+
+  &__button-field:hover {
+    background: linear-gradient($Rectangle65, $Rectangle65) padding-box,
+    linear-gradient(
+                    274.95deg,
+                    #bebfc0 2.76%,
+                    #7d7e80 32.64%,
+                    #dddedf 60.28%,
+                    #646567 97.25%
+    )
+    border-box;
   }
 
   &__field {
+    box-sizing: border-box;
     width: 60%;
     margin-top: 5px;
-    background: rgba(185, 185, 193, 0.2);
+    padding: 15px;
+    font-size: 14px;
+    background: #333438;
     border-color: transparent;
-    border-radius: 5px;
+    border-radius: 3px;
   }
 
   &__conf-button {
@@ -56,8 +125,8 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    color: #c6d1de;
-    font-size: 20px;
+    color: #7C828B;
+    font-size: 40px;
     background-color: transparent;
     border: none;
   }
@@ -66,21 +135,23 @@
     margin-top: 16%;
     margin-bottom: 15px;
     color: #c6d1de;
-    font-size: 14px;
+    font-size: 18px;
   }
 
   &__conf-text2 {
     margin: 0 5% 11% 5%;
     color: #c6d1de;
-    font-size: 14px;
+    font-size: 18px;
     text-align: center;
+  }
+
+  .error-message {
+    color: #7C828B;
   }
 }
 
 @media screen and (min-width: $sm-size) and (max-width: $md-size) {
   .feedback-form {
-    top: 15%;
-    right: 25vw;
 
     &__name-label {
       width: 50vw;
@@ -98,8 +169,9 @@
 
 @media screen and (max-width: $sm-size) {
   .feedback-form {
-    top: 15%;
-    right: 15vw;
+    &__heading {
+      font-size: 22px;
+    }
 
     &__name-label {
       width: 70vw;
