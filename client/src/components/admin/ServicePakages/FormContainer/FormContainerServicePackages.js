@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import SectionHeading from "../../../generalComponents/SectionHeading/SectionHeading";
 import { getPackages } from "../../../../store/servicePackages/selectors";
 import FormItemServicePackages from "../FormItem/FormItemServicePackages";
-import { v4 as uuidv4 } from "uuid";
+import "./FormContainerServicePackages.scss";
 import Button from "../../../generalComponents/Button/Button";
 
 const FormContainerServicePackages = () => {
@@ -15,7 +15,7 @@ const FormContainerServicePackages = () => {
       return data.map((servicePackages) => {
         return (
           <FormItemServicePackages
-            sourceObject={servicePackages}
+            sourceObj={servicePackages}
             key={servicePackages._id}
           />
         );
@@ -42,37 +42,16 @@ const FormContainerServicePackages = () => {
   };
 
   return (
-    <div className="">
+    <div className="admin-packages">
       <SectionHeading text="Пакеты услуг" />
-      <div className="">{formList}</div>
-      <Button text="+" className="btn btn-primary" onClick={handleAddItem} />
+      <div className="admin-packages__form-container">{formList}</div>
+      <Button
+        text="+"
+        className="admin-packages__add-btn"
+        onClick={handleAddItem}
+      />
     </div>
   );
 };
 
 export default FormContainerServicePackages;
-
-//   const formList = data.map((servicePackages) => {
-//     const { name, price, currency, serviceList } = servicePackages;
-//     return (
-//       <FormItemServicePackages
-//         name={name}
-//         price={price}
-//         currency={currency}
-//         serviceList={serviceList}
-//         key={uuidv4()}
-//       />
-//     );
-//   });
-//
-//   return (
-//     <div className="admin__form-container">
-//       <div className="admin__container-head">
-//         <SectionHeading text="Пакеты Услуг" />
-//       </div>
-//       {formList}
-//     </div>
-//   );
-// };
-//
-// export default FormContainerServicePackages;
