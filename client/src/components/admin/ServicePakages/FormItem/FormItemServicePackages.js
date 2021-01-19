@@ -4,6 +4,7 @@ import AdminFormField from "../../AdminFormField/AdminFormField";
 import Button from "../../../generalComponents/Button/Button";
 import { toastr } from "react-redux-toastr";
 import axios from "axios";
+import "./FormItemServicePackages.scss";
 import { useDispatch } from "react-redux";
 import { addPackages } from "../../../../store/servicePackages/actions";
 import { filterServicePackages } from "../../../../store/servicePackages/operations";
@@ -17,7 +18,7 @@ const FormItemServicePackages = ({ sourceObj, isNew }) => {
     e.preventDefault();
 
     const deleted = await axios
-      .delete(`api/service-packages/delete/${sourceObj._id}`)
+      .delete(`/api/service-packages/delete/${sourceObj._id}`)
       .catch((err) => {
         toastr.error(err.message);
       });
@@ -49,7 +50,7 @@ const FormItemServicePackages = ({ sourceObj, isNew }) => {
     if (updatedPackages.status === 200) {
       toastr.success(
         "Успешно",
-        `Пакет изменён на "${values.name}" в базе данных`
+        `Пакет "${values.name}" изменён  в базе данных`
       );
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
@@ -80,37 +81,57 @@ const FormItemServicePackages = ({ sourceObj, isNew }) => {
   return (
     <Formik
       initialValues={{ name, price, currency, serviceList }}
+      validateOnChange={false}
+      validateOnBlur={false}
       onSubmit={isNew ? handlePostToDB : handleUpdate}
     >
-      {({ errors, touched }) => (
-        <Form className="admin__form-item">
+      {({ errors, touched, submitting }) => (
+        <Form className="admin-packages__form-item">
           <AdminFormField
-            className="admin__form-label"
+            labelclassName="admin-packages__form-label"
+            fieldClassName="admin-packages__form-input"
+            errorClassName="admin-packages__form-error"
             type="input"
             name="name"
             errors={errors}
             labelName="Название Пакета услуг"
           />
           <AdminFormField
+            labelclassName="admin-packages__form-label"
+            fieldClassName="admin-packages__form-input"
+            errorClassName="admin-packages__form-error"
             type="input"
-            name="Price"
+            name="price"
             errors={errors}
             labelName="Цена Пакета"
           />
           <AdminFormField
+            labelclassName="admin-packages__form-label"
+            fieldClassName="admin-packages__form-input"
+            errorClassName="admin-packages__form-error"
             type="input"
-            name="Currency"
+            name="currency"
             errors={errors}
             labelName="Валюта"
+          />
+          <AdminFormField
+            labelclassName="admin-packages__form-label"
+            fieldClassName="admin-packages__form-input"
+            errorClassName="admin-packages__form-error"
+            type="input"
+            name="serviceList"
+            errors={errors}
+            labelName="Список услуг"
           />
           <Field
             type="submit"
             name="submit"
-            className="admin__submit-btn"
+            className="admin-packages__submit-btn"
+            disabled={submitting}
             value={isNew ? "Создать пакет услуг" : "Подтвердить изменения"}
           />
           <Button
-            className="button2-send-request"
+            className="admin-packages__delete-btn"
             text="&#10005;"
             onClick={isNew ? handleDeleteNew : handleDeleteFromDB}
           />
