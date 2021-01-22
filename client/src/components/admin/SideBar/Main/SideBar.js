@@ -25,15 +25,22 @@ const SideBar = () => {
       heading: "Секции главной страницы",
     },
     {
+      route: "social-networks",
+      heading: "Социальные сети",
+    },
+    {
       route: "navbar",
       heading: "Пункты меню",
     },
     
     ...navFromDB,
-
     {
       route: "social-networks",
       heading: "Социальные сети",
+    },
+    {
+      route: "Logo",
+      heading: "Главное Лого",
     },
   ];
 

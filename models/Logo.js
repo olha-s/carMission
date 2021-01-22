@@ -9,11 +9,9 @@ const LogoSchema = new Schema(
         },
         id: {
             type: String,
-            required: true
         },
         alt: {
             type: String,
-            required: true
         }
     }
 );

@@ -192,5 +192,4 @@ AdminSocialNetworksItem.defaultTypes = {
     iconSrcPlaceholder: "",
 }
 
-
 export default AdminSocialNetworksItem;
