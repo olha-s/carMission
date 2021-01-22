@@ -13,6 +13,7 @@ const mockStore = configureStore();
 const store = mockStore({
   feedbackFormOpen: "closed",
   paginationDotClick: { click: false, targetSection: "" },
+  socialNetworks: { data: []},
 });
 const mockHistoryReplace = jest.fn();
 jest.mock("react-router-dom", () => ({

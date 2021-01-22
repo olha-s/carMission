@@ -11,6 +11,7 @@ import reviewCarousel from "./ReviewCarousel/reduser";
 import errModalReducer from "./ErrorModal/errModalReducer";
 import errObjReducer from "./errorObject/errObjReducer";
 import auth from "./auth/reducer";
+import socialNetworks from "./socialNetworks/reducer";
 import { reducer as toastr } from "react-redux-toastr";
 
 const reducer = combineReducers({
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   reviewCarousel,
   auth,
   toastr,
+  socialNetworks,
 });
 
 export default reducer;

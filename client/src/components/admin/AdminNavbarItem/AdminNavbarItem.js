@@ -10,7 +10,7 @@ import "./AdminNavbarItem.scss";
 import { addNewItem } from "../../../store/navbar/actions";
 import { filterNavbarData } from "../../../store/navbar/operations";
 import AdminNavbarSelect from "../AdminNavbarSelect/AdminNavbarSelect";
-
+import PropTypes from "prop-types";
 
 const navbarSchema = yup.object().shape({
     textContent: yup
@@ -52,7 +52,6 @@ const AdminNavarItem = ({
 }) => {
     const dispatch = useDispatch();
     const [isDeleted, setIsDeleted] = useState(false);
-    const [numberArr, setNumberArr] = useState(sectionsNumberInNavbar);
     const [numberValue, setNumberValue] = useState(numberInNavbar);
     const [sectionIdValue, setSectionIdValue] = useState(sectionId);
     const [headerLocationValue, setHeaderLocationValue] = useState(headerLocation);
@@ -95,7 +94,6 @@ const AdminNavarItem = ({
         toastr.success("Успешно", "Айтем удалён до внесения в базу данных");
     };
     const handleUpdate = async (values) => {
-        console.log(values)
         const updatedItem = await axios
             .put(`/api/navbar/${id}`, values)
             .catch((err) => {
@@ -112,8 +110,6 @@ const AdminNavarItem = ({
         }
     };
     const handlePostToDB = async (values) => {
-        console.log(values)
-
         const newItem = await axios
             .post("/api/navbar/", values)
             .catch((err) => {
@@ -172,7 +168,7 @@ const AdminNavarItem = ({
                     <AdminNavbarSelect
                         className={`${className}__select`}
                         value={numberValue}
-                        options={numberArr}
+                        options={sectionsNumberInNavbar}
                         onChange={(value) => {
                             setNumberValue(value.value)
                             setFieldValue("numberInNavbar", value.value)
@@ -208,7 +204,6 @@ const AdminNavarItem = ({
                                     setFieldValue("sectionId", value.value)
                                 }}
                             />
-                           
                         </>
                         : null
                     }
@@ -261,5 +256,49 @@ const AdminNavarItem = ({
         </Formik>
     );
 };
+
+
+AdminNavarItem.propTypes = {
+    className: PropTypes.string,
+    textContent: PropTypes.string,
+    textContentPlaceholder: PropTypes.string,
+    headerLocation: PropTypes.string,
+    headerLocationPlaceholder: PropTypes.string,
+    footerLocation: PropTypes.string,
+    footerLocationPlaceholder: PropTypes.string,
+    id: PropTypes.string,
+    contacts: PropTypes.string,
+    sectionId: PropTypes.string,
+    sectionIdPlaceholder: PropTypes.string,
+    sectionsArr: PropTypes.array,
+    numberInNavbar: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+    sectionsNumberInNavbar: PropTypes.array,
+    disabled: PropTypes.bool,
+    isNew:  PropTypes.bool,
+};
+
+AdminNavarItem.defaultTypes = {
+    className: "",
+    textContent: "",
+    textContentPlaceholder: "Введите название секции",
+    headerLocation: "",
+    headerLocationPlaceholder: "Выберите расположение",
+    footerLocation: "",
+    footerLocationPlaceholder: "Выберите расположение",
+    id: "",
+    contacts: "",
+    sectionId: "",
+    sectionIdPlaceholder: "Выберите секцию",
+    sectionsArr: [],
+    numberInNavbar: "",
+    sectionsNumberInNavbar: "",
+    disabled: true,
+    isNew:  false,
+};
+
+
 
 export default AdminNavarItem;

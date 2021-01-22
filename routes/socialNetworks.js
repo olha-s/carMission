@@ -9,7 +9,6 @@ const {
     getSocialNetworksItem,
     updateSocialNetworksItem,
     deleteSocialNetworksItem
-
 } = require("../controllers/socialNetworks");
 
 // @route   GET /social-networks

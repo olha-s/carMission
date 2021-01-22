@@ -17,12 +17,14 @@ import { loadReviews } from "./store/ReviewCarousel/operations";
 import { checkToken } from "./store/auth/operations";
 import ReduxToastr from "react-redux-toastr";
 import { useLocation } from "react-router-dom";
+import { loadSocialNetworks } from "./store/socialNetworks/operations";
 
 const App = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
   useEffect(() => {
+    dispatch(loadSocialNetworks());
     dispatch(loadNavbarData());
     dispatch(loadMainSection());
     dispatch(loadLogoData());

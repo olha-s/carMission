@@ -1,36 +1,24 @@
 import React, { useState, useEffect } from "react";
 import SocialNetworksItem from "../SocialNetworksItem/SocialNetworksItem";
 import PropTypes from "prop-types";
-import axios from "axios";
 import "./SocialNetworks.scss";
+import { useSelector } from "react-redux";
+import { getSocialNetworks } from "../../store/socialNetworks/selectors";
 
 const SocialNetworks = ({ className }) => {
+  const data = useSelector(getSocialNetworks);
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = async () => {
-    const response = await axios("/api/social-networks");
-    const data = response.data.map(async (item) => {
-      const icon = await import(`./SocialNetworksIcons/${item.name}`);
-      const newItem = {
-        ...item,
-        src: icon.default,
-      };
-      return newItem;
-    });
-    const snCollection = await Promise.all(data);
-    setItems(snCollection);
-  };
+      setItems(data)
+  }, [data])
 
   const linkItems = items.map((e) =>
     e.isEnabled ? (
       <SocialNetworksItem
-        src={e.src}
+        src={e.iconSrc}
         listClassName={`${className}-item`}
-        className={`${className}--${e.name}`}
+        className={className}
         url={e.url}
         id={`${e.name}-link`}
         key={e._id || e.id}

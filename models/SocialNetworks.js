@@ -15,7 +15,12 @@ const SocialNetworksSchema = new Schema(
         url: {
             type: String,
             required: true
-        }
+        },
+        iconSrc: {
+            type: String,
+            required: true
+        },
+
     }
 );
 

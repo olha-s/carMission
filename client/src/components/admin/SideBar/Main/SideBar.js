@@ -28,8 +28,13 @@ const SideBar = () => {
       route: "navbar",
       heading: "Пункты меню",
     },
-
+    
     ...navFromDB,
+
+    {
+      route: "social-networks",
+      heading: "Социальные сети",
+    },
   ];
 
   const linksList = links.map(({ route, heading }, index) => {
