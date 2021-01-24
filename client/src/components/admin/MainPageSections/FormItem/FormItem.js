@@ -28,7 +28,7 @@ const FormItem = ({ obj, sectionCreationStatus, setSectionCreationStatus }) => {
       const sectionToServer = await axios({
         method: "POST",
         url: "/api/sections-main/",
-        data: { ...values },
+        data: { ...values, reactComponent:"newSectionComponent" },
       }).catch((err) => {
         dispatch(saveErrObjAction(err));
         dispatch(openErrModal);
@@ -58,7 +58,6 @@ const FormItem = ({ obj, sectionCreationStatus, setSectionCreationStatus }) => {
       });
 
       if (sectionToServer.status === 200) {
-        // setIsUpdated(true);
         dispatch(loadMainSection());
         toastr.success(
           "Успешно",
@@ -135,13 +134,6 @@ const FormItem = ({ obj, sectionCreationStatus, setSectionCreationStatus }) => {
             labelName="Название секции"
           />
 
-          <AdminFormField
-            className="admin__form-label"
-            type="input"
-            name="reactComponent"
-            errors={errors}
-            labelName="Название реакт-компонента"
-          />
 
           <label className="admin__label admin__checkbox-label">
             <Field className="admin__input admin__checkbox-input" type="checkbox" name="disabled" />
@@ -192,3 +184,4 @@ const FormItem = ({ obj, sectionCreationStatus, setSectionCreationStatus }) => {
 };
 
 export default FormItem;
+
