@@ -8,6 +8,7 @@ import servicePackages from "./servicePackages/reducer";
 import paginationDotClick from "./paginationDotClick/reducer";
 import workStages from "./workStages/reducer";
 import reviewCarousel from "./ReviewCarousel/reduser";
+import blogs from "./Blogs/reducer";
 import errModalReducer from "./ErrorModal/errModalReducer";
 import errObjReducer from "./errorObject/errObjReducer";
 import auth from "./auth/reducer";
@@ -26,6 +27,7 @@ const reducer = combineReducers({
   errModalReducer,
   errObjReducer,
   reviewCarousel,
+  blogs,
   auth,
   toastr,
   socialNetworks,

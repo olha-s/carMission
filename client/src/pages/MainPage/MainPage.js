@@ -5,6 +5,7 @@ import WorkStages from "../../sections/WorkStages/Main/WorkStages";
 import AutoFromUsa from "../../sections/AutoFromUSA/AutoFromUsa";
 import AboutUs from "../../sections/AboutUs/AboutUs";
 import ReviewCarousel from "../../components/ReviewCarousel/ReviewCarousel";
+import Blogs from "../../components/Blogs/Blogs";
 import ServicePackages from "../../sections/ServicePackages/ServicePackages";
 import { Helmet } from "react-helmet-async";
 import PaginationDots from "../../components/PaginationDots/PaginationDots";
@@ -19,6 +20,7 @@ const MainPage = () => {
     AutoFromUsa,
     AboutUs,
     ReviewCarousel,
+    Blogs,
     ServicePackages,
   };
 
