@@ -21,15 +21,13 @@ const navbarSchema = yup.object().shape({
         .required("Обязательное поле"),
     headerLocation: yup
         .string()
-        .typeError("Выберите одно из свойств")
         .required("Обязательное поле"),
     footerLocation: yup
         .string()
-        .typeError("Выберите одно из свойств")
         .required("Обязательное поле"),
     sectionId: yup
         .string()
-        .typeError("Выберите одно из свойств")
+        .required("Обязательное поле"),
 });
 
 const AdminNavarItem = ({
@@ -136,7 +134,7 @@ const AdminNavarItem = ({
             validateOnBlur={false}
             onSubmit={isNew ? handlePostToDB : handleUpdate}
         >
-            {({ errors, setFieldValue }) => (
+            {({ errors, setFieldValue, touched }) => (
                 <Form className={`${className}__item`}>
                     {disabled ?
                         <label className={`${className}__info ${className}__info_none-active`}>Ceкция неактивна на сайте</label>
@@ -166,13 +164,16 @@ const AdminNavarItem = ({
                         <p className={`${className}__number-hidden`}>Проверьте уникален ли номер пункта, а также его расположение слева или справа от лого</p>
                     </label>
                     <AdminNavbarSelect
-                        className={`${className}__select`}
+                        name="numberInNavbar"
+                        className={className}
                         value={numberValue}
                         options={sectionsNumberInNavbar}
                         onChange={(value) => {
                             setNumberValue(value.value)
                             setFieldValue("numberInNavbar", value.value)
                             }}
+                        errors={errors}
+
                     />
 
                     {contacts ?
@@ -195,7 +196,8 @@ const AdminNavarItem = ({
                         <>
                             <label className={`${className}__label`}>К какой секции относится</label>
                             <AdminNavbarSelect
-                                className={`${className}__select`}
+                                name="sectionId"
+                                className={className}
                                 value={sectionIdValue}
                                 options={sectionsArr}
                                 placeholder={sectionId || sectionIdPlaceholder}
@@ -203,6 +205,7 @@ const AdminNavarItem = ({
                                     setSectionIdValue(value.value)
                                     setFieldValue("sectionId", value.value)
                                 }}
+                                errors={errors}
                             />
                         </>
                         : null
@@ -210,7 +213,8 @@ const AdminNavarItem = ({
 
                     <label className={`${className}__label`}>Расположение в меню</label>
                     <AdminNavbarSelect
-                        className={`${className}__select`}
+                        name="headerLocation"
+                        className={className}
                         options={options("меню")}
                         placeholder={headerLocation || headerLocationPlaceholder}
                         value={headerLocationValue}
@@ -218,11 +222,13 @@ const AdminNavarItem = ({
                             setHeaderLocationValue(value.value)
                             setFieldValue("headerLocation", value.value)
                         }}
+                        errors={errors}
                     />
 
                     <label className={`${className}__label`}>Расположение в футере(подвале)</label>
                     <AdminNavbarSelect
-                        className={`${className}__select`}
+                        name="footerLocation"
+                        className={className}
                         value={footerLocationValue}
                         placeholder={footerLocation || footerLocationPlaceholder}
                         options={options("футере")}
@@ -230,12 +236,10 @@ const AdminNavarItem = ({
                             setFooterLocationValue(value.value)
                             setFieldValue("footerLocation", value.value)
                         }}
-
-                        
-                        name="footerLocation"
                         errors={errors}
                     />
                     
+
                     <Field
                         type="submit"
                         name="submit"

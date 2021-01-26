@@ -1,6 +1,5 @@
 @import "src/theme/styles/_variables";
 
-
 .admin-navbar {
     &__item {
         position: relative;
@@ -13,13 +12,19 @@
         border: $Rectangle48 1px solid;
         border-radius: 30px;
     }
-    &__label, &__select, &__info {
+    &__label, &__select-block, &__info {
         position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 80%;
         margin-bottom: 20px;
+    }
+    &__select {
+        width: 100%;
+    }
+    &__select > div{
+        color: $Rectangle67;
     }
     &__info{
         font-size: 18px;
@@ -33,10 +38,6 @@
     }
     &__info_new-item {
         text-shadow: 1px 1px 2px black, 0 0 1em rgb(0, 251, 255);
-    }
-    &__select > div{
-        width: 100%;
-        color: $Rectangle67;
     }
     &__input {
         width: 100%;
@@ -76,15 +77,8 @@
         display: block;
     }
 
-    // &__contacts-hidden + &__label {
-    //     position: relative;
-    // }
-
-    // &__contacts-hidden + &__label &__input:focus &__contacts-hidden {
-    //     display: block;
-    // }
-
     &__submit-btn {
+        margin-top: 7px;
         padding: 10px 20px;
         font-family: $content-font;
         background: darkseagreen;
@@ -114,9 +108,8 @@
     }
     &__form-error {
         position: absolute;
-        top: 100%;
+        top: 105%;
         color: red;
-    }
-    
+    }    
     
 }
