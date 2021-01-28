@@ -9,6 +9,7 @@ import FormContainerReviewCarousel from "../components/admin/ReviewCarousel/Form
 import AdminNavbar from "../components/admin/AdminNavbar/AdminNavbar";
 import AdminLogo from "../components/admin/AdminLogo/AdminLogo";
 import AdminSocialNetworks from "../components/admin/AdminSocialNetworks/AdminSocialNetworks";
+import FormContainerBlogs from "../components/admin/Blogs/FormContainer/FormContainerBlogs";
 
 const AdminRoutes = () => {
   return (
@@ -50,7 +51,7 @@ const AdminRoutes = () => {
         path="/admin/reviews"
         component={FormContainerReviewCarousel}
       />
-      <Route exact path="/admin/blog" component={FormContainerWorkStages} />
+      <Route exact path="/admin/blogs" component={FormContainerBlogs} />
       <Route
         exact
         path="/admin/car-catalog"
