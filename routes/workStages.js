@@ -8,6 +8,7 @@ const {
   getWorkStages,
   updateWorkStage,
   deleteWorkStage,
+  uploadWorkStageImg,
 } = require("../controllers/workStages");
 
 // @route   POST /work-stages
@@ -17,6 +18,15 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   addWorkStage
+);
+
+// @route   POST /work-stages
+// @desc    Upload img to Amazon S3 and update url in DB
+// @access  Private
+router.post(
+  "/upload/:id",
+  passport.authenticate("jwt", { session: false }),
+  uploadWorkStageImg
 );
 
 // @route   GET /work-stages

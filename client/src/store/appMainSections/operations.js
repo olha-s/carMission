@@ -6,10 +6,8 @@ import { openErrModal } from "../ErrorModal/openErrModal";
 export const loadMainSection = () => async (dispatch) => {
   dispatch(setIsLoading(true));
 
-  const sectionsFromServer = await axios({
-    method: "GET",
-    url: "/api/sections-main",
-  })
+  const sectionsFromServer = await axios
+    .get("/api/sections-main/")
     .then((r) => r.data)
     .catch((err) => {
       dispatch(saveErrObjAction(err));

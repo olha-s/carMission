@@ -29,3 +29,20 @@ export const filterWorkStages = (id) => (dispatch, getStore) => {
   const filtered = stages.filter((stage) => stage._id !== id);
   dispatch(updateStages(filtered));
 };
+
+export const updateStagesByNewSrc = (src, id) => (dispatch, getStore) => {
+  const stages = getWorkStages(getStore());
+
+  const updated = stages.map((stage) => {
+    if (stage._id === id) {
+      return {
+        ...stage,
+        iconSrc: src,
+      };
+    } else {
+      return stage;
+    }
+  });
+
+  dispatch(updateStages(updated));
+};

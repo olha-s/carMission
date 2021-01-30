@@ -5,10 +5,14 @@ import FormItemWorkStages from "../FormItem/FormItemWorkStages";
 import SectionHeading from "../../../generalComponents/SectionHeading/SectionHeading";
 import "./FormContainerWorkStages.scss";
 import Button from "../../../generalComponents/Button/Button";
+import { getMainSections } from "../../../../store/appMainSections/selectors";
 
 const FormContainerWorkStages = () => {
   const [formList, setFormList] = useState([]);
   const data = useSelector(getWorkStages);
+  const { heading } = useSelector(getMainSections).find(
+    (s) => s.reactComponent === "WorkStages"
+  );
 
   useEffect(() => {
     const mapFormToRender = () => {
@@ -39,7 +43,7 @@ const FormContainerWorkStages = () => {
 
   return (
     <div className="admin-stages">
-      <SectionHeading text="Этапы сотрудничества" />
+      <SectionHeading text={heading} />
       <div className="admin-stages__form-container">{formList}</div>
       <Button
         text="+"

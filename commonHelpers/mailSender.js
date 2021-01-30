@@ -3,7 +3,7 @@ const keys = require("../config/keys");
 const getConfigs = require("../config/getConfigs");
 
 module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
-  const configs = await getConfigs();
+  const configs = await getConfigs("carsmission-global-configs");
 
   //authorization for sending email
   let transporter = nodemailer.createTransport({
@@ -19,8 +19,8 @@ module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
       pass:
         process.env.NODE_ENV === "production"
           ? configs.production.email.mailPassword
-          : configs.development.email.mailPassword
-    }
+          : configs.development.email.mailPassword,
+    },
   });
 
   const mailOptions = {
@@ -30,7 +30,7 @@ module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
         : configs.development.email.mailUser,
     to: subscriberMail,
     subject: letterSubject,
-    html: letterHtml
+    html: letterHtml,
   };
 
   const result = await transporter.sendMail(mailOptions);

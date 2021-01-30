@@ -54,6 +54,7 @@ const LoginPage = () => {
             />
             <Field
               className="login__field"
+              type="password"
               name="password"
               placeholder="Введите пароль"
             />

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
+const aws = require("aws-sdk");
 require("dotenv").config();
 
 const globalConfigs = require("./routes/globalConfigs");

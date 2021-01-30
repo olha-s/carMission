@@ -10,7 +10,7 @@ import { addPackages } from "../../../../store/servicePackages/actions";
 import { filterServicePackages } from "../../../../store/servicePackages/operations";
 
 const FormItemServicePackages = ({ sourceObj, isNew }) => {
-  const { name, price, currency, serviceList } = sourceObj;
+  const { name, price, currency } = sourceObj;
   const [isDeleted, setIsDeleted] = useState(false);
   const dispatch = useDispatch();
 
@@ -80,7 +80,7 @@ const FormItemServicePackages = ({ sourceObj, isNew }) => {
 
   return (
     <Formik
-      initialValues={{ name, price, currency, serviceList }}
+      initialValues={{ name, price, currency }}
       validateOnChange={false}
       validateOnBlur={false}
       onSubmit={isNew ? handlePostToDB : handleUpdate}
@@ -130,6 +130,7 @@ const FormItemServicePackages = ({ sourceObj, isNew }) => {
             disabled={submitting}
             value={isNew ? "Создать пакет услуг" : "Подтвердить изменения"}
           />
+          {/* <FeaturesList arr={serviceList} /> */}
           <Button
             className="admin-packages__delete-btn"
             text="&#10005;"

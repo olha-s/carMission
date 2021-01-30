@@ -7,8 +7,7 @@ const {
   addSectionMainPage,
   getSectionsMainPage,
   deleteSectionMainPage,
-  deleteAllSectionsMainPage,
-  updateSectionMainPage
+  updateSectionMainPage,
 } = require("../controllers/sectionsMainPage");
 
 // @route   POST /sections-main
@@ -22,14 +21,10 @@ router.post("/", addSectionMainPage);
 router.get("/", getSectionsMainPage);
 
 // @route   DELETE /sections-main
-// @desc    Delete all sections from collection
-// @access  Private
-router.delete("/", deleteAllSectionsMainPage);
-
-// @route   DELETE /sections-main
 // @desc    Delete one section from collection
 // @access  Private
-router.delete("/:id",
+router.delete(
+  "/:id",
   // passport.authenticate("jwt", { session: false }),
   deleteSectionMainPage
 );
