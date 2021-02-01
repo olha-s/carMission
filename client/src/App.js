@@ -19,15 +19,16 @@ import { checkToken } from "./store/auth/operations";
 import ReduxToastr from "react-redux-toastr";
 import { useLocation } from "react-router-dom";
 import { loadSocialNetworks } from "./store/socialNetworks/operations";
+import { getMainSectionsIsLoading } from "./store/appMainSections/selectors";
 
 const App = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
   useEffect(() => {
+    dispatch(loadMainSection());
     dispatch(loadSocialNetworks());
     dispatch(loadNavbarData());
-    dispatch(loadMainSection());
     dispatch(loadLogoData());
     dispatch(loadFeatures());
     dispatch(loadPackages());
@@ -39,9 +40,10 @@ const App = () => {
 
   const isLogoLoading = useSelector(getIsLogoLoading);
   const isNavbarLoading = useSelector(getIsNavbarLoading);
+  const isMainSectionsLoading = useSelector(getMainSectionsIsLoading);
   const isMainPage = location.pathname === "/";
 
-  if (isNavbarLoading || isLogoLoading) {
+  if (isMainSectionsLoading || isNavbarLoading || isLogoLoading) {
     return (
       <div className="App">
         <Loader />
@@ -51,21 +53,21 @@ const App = () => {
 
   return (
     <div className="App">
-        <div className={isMainPage ? "App__main-page" : "App__bg"}>
-          <FeedbackForm />
-          <ErrorModal />
-          <AppRoutes />
-          <ReduxToastr
-            timeOut={5000}
-            newestOnTop
-            preventDuplicates
-            position="top-right"
-            getState={(state) => state.toastr}
-            transitionIn="fadeIn"
-            transitionOut="fadeOut"
-            progressBar
-          />
-        </div>
+      <div className={isMainPage ? "App__main-page" : "App__bg"}>
+        <FeedbackForm />
+        <ErrorModal />
+        <AppRoutes />
+        <ReduxToastr
+          timeOut={5000}
+          newestOnTop
+          preventDuplicates
+          position="top-right"
+          getState={(state) => state.toastr}
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          progressBar
+        />
+      </div>
     </div>
   );
 };

@@ -7,27 +7,35 @@ import "./FormItemAboutUs.scss";
 import AdminFormField from "../../AdminFormField/AdminFormField";
 import Button from "../../../generalComponents/Button/Button";
 import { toastr } from "react-redux-toastr";
-import { filterAboutUs } from "../../../../store/aboutUs/operations";
+import {
+  filterAboutUs,
+  updateFeaturesByNewObject,
+  updateFeaturesByNewSrc,
+} from "../../../../store/aboutUs/operations";
 import { addNewFeature } from "../../../../store/aboutUs/actions";
+import AdminDropZone from "../../AdminDropZone/AdminDropZone";
+import { checkIsInputChanges } from "../../../../utils/functions/checkIsInputChanges";
 
-export const validationSchema = yup.object().shape({
-  imgPath: yup
-    .string()
-    .required("Обязательное поле!")
-    .min(15)
-    .max(50, "Ошибка длины! Строка должна содержать 15-50 знаков"),
-  title: yup
-    .string()
-    .required("Обязательное поле!")
-    .min(15)
-    .max(600, "Ошибка длины! Строка должна содержать 15-600 знаков"),
-});
+const validationSchemaCreator = (inputName) => {
+  return yup.object().shape({
+    imgPath: yup
+      .string()
+      // .required("Обязательное поле!")
+      .min(15)
+      .max(200, "Ошибка длины! Строка должна содержать 15-50 знаков"),
+    [inputName]: yup
+      .string()
+      .required("Обязательное поле!")
+      .min(15)
+      .max(600, "Ошибка длины! Строка должна содержать 15-600 знаков"),
+  });
+};
 
 const FormItemAboutUs = ({ sourceObj, isNew }) => {
-  const { imgPath, title: propsTitle, text, isMain } = sourceObj;
-  const title = text && !propsTitle ? text : propsTitle;
+  const { imgPath, title, text, isMain } = sourceObj;
   const dispatch = useDispatch();
   const [isDeleted, setIsDeleted] = useState(false);
+  const [fileReady, setFileReady] = useState(null);
 
   const handleDeleteFromDB = async (e) => {
     e.preventDefault();
@@ -52,13 +60,24 @@ const FormItemAboutUs = ({ sourceObj, isNew }) => {
     toastr.success("Успешно", "Преимущество удалено до внесения в базу данных");
   };
 
-  const handleUpdate = async (values) => {
-    const { title } = values;
-    if (isMain) {
-      values.text = title;
-      values.title = "";
-    }
+  const uploadImgAndUpdateStore = async (values, id) => {
+    const res = await axios
+      .post(`/api/features/upload/${id}`, fileReady, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .catch((err) => {
+        toastr.error(err.message);
+      });
 
+    dispatch(updateFeaturesByNewSrc(res.data.location, id));
+    setFileReady(null);
+    values.imgPath = res.data.location;
+    toastr.success("Успешно", "Изображение загружено");
+  };
+
+  const updateFeatureTexts = async (values) => {
     const updatedObj = {
       ...sourceObj,
       ...values,
@@ -71,10 +90,24 @@ const FormItemAboutUs = ({ sourceObj, isNew }) => {
       });
 
     if (updatedFeature.status === 200) {
+      dispatch(updateFeaturesByNewObject(updatedFeature.data, sourceObj._id));
       toastr.success("Успешно", "Преимущество изменено в базе данных");
-      values.title = updatedObj.text;
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
+    }
+  };
+
+  const handleUpdate = (values) => {
+    if (fileReady && checkIsInputChanges(values, sourceObj)) {
+      uploadImgAndUpdateStore(values, sourceObj._id);
+    } else if (!fileReady && !checkIsInputChanges(values, sourceObj)) {
+      updateFeatureTexts(values);
+    } else if (fileReady && !checkIsInputChanges(values, sourceObj)) {
+      uploadImgAndUpdateStore(values, sourceObj._id).then(() =>
+        updateFeatureTexts(values)
+      );
+    } else {
+      toastr.warning("Сообщение", "Ничего не изменилось");
     }
   };
 
@@ -87,8 +120,12 @@ const FormItemAboutUs = ({ sourceObj, isNew }) => {
       });
 
     if (newFeature.status === 200) {
+      if (fileReady) {
+        await uploadImgAndUpdateStore(values, newFeature.data._id);
+      }
+
       toastr.success("Успешно", "Преимущество добавлено в базу данных");
-      dispatch(addNewFeature(newFeature.data));
+      dispatch(addNewFeature({ ...newFeature.data, imgPath: values.imgPath }));
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
@@ -100,8 +137,8 @@ const FormItemAboutUs = ({ sourceObj, isNew }) => {
 
   return (
     <Formik
-      initialValues={{ imgPath, title }}
-      validationSchema={validationSchema}
+      initialValues={isMain ? { imgPath, text } : { imgPath, title }}
+      validationSchema={validationSchemaCreator(isMain ? "text" : "title")}
       validateOnBlur={false}
       validateOnChange={false}
       onSubmit={isNew ? handlePostToDB : handleUpdate}
@@ -133,11 +170,15 @@ const FormItemAboutUs = ({ sourceObj, isNew }) => {
             errorClassName="admin-about-us__form-error"
             as={isMain ? "textarea" : "input"}
             type={isMain ? "textarea" : "input"}
-            name="title"
+            name={isMain ? "text" : "title"}
             errors={errors}
             labelName={isMain ? "Текстовый контент" : "Подпись к картинке"}
           />
-
+          <AdminDropZone
+            imgURL={imgPath}
+            setFile={setFileReady}
+            file={fileReady}
+          />
           <Field
             type="submit"
             name="submit"

@@ -5,10 +5,14 @@ import { getFeatures } from "../../../../store/aboutUs/selectors";
 import SectionHeading from "../../../generalComponents/SectionHeading/SectionHeading";
 import Button from "../../../generalComponents/Button/Button";
 import FormItemAboutUs from "../FormItem/FormItemAboutUs";
+import { getMainSections } from "../../../../store/appMainSections/selectors";
 
 const FormContainerAboutUs = () => {
   const [formList, setFormList] = useState([]);
   const data = useSelector(getFeatures);
+  const { heading } = useSelector(getMainSections).find(
+    (s) => s.reactComponent === "AboutUs"
+  );
 
   useEffect(() => {
     const mapFormToRender = () => {
@@ -40,7 +44,7 @@ const FormContainerAboutUs = () => {
 
   return (
     <div className="admin-about-us">
-      <SectionHeading text="О нас" />
+      <SectionHeading text={heading} />
       <div className="admin-about-us__form-container">{formList}</div>
       <Button
         text="+"

@@ -10,9 +10,11 @@ import { useDispatch } from "react-redux";
 import { addNewStage } from "../../../../store/workStages/actions";
 import {
   filterWorkStages,
+  updateStagesByNewObject,
   updateStagesByNewSrc,
 } from "../../../../store/workStages/operations";
 import AdminDropZone from "../../AdminDropZone/AdminDropZone";
+import { checkIsInputChanges } from "../../../../utils/functions/checkIsInputChanges";
 
 const workStagesSchema = yup.object().shape({
   num: yup
@@ -73,21 +75,7 @@ const FormItemWorkStages = ({ sourceObj, isNew }) => {
     dispatch(updateStagesByNewSrc(res.data.location, id));
     setFileReady(null);
     values.iconSrc = res.data.location;
-    console.log("while uploading", values.iconSrc);
     toastr.success("Успешно", "Изображение загружено");
-  };
-
-  const checkIsInputChanges = (values) => {
-    let isNotChanged;
-    for (const key in values) {
-      if (sourceObj[key] === values[key]) {
-        isNotChanged = true;
-      } else {
-        isNotChanged = false;
-        return isNotChanged;
-      }
-    }
-    return isNotChanged;
   };
 
   const updateStageTexts = async (values) => {
@@ -102,6 +90,7 @@ const FormItemWorkStages = ({ sourceObj, isNew }) => {
       });
 
     if (updatedStage.status === 200) {
+      dispatch(updateStagesByNewObject(updatedStage.data, sourceObj._id));
       toastr.success(
         "Успешно",
         `Шаг изменён на "${values.name}" в базе данных`
@@ -112,13 +101,14 @@ const FormItemWorkStages = ({ sourceObj, isNew }) => {
   };
 
   const handleUpdate = (values) => {
-    if (fileReady && checkIsInputChanges(values)) {
+    if (fileReady && checkIsInputChanges(values, sourceObj)) {
       uploadImgAndUpdateStore(values, sourceObj._id);
-    } else if (!fileReady && !checkIsInputChanges(values)) {
+    } else if (!fileReady && !checkIsInputChanges(values, sourceObj)) {
       updateStageTexts(values);
-    } else if (fileReady && !checkIsInputChanges(values)) {
-      uploadImgAndUpdateStore(values, sourceObj._id);
-      updateStageTexts(values);
+    } else if (fileReady && !checkIsInputChanges(values, sourceObj)) {
+      uploadImgAndUpdateStore(values, sourceObj._id).then(() =>
+        updateStageTexts(values)
+      );
     } else {
       toastr.warning("Сообщение", "Ничего не изменилось");
     }
