@@ -8,10 +8,12 @@ import "./FormItemServicePackages.scss";
 import { useDispatch } from "react-redux";
 import { addPackages } from "../../../../store/servicePackages/actions";
 import { filterServicePackages } from "../../../../store/servicePackages/operations";
+import ModalDeleteConfirmation from "../../ModalDeleteConfirmation/ModalDeleteConfirmation";
 
 const FormItemServicePackages = ({ sourceObj, isNew }) => {
   const { name, price, currency } = sourceObj;
   const [isDeleted, setIsDeleted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleDeleteFromDB = async (e) => {
@@ -74,6 +76,12 @@ const FormItemServicePackages = ({ sourceObj, isNew }) => {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
   };
+
+  const openConfirmModal = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+  };
+
   if (isDeleted) {
     return null;
   }
@@ -134,7 +142,12 @@ const FormItemServicePackages = ({ sourceObj, isNew }) => {
           <Button
             className="admin-packages__delete-btn"
             text="&#10005;"
-            onClick={isNew ? handleDeleteNew : handleDeleteFromDB}
+            onClick={openConfirmModal}
+          />
+          <ModalDeleteConfirmation
+            isOpen={isModalOpen}
+            setIsOpen={setIsModalOpen}
+            deleteHandler={isNew ? handleDeleteNew : handleDeleteFromDB}
           />
         </Form>
       )}

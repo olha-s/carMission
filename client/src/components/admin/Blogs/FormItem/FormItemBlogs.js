@@ -9,12 +9,14 @@ import "./FormItemBlogs.scss";
 import { toastr } from "react-redux-toastr";
 import { addNewBlog } from "../../../../store/Blogs/actions";
 import { filterBlogs } from "../../../../store/Blogs/operations";
+import ModalDeleteConfirmation from "../../ModalDeleteConfirmation/ModalDeleteConfirmation";
 
 const FormItemBlogs = ({ obj, isNew }) => {
   const { photo, title, text, fullText, buttonText, date } = obj;
 
   const dispatch = useDispatch();
   const [isDeleted, setIsDeleted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDeleteFromDB = async (e) => {
     e.preventDefault();
@@ -51,10 +53,7 @@ const FormItemBlogs = ({ obj, isNew }) => {
       });
 
     if (updatedBlog.status === 200) {
-      toastr.success(
-        "Успешно",
-        `Блог с id "${obj._id}" изменён в базе данных`
-      );
+      toastr.success("Успешно", `Блог с id "${obj._id}" изменён в базе данных`);
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
@@ -70,6 +69,11 @@ const FormItemBlogs = ({ obj, isNew }) => {
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
+  };
+
+  const openConfirmModal = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true);
   };
 
   if (isDeleted) {
@@ -152,7 +156,12 @@ const FormItemBlogs = ({ obj, isNew }) => {
           <Button
             className="admin-blogs__delete-btn"
             text="&#10005;"
-            onClick={isNew ? handleDeleteNew : handleDeleteFromDB}
+            onClick={openConfirmModal}
+          />
+          <ModalDeleteConfirmation
+            isOpen={isModalOpen}
+            setIsOpen={setIsModalOpen}
+            deleteHandler={isNew ? handleDeleteNew : handleDeleteFromDB}
           />
         </Form>
       )}

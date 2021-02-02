@@ -8,7 +8,7 @@ const AdminPage = () => {
   return (
     <>
       <AdminHeader />
-      <div className="admin-wrapper">
+      <div className="admin-wrapper" id="admin">
         <SideBar />
         <AdminRoutes />
       </div>

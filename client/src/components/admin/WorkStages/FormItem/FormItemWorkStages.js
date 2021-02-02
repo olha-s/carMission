@@ -15,6 +15,7 @@ import {
 } from "../../../../store/workStages/operations";
 import AdminDropZone from "../../AdminDropZone/AdminDropZone";
 import { checkIsInputChanges } from "../../../../utils/functions/checkIsInputChanges";
+import ModalDeleteConfirmation from "../../ModalDeleteConfirmation/ModalDeleteConfirmation";
 
 const workStagesSchema = yup.object().shape({
   num: yup
@@ -36,6 +37,7 @@ const FormItemWorkStages = ({ sourceObj, isNew }) => {
   const { num, name, iconSrc } = sourceObj;
   const [isDeleted, setIsDeleted] = useState(false);
   const [fileReady, setFileReady] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleDeleteFromDB = async (e) => {
@@ -115,26 +117,34 @@ const FormItemWorkStages = ({ sourceObj, isNew }) => {
   };
 
   const handlePostToDB = async (values) => {
-    if (!values.iconSrc) {
-      values.iconSrc = "Wait for S3 uploading";
-    }
+    if (values.iconSrc || fileReady) {
+      const newStage = await axios
+        .post("/api/work-stages/", values)
+        .catch((err) => {
+          toastr.error(err.message);
+        });
 
-    const newStage = await axios
-      .post("/api/work-stages/", values)
-      .catch((err) => {
-        toastr.error(err.message);
-      });
+      if (newStage.status === 200) {
+        if (fileReady) {
+          await uploadImgAndUpdateStore(values, newStage.data._id);
+        }
 
-    if (newStage.status === 200) {
-      if (fileReady) {
-        await uploadImgAndUpdateStore(values, newStage.data._id);
+        dispatch(addNewStage({ ...newStage.data, iconSrc: values.iconSrc }));
+        toastr.success(
+          "Успешно",
+          `Шаг "${values.name}" добавлен в базу данных`
+        );
+      } else {
+        toastr.warning("Хм...", "Что-то пошло не так");
       }
-
-      dispatch(addNewStage({ ...newStage.data, iconSrc: values.iconSrc }));
-      toastr.success("Успешно", `Шаг "${values.name}" добавлен в базу данных`);
     } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
+      toastr.warning("Warning", "Не добавлено изображение или путь к нему");
     }
+  };
+
+  const openConfirmModal = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true);
   };
 
   if (isDeleted) {
@@ -192,7 +202,12 @@ const FormItemWorkStages = ({ sourceObj, isNew }) => {
           <Button
             className="admin-stages__delete-btn"
             text="&#10005;"
-            onClick={isNew ? handleDeleteNew : handleDeleteFromDB}
+            onClick={openConfirmModal}
+          />
+          <ModalDeleteConfirmation
+            isOpen={isModalOpen}
+            setIsOpen={setIsModalOpen}
+            deleteHandler={isNew ? handleDeleteNew : handleDeleteFromDB}
           />
         </Form>
       )}

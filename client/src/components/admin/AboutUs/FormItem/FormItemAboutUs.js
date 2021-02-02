@@ -15,6 +15,7 @@ import {
 import { addNewFeature } from "../../../../store/aboutUs/actions";
 import AdminDropZone from "../../AdminDropZone/AdminDropZone";
 import { checkIsInputChanges } from "../../../../utils/functions/checkIsInputChanges";
+import ModalDeleteConfirmation from "../../ModalDeleteConfirmation/ModalDeleteConfirmation";
 
 const validationSchemaCreator = (inputName) => {
   return yup.object().shape({
@@ -36,6 +37,7 @@ const FormItemAboutUs = ({ sourceObj, isNew }) => {
   const dispatch = useDispatch();
   const [isDeleted, setIsDeleted] = useState(false);
   const [fileReady, setFileReady] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDeleteFromDB = async (e) => {
     e.preventDefault();
@@ -112,23 +114,34 @@ const FormItemAboutUs = ({ sourceObj, isNew }) => {
   };
 
   const handlePostToDB = async (values) => {
-    const newObj = { ...values, isMain: false };
-    const newFeature = await axios
-      .post("/api/features/", newObj)
-      .catch((err) => {
-        toastr.error(err.message);
-      });
+    if (values.imgPath || fileReady) {
+      const newObj = { ...values, isMain: false };
+      const newFeature = await axios
+        .post("/api/features/", newObj)
+        .catch((err) => {
+          toastr.error(err.message);
+        });
 
-    if (newFeature.status === 200) {
-      if (fileReady) {
-        await uploadImgAndUpdateStore(values, newFeature.data._id);
+      if (newFeature.status === 200) {
+        if (fileReady) {
+          await uploadImgAndUpdateStore(values, newFeature.data._id);
+        }
+
+        toastr.success("Успешно", "Преимущество добавлено в базу данных");
+        dispatch(
+          addNewFeature({ ...newFeature.data, imgPath: values.imgPath })
+        );
+      } else {
+        toastr.warning("Хм...", "Что-то пошло не так");
       }
-
-      toastr.success("Успешно", "Преимущество добавлено в базу данных");
-      dispatch(addNewFeature({ ...newFeature.data, imgPath: values.imgPath }));
     } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
+      toastr.warning("Warning", "Не добавлено изображение или путь к нему");
     }
+  };
+
+  const openConfirmModal = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true);
   };
 
   if (isDeleted) {
@@ -188,7 +201,12 @@ const FormItemAboutUs = ({ sourceObj, isNew }) => {
           <Button
             className="admin-about-us__delete-btn"
             text="&#10005;"
-            onClick={isNew ? handleDeleteNew : handleDeleteFromDB}
+            onClick={openConfirmModal}
+          />
+          <ModalDeleteConfirmation
+            isOpen={isModalOpen}
+            setIsOpen={setIsModalOpen}
+            deleteHandler={isNew ? handleDeleteNew : handleDeleteFromDB}
           />
         </Form>
       )}

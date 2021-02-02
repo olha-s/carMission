@@ -9,12 +9,14 @@ import "./FormItemReviewCarousel.scss";
 import { toastr } from "react-redux-toastr";
 import { addNewReview } from "../../../../store/ReviewCarousel/actions";
 import { filterReviews } from "../../../../store/ReviewCarousel/operations";
+import ModalDeleteConfirmation from "../../ModalDeleteConfirmation/ModalDeleteConfirmation";
 
 const FormItemReviewCarousel = ({ obj, isNew }) => {
   const { customerPhoto, customerName, carInfo, reviewText } = obj;
 
   const dispatch = useDispatch();
   const [isDeleted, setIsDeleted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDeleteFromDB = async (e) => {
     e.preventDefault();
@@ -70,6 +72,11 @@ const FormItemReviewCarousel = ({ obj, isNew }) => {
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
+  };
+
+  const openConfirmModal = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true);
   };
 
   if (isDeleted) {
@@ -134,7 +141,12 @@ const FormItemReviewCarousel = ({ obj, isNew }) => {
           <Button
             className="admin-reviews__delete-btn"
             text="&#10005;"
-            onClick={isNew ? handleDeleteNew : handleDeleteFromDB}
+            onClick={openConfirmModal}
+          />
+          <ModalDeleteConfirmation
+            isOpen={isModalOpen}
+            setIsOpen={setIsModalOpen}
+            deleteHandler={isNew ? handleDeleteNew : handleDeleteFromDB}
           />
         </Form>
       )}
