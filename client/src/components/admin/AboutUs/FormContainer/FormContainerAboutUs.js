@@ -6,10 +6,33 @@ import SectionHeading from "../../../generalComponents/SectionHeading/SectionHea
 import Button from "../../../generalComponents/Button/Button";
 import FormItemAboutUs from "../FormItem/FormItemAboutUs";
 import { getMainSections } from "../../../../store/appMainSections/selectors";
+import {
+  filterAboutUs,
+  updateFeaturesByNewSrc,
+} from "../../../../store/aboutUs/operations";
+import enhanceFormItem from "../../../hoc/enhanceFromItem";
+
+const config = {
+  dropZone: true,
+  canBeDeleted: true,
+  pathProp: "imgPath",
+  routes: {
+    post: "/api/features/",
+    put: "/api/features/",
+    delete: "/api/features/delete/",
+    upload: "/api/features/upload/",
+  },
+  actions: {
+    filterDeleted: filterAboutUs,
+    updateS3Link: updateFeaturesByNewSrc,
+  },
+};
 
 const FormContainerAboutUs = () => {
   const [formList, setFormList] = useState([]);
-  const data = useSelector(getFeatures);
+  const data = useSelector(getFeatures).sort((a, b) => {
+    return a.isMain === b.isMain ? 0 : a.isMain ? -1 : 1;
+  });
   const { heading } = useSelector(getMainSections).find(
     (s) => s.reactComponent === "AboutUs"
   );
@@ -17,7 +40,8 @@ const FormContainerAboutUs = () => {
   useEffect(() => {
     const mapFormToRender = () => {
       return data.map((feature) => {
-        return <FormItemAboutUs sourceObj={feature} key={feature._id} />;
+        const Enhanced = enhanceFormItem(FormItemAboutUs, config);
+        return <Enhanced sourceObj={feature} key={feature._id} />;
       });
     };
     setFormList(mapFormToRender());
@@ -30,8 +54,8 @@ const FormContainerAboutUs = () => {
       isMain: false,
       text: null,
     };
-
-    return <FormItemAboutUs sourceObj={empty} isNew key={Date.now()} />;
+    const Enhanced = enhanceFormItem(FormItemAboutUs, config);
+    return <Enhanced sourceObj={empty} isNew key={Date.now()} />;
   };
 
   const handleAddItem = () => {

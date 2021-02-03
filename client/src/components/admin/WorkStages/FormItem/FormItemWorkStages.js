@@ -1,21 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form, Field } from "formik";
 import "./FormItemWorkStages.scss";
 import * as yup from "yup";
 import AdminFormField from "../../AdminFormField/AdminFormField";
-import Button from "../../../generalComponents/Button/Button";
 import { toastr } from "react-redux-toastr";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addNewStage } from "../../../../store/workStages/actions";
-import {
-  filterWorkStages,
-  updateStagesByNewObject,
-  updateStagesByNewSrc,
-} from "../../../../store/workStages/operations";
-import AdminDropZone from "../../AdminDropZone/AdminDropZone";
+import { updateStagesByNewObject } from "../../../../store/workStages/operations";
 import { checkIsInputChanges } from "../../../../utils/functions/checkIsInputChanges";
-import ModalDeleteConfirmation from "../../ModalDeleteConfirmation/ModalDeleteConfirmation";
 
 const workStagesSchema = yup.object().shape({
   num: yup
@@ -30,72 +22,32 @@ const workStagesSchema = yup.object().shape({
     .strict(true)
     .required("Обязательное поле"),
   iconSrc: yup.string("Введите текст").typeError("Введите текст").strict(true),
-  // .required("Обязательное поле"),
 });
 
-const FormItemWorkStages = ({ sourceObj, isNew }) => {
+const FormItemWorkStages = ({
+  sourceObj,
+  isNew,
+  children,
+  put,
+  post,
+  uploadToS3,
+  file,
+}) => {
   const { num, name, iconSrc } = sourceObj;
-  const [isDeleted, setIsDeleted] = useState(false);
-  const [fileReady, setFileReady] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
-
-  const handleDeleteFromDB = async (e) => {
-    e.preventDefault();
-
-    const deleted = await axios
-      .delete(`/api/work-stages/delete/${sourceObj._id}`)
-      .catch((err) => {
-        toastr.error(err.message);
-      });
-
-    if (deleted.status === 200) {
-      toastr.success("Успешно", `Шаг "${name}" удалён в базе данных`);
-      dispatch(filterWorkStages(sourceObj._id));
-    } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
-    }
-  };
-
-  const handleDeleteNew = (e) => {
-    e.preventDefault();
-    setIsDeleted(true);
-    toastr.success("Успешно", "Шаг удалён до внесения в базу данных");
-  };
-
-  const uploadImgAndUpdateStore = async (values, id) => {
-    const res = await axios
-      .post(`/api/work-stages/upload/${id}`, fileReady, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .catch((err) => {
-        toastr.error(err.message);
-      });
-
-    dispatch(updateStagesByNewSrc(res.data.location, id));
-    setFileReady(null);
-    values.iconSrc = res.data.location;
-    toastr.success("Успешно", "Изображение загружено");
-  };
 
   const updateStageTexts = async (values) => {
     const updatedObj = {
       ...sourceObj,
       ...values,
     };
-    const updatedStage = await axios
-      .put(`/api/work-stages/${sourceObj._id}`, updatedObj)
-      .catch((err) => {
-        toastr.error(err.message);
-      });
+    const updatedStage = await put(updatedObj);
 
     if (updatedStage.status === 200) {
       dispatch(updateStagesByNewObject(updatedStage.data, sourceObj._id));
       toastr.success(
         "Успешно",
-        `Шаг изменён на "${values.name}" в базе данных`
+        `Этап изменён на "${values.name}" в базе данных`
       );
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
@@ -103,30 +55,24 @@ const FormItemWorkStages = ({ sourceObj, isNew }) => {
   };
 
   const handleUpdate = (values) => {
-    if (fileReady && checkIsInputChanges(values, sourceObj)) {
-      uploadImgAndUpdateStore(values, sourceObj._id);
-    } else if (!fileReady && !checkIsInputChanges(values, sourceObj)) {
+    if (file && checkIsInputChanges(values, sourceObj)) {
+      uploadToS3(values, sourceObj._id);
+    } else if (!file && !checkIsInputChanges(values, sourceObj)) {
       updateStageTexts(values);
-    } else if (fileReady && !checkIsInputChanges(values, sourceObj)) {
-      uploadImgAndUpdateStore(values, sourceObj._id).then(() =>
-        updateStageTexts(values)
-      );
+    } else if (file && !checkIsInputChanges(values, sourceObj)) {
+      uploadToS3(values, sourceObj._id).then(() => updateStageTexts(values));
     } else {
       toastr.warning("Сообщение", "Ничего не изменилось");
     }
   };
 
   const handlePostToDB = async (values) => {
-    if (values.iconSrc || fileReady) {
-      const newStage = await axios
-        .post("/api/work-stages/", values)
-        .catch((err) => {
-          toastr.error(err.message);
-        });
+    if (values.iconSrc || file) {
+      const newStage = await post(values);
 
       if (newStage.status === 200) {
-        if (fileReady) {
-          await uploadImgAndUpdateStore(values, newStage.data._id);
+        if (file) {
+          await uploadToS3(values, newStage.data._id);
         }
 
         dispatch(addNewStage({ ...newStage.data, iconSrc: values.iconSrc }));
@@ -142,15 +88,6 @@ const FormItemWorkStages = ({ sourceObj, isNew }) => {
     }
   };
 
-  const openConfirmModal = (e) => {
-    e.preventDefault();
-    setIsModalOpen(true);
-  };
-
-  if (isDeleted) {
-    return null;
-  }
-
   return (
     <Formik
       initialValues={{ num, name, iconSrc }}
@@ -165,49 +102,32 @@ const FormItemWorkStages = ({ sourceObj, isNew }) => {
             labelClassName="admin-stages__form-label"
             fieldClassName="admin-stages__form-input"
             errorClassName="admin-stages__form-error"
-            type="text"
             name="num"
             errors={errors}
-            labelName="Номер шага"
+            labelName="Номер этапа"
           />
           <AdminFormField
             labelClassName="admin-stages__form-label"
             fieldClassName="admin-stages__form-input"
             errorClassName="admin-stages__form-error"
-            type="text"
             name="name"
             errors={errors}
-            labelName="Название шага"
+            labelName="Название этапа"
           />
           <AdminFormField
             labelClassName="admin-stages__form-label"
             fieldClassName="admin-stages__form-input"
             errorClassName="admin-stages__form-error"
-            type="text"
             name="iconSrc"
             errors={errors}
             labelName="Ссылка на иконку шага"
           />
-          <AdminDropZone
-            imgURL={iconSrc}
-            setFile={setFileReady}
-            file={fileReady}
-          />
+          {children}
           <Field
             type="submit"
             name="submit"
             className="admin-stages__submit-btn"
-            value={isNew ? "Создать шаг" : "Подтвердить изменения"}
-          />
-          <Button
-            className="admin-stages__delete-btn"
-            text="&#10005;"
-            onClick={openConfirmModal}
-          />
-          <ModalDeleteConfirmation
-            isOpen={isModalOpen}
-            setIsOpen={setIsModalOpen}
-            deleteHandler={isNew ? handleDeleteNew : handleDeleteFromDB}
+            value={isNew ? "Создать этап" : "Подтвердить изменения"}
           />
         </Form>
       )}

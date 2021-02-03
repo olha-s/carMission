@@ -6,6 +6,27 @@ import SectionHeading from "../../../generalComponents/SectionHeading/SectionHea
 import "./FormContainerWorkStages.scss";
 import Button from "../../../generalComponents/Button/Button";
 import { getMainSections } from "../../../../store/appMainSections/selectors";
+import {
+  filterWorkStages,
+  updateStagesByNewSrc,
+} from "../../../../store/workStages/operations";
+import enhanceFormItem from "../../../hoc/enhanceFromItem";
+
+const config = {
+  dropZone: true,
+  canBeDeleted: true,
+  pathProp: "iconSrc",
+  routes: {
+    post: "/api/work-stages/",
+    put: "/api/work-stages/",
+    delete: "/api/work-stages/delete/",
+    upload: "/api/work-stages/upload/",
+  },
+  actions: {
+    filterDeleted: filterWorkStages,
+    updateS3Link: updateStagesByNewSrc,
+  },
+};
 
 const FormContainerWorkStages = () => {
   const [formList, setFormList] = useState([]);
@@ -17,7 +38,8 @@ const FormContainerWorkStages = () => {
   useEffect(() => {
     const mapFormToRender = () => {
       return data.map((stage) => {
-        return <FormItemWorkStages sourceObj={stage} key={stage._id} />;
+        const Enhanced = enhanceFormItem(FormItemWorkStages, config);
+        return <Enhanced sourceObj={stage} key={stage._id} />;
       });
     };
     setFormList(mapFormToRender());
@@ -29,8 +51,8 @@ const FormContainerWorkStages = () => {
       name: "",
       iconSrc: "",
     };
-
-    return <FormItemWorkStages sourceObj={empty} isNew key={Date.now()} />;
+    const Enhanced = enhanceFormItem(FormItemWorkStages, config);
+    return <Enhanced sourceObj={empty} isNew key={Date.now()} />;
   };
 
   const handleAddItem = () => {
