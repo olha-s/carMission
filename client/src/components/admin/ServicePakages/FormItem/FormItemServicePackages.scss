@@ -14,12 +14,69 @@
     border-radius: 30px;
   }
 
+  &__list-container {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__list-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  &__remove-option {
+    position: absolute;
+    top: 42%;
+    left: 90%;
+    color: $Rectangle48;
+    font-size: 12px;
+    background: none;
+    border: none;
+    transition: .3s;
+
+    &:hover {
+      color: red;
+    }
+  }
+
+  &__add-option {
+    position: absolute;
+    top: calc(100% - 15px);
+    left: 50%;
+    color: $Rectangle48;
+    font-size: 13px;
+    background: none;
+    border: none;
+    transform: translateX(-50%);
+    transition: .3s;
+
+    &:hover {
+      color: darkseagreen;
+    }
+  }
+
+  &__add-list {
+    color: $Rectangle48;
+    font-size: 18px;
+    background: none;
+    border: none;
+    transition: .3s;
+
+    &:hover {
+      color: darkseagreen;
+    }
+  }
+
   &__form-label {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70%;
+    width: 80%;
     margin-bottom: 20px;
   }
 

@@ -5,6 +5,20 @@ import { getPackages } from "../../../../store/servicePackages/selectors";
 import FormItemServicePackages from "../FormItem/FormItemServicePackages";
 import "./FormContainerServicePackages.scss";
 import Button from "../../../generalComponents/Button/Button";
+import { filterServicePackages } from "../../../../store/servicePackages/operations";
+import enhanceFormItem from "../../../hoc/enhanceFromItem";
+
+const config = {
+  canBeDeleted: true,
+  routes: {
+    post: "/api/service-packages/",
+    put: "/api/service-packages/",
+    delete: "/api/service-packages/delete/",
+  },
+  actions: {
+    filterDeleted: filterServicePackages(),
+  },
+};
 
 const FormContainerServicePackages = () => {
   const [formList, setFormList] = useState([]);
@@ -12,13 +26,9 @@ const FormContainerServicePackages = () => {
 
   useEffect(() => {
     const mapFormToRender = () => {
-      return data.map((servicePackages) => {
-        return (
-          <FormItemServicePackages
-            sourceObj={servicePackages}
-            key={servicePackages._id}
-          />
-        );
+      return data.map((servicePackage) => {
+        const Enhanced = enhanceFormItem(FormItemServicePackages, config);
+        return <Enhanced sourceObj={servicePackage} key={servicePackage._id} />;
       });
     };
     setFormList(mapFormToRender());
@@ -29,9 +39,10 @@ const FormContainerServicePackages = () => {
       name: "",
       price: "",
       currency: "",
-      serviceList: ["", ""],
+      serviceList: [],
     };
-    return <FormItemServicePackages sourceObj={empty} isNew key={Date.now()} />;
+    const Enhanced = enhanceFormItem(FormItemServicePackages, config);
+    return <Enhanced sourceObj={empty} isNew key={Date.now()} />;
   };
 
   const handleAddItem = () => {

@@ -7,7 +7,7 @@ import { toastr } from "react-redux-toastr";
 import { useDispatch } from "react-redux";
 import { addNewStage } from "../../../../store/workStages/actions";
 import { updateStagesByNewObject } from "../../../../store/workStages/operations";
-import { checkIsInputChanges } from "../../../../utils/functions/checkIsInputChanges";
+import { checkIsInputNotChanges } from "../../../../utils/functions/checkIsInputNotChanges";
 
 const workStagesSchema = yup.object().shape({
   num: yup
@@ -55,11 +55,11 @@ const FormItemWorkStages = ({
   };
 
   const handleUpdate = (values) => {
-    if (file && checkIsInputChanges(values, sourceObj)) {
+    if (file && checkIsInputNotChanges(values, sourceObj)) {
       uploadToS3(values, sourceObj._id);
-    } else if (!file && !checkIsInputChanges(values, sourceObj)) {
+    } else if (!file && !checkIsInputNotChanges(values, sourceObj)) {
       updateStageTexts(values);
-    } else if (file && !checkIsInputChanges(values, sourceObj)) {
+    } else if (file && !checkIsInputNotChanges(values, sourceObj)) {
       uploadToS3(values, sourceObj._id).then(() => updateStageTexts(values));
     } else {
       toastr.warning("Сообщение", "Ничего не изменилось");
