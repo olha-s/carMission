@@ -8,15 +8,18 @@ const {
   getReviews,
   updateReview,
   deleteReview,
+  uploadReviewImg,
 } = require("../controllers/reviews");
 
 // @route   POST /catalog
 // @desc    Create new category
 // @access  Private
+router.post("/", passport.authenticate("jwt", { session: false }), addReview);
+
 router.post(
-  "/",
+  "/upload/:id",
   passport.authenticate("jwt", { session: false }),
-  addReview
+  uploadReviewImg
 );
 
 // @route   GET /catalog
@@ -26,7 +29,6 @@ router.get("/", getReviews);
 // @route   PUT api/features/:id
 // @desc    Update existing comment
 // @access  Private
-
 
 router.put(
   "/:id",

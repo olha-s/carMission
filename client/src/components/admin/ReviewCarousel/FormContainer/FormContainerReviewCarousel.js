@@ -6,6 +6,28 @@ import SectionHeading from "../../../generalComponents/SectionHeading/SectionHea
 import "./FormContainerReviewCarousel.scss";
 import Button from "../../../generalComponents/Button/Button";
 
+import {
+  filterReviews,
+  updateReviewByNewSrc,
+} from "../../../../store/ReviewCarousel/operations";
+import enhanceFormItem from "../../../hoc/enhanceFromItem";
+
+const config = {
+  dropZone: true,
+  canBeDeleted: true,
+  pathProp: "customerPhoto",
+  routes: {
+    post: "/api/reviews/",
+    put: "/api/reviews/",
+    delete: "/api/reviews/delete/",
+    upload: "/api/reviews/upload/",
+  },
+  actions: {
+    filterDeleted: filterReviews,
+    updateS3Link: updateReviewByNewSrc,
+  },
+};
+
 const FormContainerReviewCarousel = () => {
   const [formList, setFormList] = useState([]);
   const data = useSelector(getReviews);
@@ -13,7 +35,8 @@ const FormContainerReviewCarousel = () => {
   useEffect(() => {
     const mapFormToRender = () => {
       return data.map((review) => {
-        return <FormItemReviewCarousel obj={review} key={review._id} />;
+        const Enhanced = enhanceFormItem(FormItemReviewCarousel, config);
+        return <Enhanced sourceObj={review} key={review._id} />;
       });
     };
     setFormList(mapFormToRender());
@@ -26,8 +49,8 @@ const FormContainerReviewCarousel = () => {
       carInfo: "",
       reviewText: "",
     };
-
-    return <FormItemReviewCarousel obj={empty} isNew key={Date.now()} />;
+    const Enhanced = enhanceFormItem(FormItemReviewCarousel, config);
+    return <Enhanced sourceObj={empty} isNew key={Date.now()} />;
   };
 
   const handleAddItem = () => {

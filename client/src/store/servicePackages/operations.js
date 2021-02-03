@@ -29,3 +29,17 @@ export const filterServicePackages = (id) => (dispatch, getStore) => {
   );
   dispatch(updatePackages(filtered));
 };
+
+export const updatePackagesByNewObject = (newPackage) => (dispatch, getStore) => {
+  const packages = getPackages(getStore());
+
+  const updated = packages.map((service) => {
+    if (service._id === newPackage._id) {
+      return newPackage;
+    } else {
+      return service;
+    }
+  });
+
+  dispatch(updatePackages(updated));
+};

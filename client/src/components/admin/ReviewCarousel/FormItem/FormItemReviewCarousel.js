@@ -1,71 +1,59 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form, Field } from "formik";
 import AdminFormField from "../../AdminFormField/AdminFormField";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { validationSchema } from "../ValidationSchema";
-import Button from "../../../generalComponents/Button/Button";
 import "./FormItemReviewCarousel.scss";
 import { toastr } from "react-redux-toastr";
 import { addNewReview } from "../../../../store/ReviewCarousel/actions";
-import { filterReviews } from "../../../../store/ReviewCarousel/operations";
-import ModalDeleteConfirmation from "../../ModalDeleteConfirmation/ModalDeleteConfirmation";
+import { updateReviewByNewObject } from "../../../../store/ReviewCarousel/operations";
+import { checkIsInputNotChanges } from "../../../../utils/functions/checkIsInputNotChanges";
 
-const FormItemReviewCarousel = ({ obj, isNew }) => {
-  const { customerPhoto, customerName, carInfo, reviewText } = obj;
+const FormItemReviewCarousel = ({
+  sourceObj,
+  isNew,
+  children,
+  post,
+  put,
+  file,
+  uploadToS3,
+}) => {
+  const { customerPhoto, customerName, carInfo, reviewText } = sourceObj;
 
   const dispatch = useDispatch();
-  const [isDeleted, setIsDeleted] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleDeleteFromDB = async (e) => {
-    e.preventDefault();
-
-    const deleted = await axios
-      .delete(`/api/reviews/delete/${obj._id}`)
-      .catch((err) => {
-        toastr.error(err.message);
-      });
-
-    if (deleted.status === 200) {
-      toastr.success("Успешно", `Отзыв с id "${obj._id}" удалён c базы данных`);
-      dispatch(filterReviews(obj._id));
-    } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
-    }
-  };
-
-  const handleDeleteNew = (e) => {
-    e.preventDefault();
-    setIsDeleted(true);
-    toastr.success("Успешно", "Отзыв удалён до внесения в базу данных");
-  };
-
-  const handleUpdate = async (values) => {
+  const updateReviewInDB = async (values) => {
     const updatedObj = {
-      ...obj,
+      ...sourceObj,
       ...values,
     };
-    const updatedReview = await axios
-      .put(`/api/reviews/${obj._id}`, updatedObj)
-      .catch((err) => {
-        toastr.error(err.message);
-      });
+    const updatedReview = await put(updatedObj);
 
     if (updatedReview.status === 200) {
+      dispatch(updateReviewByNewObject(updatedReview.data));
       toastr.success(
         "Успешно",
-        `Отзыв с id "${obj._id}" изменён в базе данных`
+        `Отзыв с id "${sourceObj._id}" изменён в базе данных`
       );
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
   };
 
+  const handleUpdate = (values) => {
+    if (file && checkIsInputNotChanges(values, sourceObj)) {
+      uploadToS3(values, sourceObj._id);
+    } else if (!file && !checkIsInputNotChanges(values, sourceObj)) {
+      updateReviewInDB(values);
+    } else if (file && !checkIsInputNotChanges(values, sourceObj)) {
+      uploadToS3(values, sourceObj._id).then(() => updateReviewInDB(values));
+    } else {
+      toastr.warning("Сообщение", "Ничего не изменилось");
+    }
+  };
+
   const handleAddToDB = async (values) => {
-    const newReview = await axios.post("/api/reviews/", values).catch((err) => {
-      toastr.error(err.message);
-    });
+    const newReview = await post(values);
     if (newReview.status === 200) {
       toastr.success("Успешно", "Отзыв добавлен в базу данных");
       dispatch(addNewReview(newReview.data));
@@ -73,15 +61,6 @@ const FormItemReviewCarousel = ({ obj, isNew }) => {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
   };
-
-  const openConfirmModal = (e) => {
-    e.preventDefault();
-    setIsModalOpen(true);
-  };
-
-  if (isDeleted) {
-    return null;
-  }
 
   return (
     <Formik
@@ -130,23 +109,13 @@ const FormItemReviewCarousel = ({ obj, isNew }) => {
             errors={errors}
             labelName="Отзыв"
           />
-
+          {children}
           <Field
             disabled={isSubmitting}
             type="submit"
             name="submit"
             className="admin-reviews__submit-btn"
             value={isNew ? "Создать отзыв" : "Подтвердить изменения"}
-          />
-          <Button
-            className="admin-reviews__delete-btn"
-            text="&#10005;"
-            onClick={openConfirmModal}
-          />
-          <ModalDeleteConfirmation
-            isOpen={isModalOpen}
-            setIsOpen={setIsModalOpen}
-            deleteHandler={isNew ? handleDeleteNew : handleDeleteFromDB}
           />
         </Form>
       )}

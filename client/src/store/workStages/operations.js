@@ -47,14 +47,11 @@ export const updateStagesByNewSrc = (src, id) => (dispatch, getStore) => {
   dispatch(updateStages(updated));
 };
 
-export const updateStagesByNewObject = (newStage, id) => (
-  dispatch,
-  getStore
-) => {
+export const updateStagesByNewObject = (newStage) => (dispatch, getStore) => {
   const stages = getWorkStages(getStore());
 
   const updated = stages.map((stage) => {
-    if (stage._id === id) {
+    if (stage._id === newStage._id) {
       return newStage;
     } else {
       return stage;

@@ -45,14 +45,14 @@ export const updateFeaturesByNewSrc = (src, id) => (dispatch, getStore) => {
   dispatch(updateFeatures(updated));
 };
 
-export const updateFeaturesByNewObject = (newFeature, id) => (
+export const updateFeaturesByNewObject = (newFeature) => (
   dispatch,
   getStore
 ) => {
   const features = getFeatures(getStore());
 
   const updated = features.map((feature) => {
-    if (feature._id === id) {
+    if (feature._id === newFeature._id) {
       return newFeature;
     } else {
       return feature;

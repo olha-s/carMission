@@ -1,68 +1,59 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form, Field } from "formik";
 import AdminFormField from "../../AdminFormField/AdminFormField";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { validationSchema } from "../ValidationSchema";
-import Button from "../../../generalComponents/Button/Button";
 import "./FormItemBlogs.scss";
 import { toastr } from "react-redux-toastr";
 import { addNewBlog } from "../../../../store/Blogs/actions";
-import { filterBlogs } from "../../../../store/Blogs/operations";
-import ModalDeleteConfirmation from "../../ModalDeleteConfirmation/ModalDeleteConfirmation";
+import { checkIsInputNotChanges } from "../../../../utils/functions/checkIsInputNotChanges";
+import { updateBlogsByNewObject } from "../../../../store/Blogs/operations";
 
-const FormItemBlogs = ({ obj, isNew }) => {
-  const { photo, title, text, fullText, buttonText, date } = obj;
+const FormItemBlogs = ({
+  sourceObj,
+  isNew,
+  children,
+  put,
+  post,
+  file,
+  uploadToS3,
+}) => {
+  const { photo, title, text, fullText, buttonText, date } = sourceObj;
 
   const dispatch = useDispatch();
-  const [isDeleted, setIsDeleted] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleDeleteFromDB = async (e) => {
-    e.preventDefault();
+  const updateInDB = async (values) => {
+    const updatedObj = {
+      ...sourceObj,
+      ...values,
+    };
+    const updatedBlog = await put(updatedObj);
 
-    const deleted = await axios
-      .delete(`/api/blogs/delete/${obj._id}`)
-      .catch((err) => {
-        toastr.error(err.message);
-      });
-
-    if (deleted.status === 200) {
-      toastr.success("Успешно", `Блог с id "${obj._id}" удалён c базы данных`);
-      dispatch(filterBlogs(obj._id));
+    if (updatedBlog.status === 200) {
+      dispatch(updateBlogsByNewObject(updatedBlog.data));
+      toastr.success(
+        "Успешно",
+        `Блог с id "${sourceObj._id}" изменён в базе данных`
+      );
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
   };
 
-  const handleDeleteNew = (e) => {
-    e.preventDefault();
-    setIsDeleted(true);
-    toastr.success("Успешно", "Блог удалён до внесения в базу данных");
-  };
-
-  const handleUpdate = async (values) => {
-    const updatedObj = {
-      ...obj,
-      ...values,
-    };
-    const updatedBlog = await axios
-      .put(`/api/blogs/${obj._id}`, updatedObj)
-      .catch((err) => {
-        toastr.error(err.message);
-      });
-
-    if (updatedBlog.status === 200) {
-      toastr.success("Успешно", `Блог с id "${obj._id}" изменён в базе данных`);
+  const handleUpdate = (values) => {
+    if (file && checkIsInputNotChanges(values, sourceObj)) {
+      uploadToS3(values, sourceObj._id);
+    } else if (!file && !checkIsInputNotChanges(values, sourceObj)) {
+      updateInDB(values);
+    } else if (file && !checkIsInputNotChanges(values, sourceObj)) {
+      uploadToS3(values, sourceObj._id).then(() => updateInDB(values));
     } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
+      toastr.warning("Сообщение", "Ничего не изменилось");
     }
   };
 
   const handleAddToDB = async (values) => {
-    const newBlog = await axios.post("/api/blogs/", values).catch((err) => {
-      toastr.error(err.message);
-    });
+    const newBlog = await post(values);
     if (newBlog.status === 200) {
       toastr.success("Успешно", "Блог добавлен в базу данных");
       dispatch(addNewBlog(newBlog.data));
@@ -70,15 +61,6 @@ const FormItemBlogs = ({ obj, isNew }) => {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
   };
-
-  const openConfirmModal = (e) => {
-    e.preventDefault();
-    setIsModalOpen(true);
-  };
-
-  if (isDeleted) {
-    return null;
-  }
 
   return (
     <Formik
@@ -146,22 +128,13 @@ const FormItemBlogs = ({ obj, isNew }) => {
             errors={errors}
             labelName="Дата"
           />
+          {children}
           <Field
             disabled={isSubmitting}
             type="submit"
             name="submit"
             className="admin-blogs__submit-btn"
             value={isNew ? "Создать блог" : "Подтвердить изменения"}
-          />
-          <Button
-            className="admin-blogs__delete-btn"
-            text="&#10005;"
-            onClick={openConfirmModal}
-          />
-          <ModalDeleteConfirmation
-            isOpen={isModalOpen}
-            setIsOpen={setIsModalOpen}
-            deleteHandler={isNew ? handleDeleteNew : handleDeleteFromDB}
           />
         </Form>
       )}

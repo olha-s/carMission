@@ -44,7 +44,7 @@ const FormItemWorkStages = ({
     const updatedStage = await put(updatedObj);
 
     if (updatedStage.status === 200) {
-      dispatch(updateStagesByNewObject(updatedStage.data, sourceObj._id));
+      dispatch(updateStagesByNewObject(updatedStage.data));
       toastr.success(
         "Успешно",
         `Этап изменён на "${values.name}" в базе данных`

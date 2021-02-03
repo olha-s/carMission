@@ -8,15 +8,18 @@ const {
   getBlogs,
   updateBlog,
   deleteBlog,
+  uploadBlogImg,
 } = require("../controllers/blogs");
 
 // @route   POST /catalog
 // @desc    Create new category
 // @access  Private
+router.post("/", passport.authenticate("jwt", { session: false }), addBlog);
+
 router.post(
-  "/",
-  // passport.authenticate("jwt", { session: false }),
-  addBlog
+  "/upload/:id",
+  passport.authenticate("jwt", { session: false }),
+  uploadBlogImg
 );
 
 // @route   GET /catalog
@@ -26,7 +29,6 @@ router.get("/", getBlogs);
 // @route   PUT api/features/:id
 // @desc    Update existing comment
 // @access  Private
-
 
 router.put(
   "/:id",

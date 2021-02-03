@@ -45,7 +45,7 @@ const FormItemAboutUs = ({
     const updatedFeature = await put(updatedObj);
 
     if (updatedFeature.status === 200) {
-      dispatch(updateFeaturesByNewObject(updatedFeature.data, sourceObj._id));
+      dispatch(updateFeaturesByNewObject(updatedFeature.data));
       toastr.success("Успешно", "Преимущество изменено в базе данных");
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");

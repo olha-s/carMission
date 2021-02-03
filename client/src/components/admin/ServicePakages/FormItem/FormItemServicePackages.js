@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { addPackages } from "../../../../store/servicePackages/actions";
 import AdminServiceList from "../AdminServiceList/AdminServiceList";
 import { checkIsInputNotChanges } from "../../../../utils/functions/checkIsInputNotChanges";
+import { updatePackagesByNewObject } from "../../../../store/servicePackages/operations";
 
 const FormItemServicePackages = ({ sourceObj, isNew, children, put, post }) => {
   const { name, price, currency, serviceList } = sourceObj;
@@ -21,6 +22,7 @@ const FormItemServicePackages = ({ sourceObj, isNew, children, put, post }) => {
       const updatedPackages = await put(updatedObj);
 
       if (updatedPackages.status === 200) {
+        dispatch(updatePackagesByNewObject(updatedPackages.data));
         toastr.success(
           "Успешно",
           `Пакет "${values.name}" изменён  в базе данных`
