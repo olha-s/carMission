@@ -24,7 +24,7 @@ const Footer = () => {
   const footerContent = isMobileDevice
       ?
         <>
-          <Navbar className="footer" items={navbarItems} isFooter={true} />
+          <Navbar className="footer" items={navbarItems} isFooter={true}/>
           <div className="footer__info-block">
             <div className="footer__line"></div>
             <SocialNetworks className="footer__networks" />
@@ -32,7 +32,7 @@ const Footer = () => {
           <div className="footer__logo-bg">
             <Logo
               className="logo footer__logo"
-              src={logoInfo.path}Link
+              src={logoInfo.path}
               id={logoInfo.id}
               alt={logoInfo.alt}
             />
@@ -63,7 +63,7 @@ const Footer = () => {
   return (
     <div className="footer__bg">
       <div className="footer__container">
-        <div className="footer__block" id="footer">
+        <div className="footer__block" id="footer" data-testid="footerNavbarBlock">
           {footerContent}
         </div>
       </div>

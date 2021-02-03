@@ -25,7 +25,7 @@ const SocialNetworks = ({ className }) => {
       />
     ) : null
   );
-  return <ul className={className}>{linkItems}</ul>;
+  return <ul className={className} data-testid="socialNetworks">{linkItems}</ul>;
 };
 
 SocialNetworks.propTypes = {

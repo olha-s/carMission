@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./Logo.scss";
 
 const Logo = ({ className, src, id, alt }) => {
-  return <img src={src} alt={alt} id={id} className={className} />;
+  return <img src={src} alt={alt} id={id} className={className} data-testid="main-logo"/>;
 };
 
 Logo.propTypes = {
@@ -17,7 +17,7 @@ Logo.defaultProps = {
   className: "",
   src: "",
   id: "",
-  alt: "noname-img",
+  alt: "logo-img",
 };
 
 export default Logo;

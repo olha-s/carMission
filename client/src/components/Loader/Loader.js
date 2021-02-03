@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const Loader = ({ className }) => {
   return (
-    <div className={className}>
+    <div className={className} data-testid="loader">
       <Image
         className="loader-motion"
         id="loader-img"

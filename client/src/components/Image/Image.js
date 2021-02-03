@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./Image.scss";
 
 const Image = ({ className, src, id, alt }) => {
-  return <img src={src} alt={alt} id={id} className={className} />;
+  return <img src={src} alt={alt} id={id} className={className} data-testid="image"/>;
 };
 
 Image.propTypes = {

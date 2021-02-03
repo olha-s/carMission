@@ -11,8 +11,9 @@ const SocialNetworksItem = ({ className, url, id, listClassName, src }) => {
         id={id}
         target="_blank"
         rel="noreferrer"
+        data-testid="socialNetworksLink"
       >
-        <img className={`${className}-icon`} src={src} alt="social-network" />
+        <img data-testid="socialNetworksImg" className={`${className}-icon`} src={src} alt="social-network" />
       </a>
     </li>
   );

@@ -21,13 +21,13 @@ const Navbar = ({ items, className, onClick, mobileNavbar, isFooter }) => {
 
   if (mobileNavbar) {
     return (
-      <div className={`${className}__window`} onClick={onClick}>
-        <ul className={className}>{navbarItems}</ul>
+      <div className={`${className}__window`} onClick={onClick} data-testid="mobileNavbarBlock">
+        <ul className={className} data-testid="mobileNavbarList">{navbarItems}</ul>
       </div>
     );
   }
 
-  return <ul className={className}>{navbarItems}</ul>;
+  return <ul className={className} data-testid="desktopNavbarList">{navbarItems}</ul>;
 };
 
 Navbar.propTypes = {
