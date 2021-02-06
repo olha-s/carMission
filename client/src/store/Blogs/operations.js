@@ -9,7 +9,10 @@ export const loadBlogs = () => (dispatch) => {
 
   axios("/api/blogs/")
     .then((res) => {
-      dispatch(setBlogs(res.data));
+      dispatch(setBlogs(res.data.sort((a, b) => {
+        return a.date === b.date ? 0 : a.date ? -1 : 1;
+      })
+      ));
       dispatch(BlogsIsLoading(false));
     })
     .catch((err) => {

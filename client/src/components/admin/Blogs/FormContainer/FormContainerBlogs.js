@@ -48,8 +48,7 @@ const FormContainerBlogs = () => {
       title: "",
       text: "",
       fullText: "",
-      buttonText: "",
-      date: "",
+      buttonText: "ПЕРЕЙТИ К СТАТЬЕ",
     };
     const Enhanced = enhanceFormItem(FormItemBlogs, config);
     return <Enhanced sourceObj={empty} isNew key={Date.now()} />;

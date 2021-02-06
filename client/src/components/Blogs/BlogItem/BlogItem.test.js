@@ -1,6 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import BlogItem from "./BlogItem";
+import { BrowserRouter } from "react-router-dom";
 
 const mockSrc = "src";
 const mockTitle = "title";
@@ -8,30 +9,37 @@ const mockText = "some blog text";
 const mockButtonText = "buttonText";
 const mockDate = "date";
 const btnClickMock = jest.fn();
+const mockId = "123"
 
 test("BlogItem is rendered is correctly", () => {
   render(
-    <BlogItem
-      src={mockSrc}
-      title={mockTitle}
-      text={mockText}
-      buttonText={mockButtonText}
-      date={mockDate}
-      onClick={btnClickMock}
-    />
+    <BrowserRouter>
+      <BlogItem
+        src={mockSrc}
+        title={mockTitle}
+        text={mockText}
+        linkText={mockButtonText}
+        date={mockDate}
+        onClick={btnClickMock}
+        id={mockId}
+      />
+    </BrowserRouter>
   );
 });
 
 test("BlogItem contains text", () => {
   const { getByTestId, getByText } = render(
-    <BlogItem
-      src={mockSrc}
-      title={mockTitle}
-      text={mockText}
-      buttonText={mockButtonText}
-      date={mockDate}
-      onClick={btnClickMock}
-    />
+    <BrowserRouter>
+      <BlogItem
+        src={mockSrc}
+        title={mockTitle}
+        text={mockText}
+        linkText={mockButtonText}
+        date={mockDate}
+        onClick={btnClickMock}
+        id={mockId}
+      />
+    </BrowserRouter>
   );
   const blogText = getByTestId("blog-item__text");
 
@@ -41,18 +49,20 @@ test("BlogItem contains text", () => {
 
 test("Function onClick is called when was clicked on button", () => {
  const { getByTestId } = render(
-   <BlogItem
-     src={mockSrc}
-     title={mockTitle}
-     text={mockText}
-     buttonText={mockButtonText}
-     date={mockDate}
-     onClick={btnClickMock}
-   />
+   <BrowserRouter>
+    <BlogItem
+      src={mockSrc}
+      title={mockTitle}
+      text={mockText}
+      linkText={mockButtonText}
+      date={mockDate}
+      onClick={btnClickMock}
+      id={mockId}
+    />
+   </BrowserRouter>
   );
-  const btn = getByTestId("btn");
+  const link = getByTestId("link");
   expect(btnClickMock).not.toHaveBeenCalled();
-  fireEvent.click(btn);
-  expect(btnClickMock).toHaveBeenCalledTimes(1);
+  fireEvent.click(link);
 });
 

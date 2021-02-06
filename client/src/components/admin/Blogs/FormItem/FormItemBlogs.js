@@ -21,7 +21,6 @@ const FormItemBlogs = ({
   const { photo, title, text, fullText, buttonText, date } = sourceObj;
 
   const dispatch = useDispatch();
-
   const updateInDB = async (values) => {
     const updatedObj = {
       ...sourceObj,
@@ -53,6 +52,8 @@ const FormItemBlogs = ({
   };
 
   const handleAddToDB = async (values) => {
+    values.date = Date.now();
+    console.log(values)
     const newBlog = await post(values);
     if (newBlog.status === 200) {
       toastr.success("Успешно", "Блог добавлен в базу данных");
@@ -72,7 +73,7 @@ const FormItemBlogs = ({
     >
       {({ errors, touched, isValid, isSubmitting }) => (
         <Form className="admin-blogs__form-item" noValidate>
-          <AdminFormField
+          {/* <AdminFormField
             labelClassName="admin-blogs__form-label"
             fieldClassName="admin-blogs__form-input"
             errorClassName="admin-blogs__form-error"
@@ -80,7 +81,7 @@ const FormItemBlogs = ({
             name="photo"
             errors={errors}
             labelName="Путь к фото"
-          />
+          /> */}
           <AdminFormField
             labelClassName="admin-blogs__form-label"
             fieldClassName="admin-blogs__form-input"
@@ -98,7 +99,7 @@ const FormItemBlogs = ({
             type="textarea"
             name="text"
             errors={errors}
-            labelName="Краткий текст блога"
+            labelName="Краткое описание блога"
           />
           <AdminFormField
             as="textarea"
@@ -118,15 +119,6 @@ const FormItemBlogs = ({
             name="buttonText"
             errors={errors}
             labelName="Текст на кнопке"
-          />
-          <AdminFormField
-            labelClassName="admin-blogs__form-label"
-            fieldClassName="admin-blogs__form-input"
-            errorClassName="admin-blogs__form-error"
-            type="text"
-            name="date"
-            errors={errors}
-            labelName="Дата"
           />
           {children}
           <Field

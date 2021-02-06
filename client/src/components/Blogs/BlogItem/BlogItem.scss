@@ -6,13 +6,18 @@
     display: grid;
     grid-column-gap: 39px;
     grid-template-columns: 34.56% auto;
-    max-width: 1004px;
     margin: 0 auto 42px auto;
     background: #383841;
+    border-radius: 3px;
   }
   &__img{
-    display: flex;
-    overflow: hidden;
+    max-width: 360px;
+    border-radius: 3px;
+
+    &-block {
+      display: flex;
+      overflow: hidden;
+    }
   }
   &__info{
     display: flex;
@@ -36,12 +41,11 @@
     justify-content: space-between;
     padding-right: 28px;
   }
-  &__btn{
+  &__link{
     padding: 0;
     color: $Rectangle48;
     font-size: 14px;
-    background: none;
-    border: none;
+    text-decoration: none;
     outline: none;
   }
   &__date{
