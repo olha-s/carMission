@@ -2,11 +2,13 @@
 @import "src/theme/styles/mixins";
 
 .admin-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100px;
   padding: 0 20px;
+  font-family: $content-font;
   border-bottom: 1px solid $Rectangle48;
 
   &__head {
@@ -16,6 +18,24 @@
     font-family: $headings-font;
   }
 
-  &__btn {
+  &__btn-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__account {
+    width: 48px;
+    height: 48px;
+    margin-right: 20px;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 24px;
+    outline: none;
+    transition: .3s all;
+
+    &:hover {
+      background: $Rectangle65;
+    }
   }
 }

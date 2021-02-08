@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../generalComponents/Button/Button";
-import ModalDeleteConfirmation from "../admin/ModalDeleteConfirmation/ModalDeleteConfirmation";
+import AdminModal from "../admin/AdminModal/AdminModal";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { toastr } from "react-redux-toastr";
@@ -100,11 +100,17 @@ const enhanceFormItem = (Component, config) => {
               text="&#10005;"
               onClick={openConfirmModal}
             />
-            <ModalDeleteConfirmation
+            <AdminModal
               isOpen={isModalOpen}
               setIsOpen={setIsModalOpen}
               deleteHandler={isNew ? handleDeleteNew : handleDeleteFromDB}
-            />
+              isButtonsNeed
+              head="Подтверждение"
+            >
+              <p className="modal__content-text">
+                Вы действительно хотите удалить этот объект?
+              </p>
+            </AdminModal>
           </>
         )}
       </Component>

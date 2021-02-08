@@ -4,10 +4,6 @@ const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 
 const AdminUserSchema = new Schema({
-  adminNo: {
-    type: String,
-    required: true,
-  },
   firstName: {
     type: String,
     required: true,
@@ -16,6 +12,14 @@ const AdminUserSchema = new Schema({
     type: String,
     required: true,
   },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  isOwner: {
+    type: Boolean,
+    default: false,
+  },
   login: {
     type: String,
     required: true,
@@ -23,6 +27,10 @@ const AdminUserSchema = new Schema({
   password: {
     type: String,
     required: true,
+  },
+  hidden: {
+    type: Boolean,
+    default: false,
   },
   date: {
     type: Date,
@@ -37,4 +45,4 @@ AdminUserSchema.methods.comparePassword = function (candidatePassword, cb) {
   });
 };
 
-module.exports = Customer = mongoose.model("admin-users", AdminUserSchema);
+module.exports = AdminUser = mongoose.model("admin-users", AdminUserSchema);

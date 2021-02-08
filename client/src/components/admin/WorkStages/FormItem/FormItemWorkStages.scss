@@ -1,4 +1,5 @@
 @import "src/theme/styles/variables";
+@import "src/theme/styles/mixins";
 
 .admin-stages {
   &__form-item {
@@ -77,8 +78,6 @@
   }
 
   &__form-error {
-    position: absolute;
-    top: 100%;
-    color: red;
+    @include form-error;
   }
 }

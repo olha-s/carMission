@@ -4,9 +4,9 @@ import "./LoginPage.scss";
 import * as yup from "yup";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { saveErrObjAction } from "../../store/errorObject/saveErrObjAction";
-import { openErrModal } from "../../store/ErrorModal/openErrModal";
 import { setIsAuth } from "../../store/auth/actions";
+import { toastr } from "react-redux-toastr";
+import { decodeUser } from "../../utils/functions/decodeUser";
 
 const initialValues = {
   login: "",
@@ -25,14 +25,18 @@ const LoginPage = () => {
     const res = await axios
       .post("/api/admin-users/login", { ...values })
       .catch((err) => {
-        dispatch(saveErrObjAction(err));
-        dispatch(openErrModal);
+        toastr.error(err.message);
       });
-    console.log(res);
+
     if (res.data.success) {
-      localStorage.setItem("token", res.data.token);
-      axios.defaults.headers.common.Authorization = res.data.token;
-      dispatch(setIsAuth(true));
+      const { isAdmin } = decodeUser(res.data.token);
+      if (isAdmin) {
+        localStorage.setItem("token", res.data.token);
+        axios.defaults.headers.common.Authorization = res.data.token;
+        dispatch(setIsAuth(true));
+      } else {
+        toastr.warning("Предупреждение", "Недостаточно прав");
+      }
     }
   };
 

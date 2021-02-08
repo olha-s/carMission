@@ -10,7 +10,7 @@ import Button from "../../generalComponents/Button/Button";
 import "./AdminSocialNetworksItem.scss";
 import { addNewSocialNetworks } from "../../../store/socialNetworks/actions";
 import PropTypes from "prop-types";
-import ModalDeleteConfirmation from "../ModalDeleteConfirmation/ModalDeleteConfirmation";
+import AdminModal from "../AdminModal/AdminModal";
 
 const socialNetworksSchema = yup.object().shape({
   name: yup
@@ -183,11 +183,17 @@ const AdminSocialNetworksItem = ({
             text="&#10005;"
             onClick={openConfirmModal}
           />
-          <ModalDeleteConfirmation
+          <AdminModal
             isOpen={isModalOpen}
             setIsOpen={setIsModalOpen}
             deleteHandler={isNew ? deleteNewItem : deleteItemFromDB}
-          />
+            isButtonsNeed
+            head="Подтверждение"
+          >
+            <p className="modal__content-text">
+              Вы действительно хотите удалить этот объект?
+            </p>
+          </AdminModal>
         </Form>
       )}
     </Formik>

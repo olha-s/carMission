@@ -1,22 +1,32 @@
 @import "src/theme/styles/variables";
 @import "src/theme/styles/mixins";
 
-.admin-stages {
+.admin-users {
   box-sizing: border-box;
   width: 80%;
   margin: 0 auto;
   padding: 20px;
 
   &__form-container {
-    display: grid;
-    grid-column-gap: 20px;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     box-sizing: border-box;
-    padding: 20px;
   }
 
   &__container-head {
     margin: 10px 0;
+  }
+
+  &__switch {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  &__switch-name {
+    margin-right: 20px;
+    color: $Rectangle48;
+    font-size: 20px;
   }
 
   &__add-btn {

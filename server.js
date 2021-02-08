@@ -3,11 +3,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
-const aws = require("aws-sdk");
 require("dotenv").config();
 
 const globalConfigs = require("./routes/globalConfigs");
-const customers = require("./routes/customers");
+// const customers = require("./routes/customers");
 // const catalog = require("./routes/catalog");
 // const products = require("./routes/products");
 // const colors = require("./routes/colors");
@@ -35,6 +34,7 @@ const logo = require("./routes/logo");
 const socialNetworks = require("./routes/socialNetworks");
 const feedbacks = require("./routes/feedbacks");
 const adminUsers = require("./routes/adminUsers");
+const invites = require("./routes/invites");
 
 const app = express();
 
@@ -64,7 +64,7 @@ require("./config/passport")(passport);
 // Use Routes
 
 app.use("/api/configs", globalConfigs);
-app.use("/api/customers", customers);
+// app.use("/api/customers", customers);
 // app.use("/api/catalog", catalog);
 // app.use("/api/products", products);
 // app.use("/api/colors", colors);
@@ -92,6 +92,7 @@ app.use("/api/service-packages", servicePackages);
 app.use("/api/features", features);
 app.use("/api/social-networks", socialNetworks);
 app.use("/api/feedbacks", feedbacks);
+app.use("/api/invites", invites);
 
 // Set static folder
 app.use(express.static("client/build"));

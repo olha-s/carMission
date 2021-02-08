@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import MainPage from "../pages/MainPage/MainPage";
 import Page404 from "../pages/Page404/Page404";
+import RegistrationPage from "../pages/RegistrationPage/RegistrationPage";
 import BlogPage from "../pages/BlogPage/BlogPage";
 
 const UserRoutes = () => {
@@ -25,6 +26,7 @@ const UserRoutes = () => {
         path="/catalog-in-stock/:carId"
         render={() => <p>full info for car in stock</p>}
       />
+      <Route path="/users/registration/invite" component={RegistrationPage} />
       <Route path="*" component={Page404} />
     </Switch>
   );

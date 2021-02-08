@@ -10,21 +10,17 @@ import AdminNavbar from "../components/admin/AdminNavbar/AdminNavbar";
 import AdminLogo from "../components/admin/AdminLogo/AdminLogo";
 import AdminSocialNetworks from "../components/admin/AdminSocialNetworks/AdminSocialNetworks";
 import FormContainerBlogs from "../components/admin/Blogs/FormContainer/FormContainerBlogs";
+import AdminsWrapper from "../components/admin/AdminUsers/AdminsWrapper/AdminsWrapper";
+import { decodeUser } from "../utils/functions/decodeUser";
 
 const AdminRoutes = () => {
+  const { isOwner } = decodeUser().decoded;
+
   return (
     <Switch>
       <Route exact path="/admin/" />
-      <Route
-        exact
-        path="/admin/navbar"
-        component={AdminNavbar}
-      />
-      <Route
-        exact
-        path="/admin/logo"
-        component={AdminLogo}
-      />
+      <Route exact path="/admin/navbar" component={AdminNavbar} />
+      <Route exact path="/admin/logo" component={AdminLogo} />
       <Route
         exact
         path="/admin/main-page-sections"
@@ -62,7 +58,7 @@ const AdminRoutes = () => {
         path="/admin/calculator"
         component={FormContainerWorkStages}
       />
-      <Route exact path="/admin/users" component={FormContainerWorkStages} />
+      {isOwner && <Route exact path="/admin/users" component={AdminsWrapper} />}
       <Route path="*" component={Page404} />
     </Switch>
   );

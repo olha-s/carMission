@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import SideBarItem from "../SideBarItem/SideBarItem";
 import "./SideBar.scss";
 import { getMainSections } from "../../../../store/appMainSections/selectors";
+import { decodeUser } from "../../../../utils/functions/decodeUser";
 
 const SideBar = () => {
   const navFromDB = useSelector(getMainSections)
@@ -14,12 +15,9 @@ const SideBar = () => {
         heading,
       };
     });
+  const { isOwner } = decodeUser().decoded;
 
   const links = [
-    {
-      route: "users",
-      heading: "Администраторы",
-    },
     {
       route: "main-page-sections",
       heading: "Секции главной страницы",
@@ -28,7 +26,7 @@ const SideBar = () => {
       route: "navbar",
       heading: "Пункты меню",
     },
-    
+
     ...navFromDB,
     {
       route: "social-networks",
@@ -39,7 +37,11 @@ const SideBar = () => {
       heading: "Главное Лого",
     },
   ];
-
+  isOwner &&
+    links.unshift({
+      route: "users",
+      heading: "Администраторы",
+    });
   const linksList = links.map(({ route, heading }, index) => {
     return <SideBarItem route={route} heading={heading} key={index} />;
   });

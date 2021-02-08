@@ -11,7 +11,7 @@ import { addNewItem } from "../../../store/navbar/actions";
 import { filterNavbarData } from "../../../store/navbar/operations";
 import AdminNavbarSelect from "../AdminNavbarSelect/AdminNavbarSelect";
 import PropTypes from "prop-types";
-import ModalDeleteConfirmation from "../ModalDeleteConfirmation/ModalDeleteConfirmation";
+import AdminModal from "../AdminModal/AdminModal";
 
 const navbarSchema = yup.object().shape({
   textContent: yup
@@ -270,11 +270,17 @@ const AdminNavarItem = ({
             }}
             errors={errors}
           />
-          <ModalDeleteConfirmation
+          <AdminModal
             isOpen={isModalOpen}
             setIsOpen={setIsModalOpen}
             deleteHandler={isNew ? handleDeleteNew : handleDeleteFromDB}
-          />
+            isButtonsNeed
+            head="Подтверждение"
+          >
+            <p className="modal__content-text">
+              Вы действительно хотите удалить этот объект?
+            </p>
+          </AdminModal>
 
           <Field
             type="submit"

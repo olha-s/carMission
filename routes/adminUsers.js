@@ -15,7 +15,7 @@ const {
 // @route   POST /admin-users
 // @desc    Register admin
 // @access  Private
-router.post("/", passport.authenticate("jwt", { session: false }), createAdmin);
+router.post("/", createAdmin);
 
 // @route   POST /admin-users/login
 // @desc    Login Admin / Returning JWT Token
@@ -25,11 +25,7 @@ router.post("/login", loginAdmin);
 // @route   GET /admin-users
 // @desc    Return admins collection
 // @access  Private
-router.get(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  getAdmins
-);
+router.get("/", passport.authenticate("jwt", { session: false }), getAdmins);
 
 // @route   DELETE /admin-users/delete/
 // @desc    Delete admin by id
