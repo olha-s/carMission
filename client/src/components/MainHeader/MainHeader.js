@@ -8,10 +8,22 @@ import Button from "../generalComponents/Button/Button";
 import "./MainHeader.scss";
 import { getLogoData } from "../../store/logo/selectors";
 import { getNavbarData } from "../../store/navbar/selectors";
+import { getMainSections } from "../../store/appMainSections/selectors";
 
 const MainHeader = () => {
   const logoInfo = useSelector(getLogoData);
   const navbarData = useSelector(getNavbarData);
+  const sectionsData = useSelector(getMainSections);
+  navbarData.map(e => {
+    if(e.sectionId) {
+        const isDisabled = sectionsData.find((i) => e.sectionId === i.name);
+        if(isDisabled !== undefined) {
+            e.disabled = isDisabled.disabled
+        }
+    }
+    return e;
+  })
+
   const { width: winWidth } = useWinSize();
   const [isMobileNavbar, setIsMobileNavbar] = useState(false);
   const sortByNumberInNavbar = (arr) => {

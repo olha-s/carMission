@@ -22,7 +22,6 @@ const navbarSchema = yup.object().shape({
     .required("Обязательное поле"),
   headerLocation: yup.string().required("Обязательное поле"),
   footerLocation: yup.string().required("Обязательное поле"),
-  sectionId: yup.string().required("Обязательное поле"),
 });
 
 const AdminNavarItem = ({
@@ -74,8 +73,8 @@ const AdminNavarItem = ({
   const options = (name) =>
     name === "активна"
       ? [
-          { value: "true", label: "Секция неактивна на сайте" },
-          { value: "false", label: "Секция активна на сайте" },
+          { value: "true", label: "Пункт неактивен на сайте" },
+          { value: "false", label: "Пункт активен на сайте" },
         ]
       : [
           { value: "left-side", label: "Слева от Лого" },
@@ -153,22 +152,24 @@ const AdminNavarItem = ({
       {({ errors, setFieldValue, touched }) => (
         <Form className={`${className}__item`}>
           {disabled ? (
-            <label
-              className={`${className}__info ${className}__info_none-active`}
-            >
-              Ceкция неактивна на сайте
+            <label className={`${className}__info ${className}__info_none-active`}>
+              Пункт неактивен на сайте
             </label>
           ) : contacts ? (
             <label className={`${className}__info ${className}__info_active`}>
-              Данный айтем вызывает открытие модального окна обратной связи
+              Уникальный пункт с контактными данными
             </label>
           ) : isNew ? (
             <label className={`${className}__info ${className}__info_new-item`}>
-              Новый айтем
+              Новый пункт меню
+            </label>
+          ) : headerLocation === "non-active" && footerLocation === "non-active" ? (
+            <label className={`${className}__info ${className}__info_none-active`}>
+              Пункт неактивен на сайте
             </label>
           ) : (
             <label className={`${className}__info ${className}__info_active`}>
-              Ceкция активна на сайте
+              Пункт активен на сайте
             </label>
           )}
 
@@ -224,7 +225,7 @@ const AdminNavarItem = ({
           {!contacts ? (
             <>
               <label className={`${className}__label`}>
-                К какой секции относится
+                К какой секции относится(если требуется)
               </label>
               <AdminNavbarSelect
                 name="sectionId"

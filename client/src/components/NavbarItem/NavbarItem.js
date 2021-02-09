@@ -26,55 +26,39 @@ const NavbarItem = ({
   const { pathname } = useLocation();
   const mainPage = pathname === "/"
 
-  const mainPageItem = contacts
-    ?
-      <div
-        className={`${className}--link`}
-        id={id}
-        onClick={contacts ? showFeedbackModal : null}
-        data-testid="navbarItemHashLink"
-      >
-        {isFooter ? contanctsInfo : textContent}
-      </div>
-    :
-      <HashLink
-        smooth
-        to={sectionId}
-        className={`${className}--link`}
-        id={id}
-        onClick={contacts ? showFeedbackModal : null}
-        data-testid="navbarItemHashLink"
-      >
-        {isFooter ? contanctsInfo : textContent}
-      </HashLink>
+  const hashlinkItem = <HashLink
+                        smooth
+                        to={`#${sectionId}`}
+                        className={`${className}--link`}
+                        id={id}
+                        data-testid="navbarItemHashLink"
+                      >
+                        {isFooter && contacts ? contanctsInfo : textContent}
+                      </HashLink>
 
-  const otherPageItem = contacts
-    ?
-      <div
-        className={`${className}--link`}
-        id={id}
-        onClick={contacts ? showFeedbackModal : null}
-        data-testid="navbarItemHashLink"
-      >
-        {isFooter ? contanctsInfo : textContent}
-      </div>
-    :
-      <Link
-        to={`/#${sectionId}`}
-        className={`${className}--link`}
-        id={id}
-        onClick={contacts ? showFeedbackModal : null}
-        data-testid="navbarItemHashLink"
-      >
-        {isFooter ? contanctsInfo : textContent}
-      </Link>
+  const linkItem = <Link
+                    to={`/#${sectionId}`}
+                    className={`${className}--link`}
+                    id={id}
+                    data-testid="navbarItemHashLink"
+                  >
+                    {isFooter ? contanctsInfo : textContent}
+                  </Link>
 
-  const link = mainPage ? mainPageItem : otherPageItem;
+  const simpleItem = <div
+                      className={`${className}--link`}
+                      id={id}
+                      onClick={showFeedbackModal}
+                      data-testid="navbarItemHashLink"
+                    >
+                      {isFooter && contacts ? contanctsInfo : textContent}
+                    </div>
 
-  
+  const renderItem = sectionId ? mainPage ? hashlinkItem : linkItem : simpleItem;
+
   return (
     <li className={`${className}--item`}>
-      {link}
+      {renderItem}
     </li>
   );
 };

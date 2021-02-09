@@ -14,6 +14,10 @@ const testStore = mockStore({
     logo: {
         path: "/test-path"
     },
+    appMainSections: {
+        sections: []
+    }
+
 })
 
 const resizeWindow = (x, y) => {

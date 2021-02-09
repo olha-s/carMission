@@ -10,6 +10,9 @@ const store = mockStore({
     navbar: { 
         data: []
     },
+    appMainSections: {
+        sections: []
+    }
 });
 
 
