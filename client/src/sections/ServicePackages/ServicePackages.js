@@ -15,7 +15,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Loader from "../../components/Loader/Loader";
 
-const ServicePackages = ({ heading, anchorName }) => {
+const ServicePackages = ({ heading, anchorName, description }) => {
   const dispatch = useDispatch();
   const ref = useLiveHashPush(anchorName);
   const services = useSelector(getPackages);
@@ -91,6 +91,7 @@ const ServicePackages = ({ heading, anchorName }) => {
       ) : (
         <div className="service-packages__wrapper">
           <Slider {...settings}>{servicePackagesToRender}</Slider>
+          <p className="service-packages__description">{description}</p>
           <Button
             className="button2-send-request"
             text="Отправить заявку"
