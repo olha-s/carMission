@@ -12,6 +12,12 @@ const store = mockStore({
   servicePackages: { packages: [] },
 });
 
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    replace: jest.fn(),
+  }),
+}));
+
 test("ServicePackages is rendered correctly", () => {
   const mockDispatch = jest.fn();
   const mockSelector = jest.fn();
@@ -25,6 +31,7 @@ test("ServicePackages is rendered correctly", () => {
       <ServicePackages className={mockSectionClassName} heading="test" />
     </Provider>
   );
+  mockAllIsIntersecting(true);
 });
 
 const mockHistoryReplace = jest.fn();
