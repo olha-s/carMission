@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { HashLink } from "react-router-hash-link";
+import { HashLink, NavHashLink } from "react-router-hash-link";
 import "./NavbarItem.scss";
 import { useDispatch } from "react-redux";
 import { showFeedbackFormAction } from "../../store/FeedbackForm/actions";
 import { v4 as uuidv4 } from "uuid";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const NavbarItem = ({
   className,
@@ -36,23 +36,24 @@ const NavbarItem = ({
                         {isFooter && contacts ? contanctsInfo : textContent}
                       </HashLink>
 
-  const linkItem = <Link
+  const linkItem = <NavHashLink
+                    smooth
                     to={`/#${sectionId}`}
                     className={`${className}--link`}
                     id={id}
                     data-testid="navbarItemHashLink"
                   >
                     {isFooter ? contanctsInfo : textContent}
-                  </Link>
+                  </NavHashLink>
 
-  const simpleItem = <div
+  const simpleItem = <span
                       className={`${className}--link`}
                       id={id}
                       onClick={showFeedbackModal}
                       data-testid="navbarItemHashLink"
                     >
                       {isFooter && contacts ? contanctsInfo : textContent}
-                    </div>
+                    </span>
 
   const renderItem = sectionId ? mainPage ? hashlinkItem : linkItem : simpleItem;
 

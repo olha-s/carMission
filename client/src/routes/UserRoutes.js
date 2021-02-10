@@ -3,13 +3,13 @@ import { Route, Switch } from "react-router-dom";
 import MainPage from "../pages/MainPage/MainPage";
 import Page404 from "../pages/Page404/Page404";
 import RegistrationPage from "../pages/RegistrationPage/RegistrationPage";
-import BlogPage from "../pages/BlogPage/BlogPage";
+import BlogPageContainer from "../pages/BlogPage/PageContainer/BlogPageContainer";
 
 const UserRoutes = () => {
   return (
     <Switch>
       <Route exact path="/" component={MainPage} />
-      <Route exact path="/blog/:id" component={BlogPage} />
+      <Route exact path="/blog/:id" component={BlogPageContainer} />
       <Route exact path="/catalog-usa" render={() => <p>cars from usa</p>} />
       <Route
         exact
