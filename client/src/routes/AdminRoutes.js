@@ -6,12 +6,12 @@ import FormContainerWorkStages from "../components/admin/WorkStages/FormContaine
 import FormContainerServicePakages from "../components/admin/ServicePakages/FormContainer/FormContainerServicePackages";
 import Page404 from "../pages/Page404/Page404";
 import FormContainerReviewCarousel from "../components/admin/ReviewCarousel/FormContainer/FormContainerReviewCarousel";
-import AdminNavbar from "../components/admin/AdminNavbar/AdminNavbar";
-import AdminLogo from "../components/admin/AdminLogo/AdminLogo";
-import AdminSocialNetworks from "../components/admin/AdminSocialNetworks/AdminSocialNetworks";
+import FormContainerSocialNetworks from "../components/admin/SocialNetworks/FormContainer/FormContainerSocialNetworks";
 import FormContainerBlogs from "../components/admin/Blogs/FormContainer/FormContainerBlogs";
 import AdminsWrapper from "../components/admin/AdminUsers/AdminsWrapper/AdminsWrapper";
 import { decodeUser } from "../utils/functions/decodeUser";
+import FormContainerLogo from "../components/admin/Logo/FormConatiner/FormContainerLogo";
+import FormContainerNavbar from "../components/admin/Navbar/FormContainer/FormContainerNavbar";
 
 const AdminRoutes = () => {
   const { isOwner } = decodeUser().decoded;
@@ -19,8 +19,8 @@ const AdminRoutes = () => {
   return (
     <Switch>
       <Route exact path="/admin/" />
-      <Route exact path="/admin/navbar" component={AdminNavbar} />
-      <Route exact path="/admin/logo" component={AdminLogo} />
+      <Route exact path="/admin/navbar" component={FormContainerNavbar} />
+      <Route exact path="/admin/logo" component={FormContainerLogo} />
       <Route
         exact
         path="/admin/main-page-sections"
@@ -35,7 +35,7 @@ const AdminRoutes = () => {
       <Route
         exact
         path="/admin/social-networks"
-        component={AdminSocialNetworks}
+        component={FormContainerSocialNetworks}
       />
       <Route
         exact

@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import AdminFormField from "../AdminFormField/AdminFormField";
-import Button from "../../generalComponents/Button/Button";
+import AdminFormField from "../../AdminFormField/AdminFormField";
 import * as yup from "yup";
 import { toastr } from "react-redux-toastr";
-import axios from "axios";
 import { useDispatch } from "react-redux";
-import "./AdminNavbarItem.scss";
-import { addNewItem } from "../../../store/navbar/actions";
-import { filterNavbarData } from "../../../store/navbar/operations";
-import AdminNavbarSelect from "../AdminNavbarSelect/AdminNavbarSelect";
+import "./FormItemNavbar.scss";
+import { updateNavbarDataByNewObject } from "../../../../store/navbar/operations";
+import FormItemNavbarSelect from "../FormItemNavbarSelect";
 import PropTypes from "prop-types";
-import AdminModal from "../AdminModal/AdminModal";
+import { checkIsInputNotChanges } from "../../../../utils/functions/checkIsInputNotChanges";
+import { addNewItem } from "../../../../store/navbar/actions";
 
 const navbarSchema = yup.object().shape({
   textContent: yup
@@ -22,37 +20,38 @@ const navbarSchema = yup.object().shape({
     .required("Обязательное поле"),
   headerLocation: yup.string().required("Обязательное поле"),
   footerLocation: yup.string().required("Обязательное поле"),
+  numberInNavbar: yup.string().required("Обязательное поле"),
+
 });
 
-const AdminNavarItem = ({
+const FormItemNavbar = ({
+  sourceObj,
   className,
-  textContent,
-  textContentPlaceholder,
-  headerLocation,
-  headerLocationPlaceholder,
-  footerLocation,
-  footerLocationPlaceholder,
-  id,
-  contacts,
-  sectionId,
-  sectionIdPlaceholder,
+  sectionsNumbersInNavbar,
   sectionsArr,
-  numberInNavbar,
-  sectionsNumberInNavbar,
-  disabled,
   isNew,
+  children,
+  put,
+  post,
 }) => {
   const dispatch = useDispatch();
-  const [isDeleted, setIsDeleted] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const {
+    numberInNavbar,
+    textContent,
+    textContentPlaceholder,
+    headerLocation,
+    headerLocationPlaceholder,
+    footerLocation,
+    footerLocationPlaceholder,
+    contacts,
+    sectionId,
+    sectionIdPlaceholder,
+    disabled,
+  } = sourceObj;
   const [numberValue, setNumberValue] = useState(numberInNavbar);
   const [sectionIdValue, setSectionIdValue] = useState(sectionId);
-  const [headerLocationValue, setHeaderLocationValue] = useState(
-    headerLocation
-  );
-  const [footerLocationValue, setFooterLocationValue] = useState(
-    footerLocation
-  );
+  const [headerLocationValue, setHeaderLocationValue] = useState(headerLocation);
+  const [footerLocationValue, setFooterLocationValue] = useState(footerLocation);
   const initialValues = contacts
     ? {
         textContent,
@@ -70,44 +69,37 @@ const AdminNavarItem = ({
         sectionId,
       };
 
-  const options = (name) =>
-    name === "активна"
-      ? [
-          { value: "true", label: "Пункт неактивен на сайте" },
-          { value: "false", label: "Пункт активен на сайте" },
-        ]
-      : [
-          { value: "left-side", label: "Слева от Лого" },
-          { value: "right-side", label: "Справа от Лого" },
-          { value: "non-active", label: `Неактивно в ${name}` },
-        ];
+  const options = (name) => (
+    [
+      { value: "left-side", label: "Слева от Лого" },
+      { value: "right-side", label: "Справа от Лого" },
+      { value: "non-active", label: `Неактивно в ${name}` },
+  ]);
 
-  const handleDeleteFromDB = async (e) => {
-    e.preventDefault();
-    const deleted = await axios.delete(`/api/navbar//${id}`).catch((err) => {
-      toastr.error(err.message);
-    });
+  const postToDB = async (values) => {
+    const newItem = await post(values);
 
-    if (deleted.status === 200) {
-      toastr.success("Успешно", `Пункт "${textContent}" удалён из базы данных`);
-      dispatch(filterNavbarData(id));
+    if (newItem.status === 200) {
+
+      dispatch(addNewItem(newItem.data));
+      toastr.success(
+        "Успешно",
+        `Пункт "${values.textContent}" добавлен в базу данных`
+      );
     } else {
       toastr.warning("Хм...", "Что-то пошло не так");
     }
   };
-  const handleDeleteNew = (e) => {
-    e.preventDefault();
-    setIsDeleted(true);
-    toastr.success("Успешно", "Айтем удалён до внесения в базу данных");
-  };
-  const handleUpdate = async (values) => {
-    const updatedItem = await axios
-      .put(`/api/navbar/${id}`, values)
-      .catch((err) => {
-        toastr.error(err.message);
-      });
+
+  const updateNavbarItem = async (values) => {
+    const updatedObj = {
+      ...sourceObj,
+      ...values,
+    };
+    const updatedItem = await put(updatedObj);
 
     if (updatedItem.status === 200) {
+      dispatch(updateNavbarDataByNewObject(updatedItem.data));
       toastr.success(
         "Успешно",
         `Пункт "${values.textContent}" изменён в базе данных`
@@ -116,30 +108,15 @@ const AdminNavarItem = ({
       toastr.warning("Хм...", "Что-то пошло не так");
     }
   };
-  const handlePostToDB = async (values) => {
-    const newItem = await axios.post("/api/navbar/", values).catch((err) => {
-      toastr.error(err.message);
-    });
 
-    if (newItem.status === 200) {
-      toastr.success(
-        "Успешно",
-        `Пункт "${values.textContent}" добавлен в базу данных`
-      );
-      dispatch(addNewItem(newItem.data));
+  const update = (values) => {
+    if (!checkIsInputNotChanges(values, sourceObj)) {
+      updateNavbarItem(values);
     } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
+      toastr.warning("Сообщение", "Ничего не было изменено");
     }
   };
 
-  const openConfirmModal = (e) => {
-    e.preventDefault();
-    setIsModalOpen(true);
-  };
-
-  if (isDeleted) {
-    return null;
-  }
 
   return (
     <Formik
@@ -147,7 +124,7 @@ const AdminNavarItem = ({
       validationSchema={navbarSchema}
       validateOnChange={false}
       validateOnBlur={false}
-      onSubmit={isNew ? handlePostToDB : handleUpdate}
+      onSubmit={isNew ? postToDB : update}
     >
       {({ errors, setFieldValue, touched }) => (
         <Form className={`${className}__item`}>
@@ -193,11 +170,11 @@ const AdminNavarItem = ({
               или справа от лого
             </p>
           </label>
-          <AdminNavbarSelect
+          <FormItemNavbarSelect
             name="numberInNavbar"
             className={className}
             value={numberValue}
-            options={sectionsNumberInNavbar}
+            options={sectionsNumbersInNavbar}
             onChange={(value) => {
               setNumberValue(value.value);
               setFieldValue("numberInNavbar", value.value);
@@ -207,14 +184,11 @@ const AdminNavarItem = ({
 
           {contacts ? (
             <>
-              <p className={`${className}__contacts-hidden`}>
-                Знаком "/" разделяются места переносa текста на новою строку
-              </p>
               <AdminFormField
                 labelClassName={`${className}__label`}
                 fieldClassName={`${className}__input`}
                 errorClassName="admin-stages__form-error"
-                labelName="Контактные данные*"
+                labelName="Контактные данные"
                 type="input"
                 name="contacts"
                 errors={errors}
@@ -227,7 +201,7 @@ const AdminNavarItem = ({
               <label className={`${className}__label`}>
                 К какой секции относится(если требуется)
               </label>
-              <AdminNavbarSelect
+              <FormItemNavbarSelect
                 name="sectionId"
                 className={className}
                 value={sectionIdValue}
@@ -243,7 +217,7 @@ const AdminNavarItem = ({
           ) : null}
 
           <label className={`${className}__label`}>Расположение в меню</label>
-          <AdminNavbarSelect
+          <FormItemNavbarSelect
             name="headerLocation"
             className={className}
             options={options("меню")}
@@ -259,7 +233,7 @@ const AdminNavarItem = ({
           <label className={`${className}__label`}>
             Расположение в футере(подвале)
           </label>
-          <AdminNavbarSelect
+          <FormItemNavbarSelect
             name="footerLocation"
             className={className}
             value={footerLocationValue}
@@ -271,18 +245,7 @@ const AdminNavarItem = ({
             }}
             errors={errors}
           />
-          <AdminModal
-            isOpen={isModalOpen}
-            setIsOpen={setIsModalOpen}
-            deleteHandler={isNew ? handleDeleteNew : handleDeleteFromDB}
-            isButtonsNeed
-            head="Подтверждение"
-          >
-            <p className="modal__content-text">
-              Вы действительно хотите удалить этот объект?
-            </p>
-          </AdminModal>
-
+          {contacts ? null : children}
           <Field
             type="submit"
             name="submit"
@@ -291,55 +254,27 @@ const AdminNavarItem = ({
               isNew ? "Создать новый пункт меню?" : "Подтвердить изменения"
             }
           />
-          {!contacts ? (
-            <Button
-              className={`${className}__delete-btn`}
-              text="&#10005;"
-              onClick={openConfirmModal}
-            />
-          ) : null}
         </Form>
       )}
     </Formik>
   );
 };
 
-AdminNavarItem.propTypes = {
+FormItemNavbar.propTypes = {
   className: PropTypes.string,
-  textContent: PropTypes.string,
-  textContentPlaceholder: PropTypes.string,
-  headerLocation: PropTypes.string,
-  headerLocationPlaceholder: PropTypes.string,
-  footerLocation: PropTypes.string,
-  footerLocationPlaceholder: PropTypes.string,
-  id: PropTypes.string,
-  contacts: PropTypes.string,
-  sectionId: PropTypes.string,
-  sectionIdPlaceholder: PropTypes.string,
+  sourceObj: PropTypes.object,
   sectionsArr: PropTypes.array,
-  numberInNavbar: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  sectionsNumberInNavbar: PropTypes.array,
-  disabled: PropTypes.bool,
+  sectionsNumbersInNavbar: PropTypes.array,
   isNew: PropTypes.bool,
 };
 
-AdminNavarItem.defaultTypes = {
+FormItemNavbar.defaultTypes = {
   className: "",
-  textContent: "",
-  textContentPlaceholder: "Введите название секции",
-  headerLocation: "",
-  headerLocationPlaceholder: "Выберите расположение",
-  footerLocation: "",
-  footerLocationPlaceholder: "Выберите расположение",
-  id: "",
-  contacts: "",
-  sectionId: "",
-  sectionIdPlaceholder: "Выберите секцию",
+  sourceObj: {},
   sectionsArr: [],
-  numberInNavbar: "",
-  sectionsNumberInNavbar: "",
+  sectionsNumbersInNavbar: [],
   disabled: true,
   isNew: false,
 };
 
-export default AdminNavarItem;
+export default FormItemNavbar;

@@ -37,7 +37,7 @@ router.put(
 // @desc    DELETE existing navbar item
 // @access  Private
 router.delete(
-    "/:id",
+    "/delete/:id",
     passport.authenticate("jwt", { session: false }),
     deleteNavbarItem
 );

@@ -18,7 +18,6 @@ const SocialNetworksSchema = new Schema(
         },
         iconSrc: {
             type: String,
-            required: true
         },
 
     }

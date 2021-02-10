@@ -1,4 +1,4 @@
-import { LOAD_LOGO, LOGO_LOADING } from "./actionTypes";
+import { LOAD_LOGO, LOGO_LOADING, UPDATE_LOGO } from "./actionTypes";
 
 const initialState = {
   isLoading: false,
@@ -10,6 +10,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, ...action.payload };
     case LOGO_LOADING:
       return { ...state, isLoading: action.payload };
+    case UPDATE_LOGO:
+      return { ...state, ...action.payload };
     default:
       return state;
   }

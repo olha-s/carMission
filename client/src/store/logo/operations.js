@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setLogoData, logoDataLoading } from "./actions";
+import { setLogoData, logoDataLoading, updateLogoData } from "./actions";
 
 export const loadLogoData = () => (dispatch) => {
   dispatch(logoDataLoading(true));
@@ -8,3 +8,8 @@ export const loadLogoData = () => (dispatch) => {
     dispatch(logoDataLoading(false));
   });
 };
+
+export const updateLogoImgSrc = (src) => (dispatch) => {
+  dispatch(updateLogoData(src));
+};
+

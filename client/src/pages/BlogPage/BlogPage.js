@@ -2,13 +2,26 @@ import React, { useEffect } from "react";
 import Blogs from "../../components/Blogs/Blogs";
 import Image from "../../components/Image/Image";
 import { useSelector } from "react-redux";
-import { getBlogs } from "../../store/Blogs/selectors";
+import { getBlogs, getBlogsIsLoading } from "../../store/Blogs/selectors";
 import { useLocation } from "react-router-dom";
 import SectionHeading from "../../components/generalComponents/SectionHeading/SectionHeading";
 import "./BlogPage.scss";
+import Loader from "../../components/Loader/Loader";
 
 const BlogPage = ({ match }) => {
-  const blogsData = useSelector(getBlogs)
+  const blogsData = useSelector(getBlogs);
+  const isLoading = useSelector(getBlogsIsLoading);
+  const { pathname } = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+
+  if(isLoading) {
+    return <Loader />
+  }
+
   const mainClassName = "blog-page";
   const blogId = match.params.id;
   const blog = blogsData.find(e => e._id === blogId);
@@ -52,11 +65,8 @@ const BlogPage = ({ match }) => {
         </div>
       </>
 
-  const { pathname } = useLocation();
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+
 
   return (
     <div className={`${mainClassName}__container`}>

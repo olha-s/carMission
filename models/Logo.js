@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const LogoSchema = new Schema(
     {
-        path: {
+        iconSrc: {
             type: String,
             required: true
         },
