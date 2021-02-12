@@ -64,3 +64,17 @@ test("Is Footer return mobile navbar-block", () => {
     const navbar = getByTestId("navbar");
     expect(navbar).toBeDefined();
 })
+
+test("Is Footer return navbar-block", () => {
+    const { getByTestId } = render(
+        <Provider store={testStore}>
+            <BrowserRouter>
+                <Footer />
+            </BrowserRouter>
+        </Provider>
+    )
+
+    const navbarBlock = getByTestId("footerNavbarBlock");
+    expect(navbarBlock).toBeDefined();
+})
+

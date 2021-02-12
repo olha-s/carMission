@@ -23,7 +23,7 @@ const BlogPage = ({ match }) => {
   const pageContent = blog ? <BlogPageItem className={mainClassName} data={blog} /> : <BlogPageErrorItem />
   
   if(isLoading) {
-    return <Loader />
+    return <Loader data-testid="loader"/>
   }
 
   return (

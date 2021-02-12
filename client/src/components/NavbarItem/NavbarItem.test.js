@@ -3,7 +3,8 @@ import { fireEvent, render } from "@testing-library/react";
 import NavbarItem from "./NavbarItem.js";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Router, Route } from "react-router-dom";
+import { createMemoryHistory } from "history";
 
 const mockStore = configureStore();
 const store = mockStore({
@@ -15,7 +16,6 @@ const store = mockStore({
     }
 });
 
-
 test("Is NavbarItem HashLink have correct id", () => {
     const { getByTestId } = render(
         <Provider store={store}>
@@ -25,7 +25,7 @@ test("Is NavbarItem HashLink have correct id", () => {
         </Provider>
     )
 
-    const link = getByTestId("navbarItemHashLink");
+    const link = getByTestId("navbarSimpleItem");
     expect(link.id).toBe("test-id");
 })
 
@@ -70,8 +70,58 @@ test("Is NavbarItem HashLink have onClick, if navbar render on footer", () => {
         </Provider>
     )
     
+    const link = getByTestId("navbarSimpleItem");
+    fireEvent.click(link);
+})
+
+test("Is NavbarItem render hashlink", () => {   
+    const mockDispatch = jest.fn();
+    const mockSelector = jest.fn();
+    jest.mock("react-redux", () => ({
+        useDispatch: () => mockDispatch,
+        useSelector: () => mockSelector,
+    }));
+
+    const { getByTestId } = render(
+        <Provider store={store}>
+            <BrowserRouter>
+                <NavbarItem sectionId="test-id"/>
+            </BrowserRouter>
+        </Provider>
+    )
+    
     const link = getByTestId("navbarItemHashLink");
     fireEvent.click(link);
+})
+
+test("Is NavbarItem render other page content", () => {   
+    function renderWithRouterMatch(
+        ui,
+        {
+          path = "/blogs/:id",
+          route = "/blogs/1234",
+          history = createMemoryHistory({ initialEntries: [route] })
+        } = {}
+      ) {
+        return {
+          ...render(
+            <Provider store={store}>
+              <Router history={history}>
+                <Route path={path} component={ui} />
+              </Router>
+            </Provider>
+          )
+        };
+      }
+
+      const routePath = {
+        route: "/blogs/1234",
+        path: "/blogs/:id"
+      }
+        
+      const { getByTestId } = renderWithRouterMatch(() => <NavbarItem sectionId="id" />, {routePath});
+          
+    getByTestId("navbarItemNavHashLink");
 })
 
 

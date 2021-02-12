@@ -8,21 +8,10 @@ import { getLogoData } from "../../store/logo/selectors";
 import { getNavbarData } from "../../store/navbar/selectors";
 import { Link } from "react-router-dom";
 import useWinSize from "../../utils/hooks/useWinSize";
-import { getMainSections } from "../../store/appMainSections/selectors";
 
 const Footer = () => {
   const logoInfo = useSelector(getLogoData);
   const navbarItems = useSelector(getNavbarData);
-  const sectionsData = useSelector(getMainSections);
-  navbarItems.map(e => {
-    if(e.sectionId) {
-        const isDisabled = sectionsData.find((i) => e.sectionId === i.name);
-        if(isDisabled !== undefined) {
-            e.disabled = isDisabled.disabled
-        }
-    }
-    return e;
-})
   const { width: winWidth } = useWinSize();
   const leftSideItems = navbarItems.filter((e) => e.footerLocation === "left-side");
   const rightSideItems = navbarItems.filter((e) => e.footerLocation === "right-side");

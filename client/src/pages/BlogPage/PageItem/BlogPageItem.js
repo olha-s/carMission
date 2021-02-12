@@ -1,6 +1,7 @@
 import React from "react";
 import SectionHeading from "../../../components/generalComponents/SectionHeading/SectionHeading";
 import Image from "../../../components/Image/Image";
+import PropTypes from "prop-types";
 
 const BlogPageItem = ({
   className, data
@@ -37,3 +38,13 @@ const BlogPageItem = ({
 };
 
 export default BlogPageItem;
+
+BlogPageItem.propTypes = {
+  className: PropTypes.string,
+  data: PropTypes.object,
+}
+
+BlogPageItem.defaultProps = {
+  className: "blog-page",
+  data: {},
+}

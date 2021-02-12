@@ -66,6 +66,7 @@ test("Is MainHeader button have onClick ", () => {
         useSelector: () => mockSelector,
     }));
 
+
     resizeWindow(500, 300);
 
     const { getByTestId, getByText } = render(
@@ -81,7 +82,7 @@ test("Is MainHeader button have onClick ", () => {
     expect(button).toBeInTheDocument();
 })
 
-test("Is MainHeader NavbarItem ", () => {
+test("Is MainHeader have navbar", () => {
     const mockDispatch = jest.fn();
     const mockSelector = jest.fn();
     jest.mock("react-redux", () => ({

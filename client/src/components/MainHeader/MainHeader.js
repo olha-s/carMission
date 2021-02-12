@@ -51,7 +51,7 @@ const MainHeader = () => {
           className="navbar"
           items={navbarData}
           id="navbar"
-          mobileNavbar={true}
+          mobileNavbar
           onClick={() => setIsMobileNavbar(!isMobileNavbar)}
         />
       ) : (

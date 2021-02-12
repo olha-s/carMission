@@ -15,16 +15,14 @@ const BlogPageErrorItem = ({
     <>
       <Image src={img} className={`${className}__img`} alt="blog-img"/>
       <div className={`${className}__side-line`}>
-        <div className={`${className}__text-content`}>
+        <div data-testid="errorPageTextContent" className={`${className}__text-content`}>
           <SectionHeading text={title} className={`${className}__header`}/>
           <SectionHeading text={text} className={`${className}__header`}/>
         </div>
         <Button
           className={`${className}__button`}
           text="Подобрать хорошее авто"
-          onClick={() => {
-            dispatch(showFeedbackFormAction);
-          }}
+          onClick={() => dispatch(showFeedbackFormAction)}
         />
       </div>
     </>

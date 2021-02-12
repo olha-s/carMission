@@ -41,7 +41,7 @@ const NavbarItem = ({
                     to={`/#${sectionId}`}
                     className={`${className}--link`}
                     id={id}
-                    data-testid="navbarItemHashLink"
+                    data-testid="navbarItemNavHashLink"
                   >
                     {isFooter ? contanctsInfo : textContent}
                   </NavHashLink>
@@ -50,7 +50,7 @@ const NavbarItem = ({
                       className={`${className}--link`}
                       id={id}
                       onClick={showFeedbackModal}
-                      data-testid="navbarItemHashLink"
+                      data-testid="navbarSimpleItem"
                     >
                       {isFooter && contacts ? contanctsInfo : textContent}
                     </span>
