@@ -31,12 +31,12 @@
     }
   &__title{
     padding-right: 39px;
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-weight: bold;
     font-size: 24px;
     }
   &__text{
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 14px;
   }
   &__additionally{
@@ -46,13 +46,13 @@
   }
   &__link{
     padding: 0;
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 14px;
     text-decoration: none;
     outline: none;
   }
   &__date{
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 14px;
   }
 

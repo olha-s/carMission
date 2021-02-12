@@ -1,8 +1,7 @@
 import { packagesIsLoading, setPackages, updatePackages } from "./actions";
 import axios from "axios";
-import { saveErrObjAction } from "../errorObject/saveErrObjAction";
-import { openErrModal } from "../ErrorModal/openErrModal";
 import { getPackages } from "./selectors";
+import { toastr } from "react-redux-toastr";
 
 export const loadPackages = () => async (dispatch) => {
   dispatch(packagesIsLoading(true));
@@ -13,8 +12,7 @@ export const loadPackages = () => async (dispatch) => {
   })
     .then((res) => res.data)
     .catch((err) => {
-      dispatch(saveErrObjAction(err));
-      dispatch(openErrModal);
+      toastr.error(err.message);
     });
 
   dispatch(setPackages(servicePackagesFromServer));
@@ -30,7 +28,10 @@ export const filterServicePackages = (id) => (dispatch, getStore) => {
   dispatch(updatePackages(filtered));
 };
 
-export const updatePackagesByNewObject = (newPackage) => (dispatch, getStore) => {
+export const updatePackagesByNewObject = (newPackage) => (
+  dispatch,
+  getStore
+) => {
   const packages = getPackages(getStore());
 
   const updated = packages.map((service) => {

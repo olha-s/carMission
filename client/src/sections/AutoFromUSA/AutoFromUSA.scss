@@ -2,7 +2,7 @@
 @import "../../theme/styles/mixins";
 
 .auto-from-usa__container {
-  color: $Rectangle48;
+  color: $palette-secondary;
   text-align: center;
   background-repeat: no-repeat;
   background-position: center;
@@ -35,7 +35,7 @@
   padding-bottom: 30px;
   font-size: 18px;
   line-height: 25px;
-  text-shadow: 1px 1px 1px $Rectangle67;
+  text-shadow: 1px 1px 1px $palette-primary;
 }
 
 @media screen and (min-width: $sm-size) and (max-width: 960px) {

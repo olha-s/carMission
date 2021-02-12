@@ -1,11 +1,17 @@
 import axios from "axios";
 import { setNavbarData, navbarDataLoading, updateItem } from "./actions";
 import { getNavbarData } from "./selectors";
-import { saveErrObjAction } from "../errorObject/saveErrObjAction";
-import { openErrModal } from "../ErrorModal/openErrModal";
+import { toastr } from "react-redux-toastr";
 
 export const loadNavbarData = () => async (dispatch) => {
   dispatch(navbarDataLoading(true));
+  axios("/api/navbar")
+    .then((res) => {
+      dispatch(setNavbarData(res.data));
+    })
+    .catch((err) => {
+      toastr.error(err.message);
+    });
 
   const navbarDataFromDB = await axios({
     method: "GET",
@@ -13,8 +19,7 @@ export const loadNavbarData = () => async (dispatch) => {
   })
     .then((r) => r.data)
     .catch((err) => {
-      dispatch(saveErrObjAction(err));
-      dispatch(openErrModal);
+      toastr.error(err.message);
     });
 
   const mainDataFromDB = await axios({
@@ -23,8 +28,7 @@ export const loadNavbarData = () => async (dispatch) => {
   })
     .then((r) => r.data)
     .catch((err) => {
-      dispatch(saveErrObjAction(err));
-      dispatch(openErrModal);
+      toastr.error(err.message);
     });
 
     navbarDataFromDB.map(e => {
@@ -38,7 +42,7 @@ export const loadNavbarData = () => async (dispatch) => {
   })
 
   navbarDataFromDB.sort((a, b) => a.numberInNavbar - b.numberInNavbar);
-  
+
   dispatch(setNavbarData(navbarDataFromDB));
   dispatch(navbarDataLoading(false));
 };

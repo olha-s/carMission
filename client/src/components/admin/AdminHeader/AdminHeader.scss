@@ -9,10 +9,10 @@
   height: 100px;
   padding: 0 20px;
   font-family: $content-font;
-  border-bottom: 1px solid $Rectangle48;
+  border-bottom: 1px solid $palette-secondary;
 
   &__head {
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-weight: bold;
     font-size: 40px;
     font-family: $headings-font;

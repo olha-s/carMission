@@ -3,11 +3,6 @@ import { Formik, Form, Field } from "formik";
 import "./FormItemWorkStages.scss";
 import * as yup from "yup";
 import AdminFormField from "../../AdminFormField/AdminFormField";
-import { toastr } from "react-redux-toastr";
-import { useDispatch } from "react-redux";
-import { addNewStage } from "../../../../store/workStages/actions";
-import { updateStagesByNewObject } from "../../../../store/workStages/operations";
-import { checkIsInputNotChanges } from "../../../../utils/functions/checkIsInputNotChanges";
 
 const workStagesSchema = yup.object().shape({
   num: yup
@@ -28,65 +23,10 @@ const FormItemWorkStages = ({
   sourceObj,
   isNew,
   children,
-  put,
-  post,
-  uploadToS3,
-  file,
+  handlePost,
+  handleUpdate,
 }) => {
   const { num, name, iconSrc } = sourceObj;
-  const dispatch = useDispatch();
-
-  const updateStageTexts = async (values) => {
-    const updatedObj = {
-      ...sourceObj,
-      ...values,
-    };
-    const updatedStage = await put(updatedObj);
-
-    if (updatedStage.status === 200) {
-      dispatch(updateStagesByNewObject(updatedStage.data));
-      toastr.success(
-        "Успешно",
-        `Этап изменён на "${values.name}" в базе данных`
-      );
-    } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
-    }
-  };
-
-  const handleUpdate = (values) => {
-    if (file && checkIsInputNotChanges(values, sourceObj)) {
-      uploadToS3(values, sourceObj._id);
-    } else if (!file && !checkIsInputNotChanges(values, sourceObj)) {
-      updateStageTexts(values);
-    } else if (file && !checkIsInputNotChanges(values, sourceObj)) {
-      uploadToS3(values, sourceObj._id).then(() => updateStageTexts(values));
-    } else {
-      toastr.warning("Сообщение", "Ничего не изменилось");
-    }
-  };
-
-  const handlePostToDB = async (values) => {
-    if (values.iconSrc || file) {
-      const newStage = await post(values);
-
-      if (newStage.status === 200) {
-        if (file) {
-          await uploadToS3(values, newStage.data._id);
-        }
-
-        dispatch(addNewStage({ ...newStage.data, iconSrc: values.iconSrc }));
-        toastr.success(
-          "Успешно",
-          `Шаг "${values.name}" добавлен в базу данных`
-        );
-      } else {
-        toastr.warning("Хм...", "Что-то пошло не так");
-      }
-    } else {
-      toastr.warning("Warning", "Не добавлено изображение или путь к нему");
-    }
-  };
 
   return (
     <Formik
@@ -94,9 +34,9 @@ const FormItemWorkStages = ({
       validationSchema={workStagesSchema}
       validateOnBlur={false}
       validateOnChange={false}
-      onSubmit={isNew ? handlePostToDB : handleUpdate}
+      onSubmit={isNew ? handlePost : handleUpdate}
     >
-      {({ errors, touched }) => (
+      {({ errors }) => (
         <Form className="admin-stages__form-item">
           <AdminFormField
             labelClassName="admin-stages__form-label"

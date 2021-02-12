@@ -8,12 +8,26 @@ const {
   getSectionsMainPage,
   deleteSectionMainPage,
   updateSectionMainPage,
+  uploadMainPageImg,
 } = require("../controllers/sectionsMainPage");
 
 // @route   POST /sections-main
 // @desc    Create new section on page
 // @access  Private
-router.post("/", addSectionMainPage);
+router.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  addSectionMainPage
+);
+
+// @route   POST /work-stages
+// @desc    Upload img to Amazon S3 and update url in DB
+// @access  Private
+router.post(
+  "/upload/:id",
+  passport.authenticate("jwt", { session: false }),
+  uploadMainPageImg
+);
 
 // @route   GET /sections-main
 // @desc    GET existing sections
@@ -35,7 +49,7 @@ router.delete(
 
 router.put(
   "/:id",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   updateSectionMainPage
 );
 

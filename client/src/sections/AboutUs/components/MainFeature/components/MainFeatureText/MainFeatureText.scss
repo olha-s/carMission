@@ -6,7 +6,7 @@
   font-size: 14px;
   line-height: 19px;
   text-align: justify;
-  text-shadow: 1px 1px 1px $Rectangle67;
+  text-shadow: 1px 1px 1px $palette-primary;
 
   &-box {
     background: #383841;
@@ -20,7 +20,7 @@
     font-size: 14px;
     line-height: 19px;
     text-align: justify;
-    text-shadow: 1px 1px 1px $Rectangle67;
+    text-shadow: 1px 1px 1px $palette-primary;
 
     &:last-child {
       margin-bottom: 0;

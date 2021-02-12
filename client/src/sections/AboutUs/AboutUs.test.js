@@ -12,8 +12,6 @@ const mockId = "testId";
 
 const mockStore = configureStore();
 const store = mockStore({
-  errObjReducer: { err: { message: "testError" } },
-  errModalReducer: { isErrModalOpen: false },
   aboutUs: { features: [] },
   paginationDotClick: { click: false, targetSection: "" },
 });

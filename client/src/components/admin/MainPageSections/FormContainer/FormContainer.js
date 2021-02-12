@@ -1,68 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 import FormItem from "../FormItem/FormItem";
 import SectionHeading from "../../../generalComponents/SectionHeading/SectionHeading";
 import "./FormContainer.scss";
 import { getMainSections } from "../../../../store/appMainSections/selectors";
-import Button from "../../../generalComponents/Button/Button";
+import enhanceFormItem from "../../../hoc/enhanceFromItem";
+import {
+  updateMainSectionByNewSrc,
+  updateMainSectionsByNewObject,
+} from "../../../../store/appMainSections/operations";
+
+const createConfig = (pathProp) => ({
+  dropZone: !!pathProp,
+  pathProp: "imgPath",
+  routes: {
+    put: "/api/sections-main/",
+    upload: "/api/sections-main/upload/",
+  },
+  actions: {
+    updateS3Link: updateMainSectionByNewSrc,
+    updateInRedux: updateMainSectionsByNewObject,
+  },
+});
 
 const FormContainerMainPageSections = () => {
+  const [formList, setFormList] = useState([]);
   const data = useSelector(getMainSections);
-  const [sectionCreationStatus, setSectionCreationStatus] = useState("no");
 
-  const formList = data.map((section) => {
-    const { heading, description, index, disabled, _id } = section;
-    return (
-      <FormItem
-        obj={section}
-        heading={heading}
-        description={description}
-        index={index}
-        disabled={disabled}
-        id={_id}
-        key={uuidv4()}
-      />
-    );
-  });
+  useEffect(() => {
+    const mapFormList = () =>
+      data.map((section) => {
+        const Enhanced = enhanceFormItem(
+          FormItem,
+          createConfig(section.imgPath)
+        );
+        return <Enhanced sourceObj={section} key={section._id} />;
+      });
 
-  useEffect(() => {}, [data]);
-
-  const emptySectionObject = {
-    heading: "",
-    description: "",
-    index: "",
-    disabled: true,
-    name: "",
-    reactComponent: "",
-  };
+    setFormList(mapFormList());
+  }, [data]);
 
   return (
     <div className="admin">
       <div className="admin__container-head">
         <SectionHeading text="Секции главной страницы" />
       </div>
-      <div className="admin__form-container">
-
-      {formList}
-      {sectionCreationStatus === "creating" ? (
-        <FormItem
-          obj={emptySectionObject}
-          sectionCreationStatus={sectionCreationStatus}
-          setSectionCreationStatus={(status) =>
-            setSectionCreationStatus(status)
-          }
-        />
-      ) : null}
-
-      <Button
-        text="+"
-        className="admin__add-btn"
-        onClick={() => {
-          setSectionCreationStatus("creating");
-        }}
-      />
-    </div></div>
+      <div className="admin__form-container">{formList}</div>
+    </div>
   );
 };
 

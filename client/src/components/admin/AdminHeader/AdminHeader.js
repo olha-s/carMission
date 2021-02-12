@@ -17,12 +17,8 @@ const AdminHeader = () => {
     dispatch(setIsAuth(false));
   };
 
-  const toggleDropDown = (e) => {
-    if (isDropDownOpen && e.target !== e.currentTarget) {
-      setIsDropDownOpen(false);
-    } else {
-      setIsDropDownOpen((prevState) => !prevState);
-    }
+  const toggleDropDown = () => {
+    setIsDropDownOpen((prevState) => !prevState);
   };
 
   return (
@@ -40,7 +36,7 @@ const AdminHeader = () => {
           onClick={handleLogout}
         />
       </div>
-      {isDropDownOpen && <DropDownMenu />}
+      {isDropDownOpen && <DropDownMenu setState={setIsDropDownOpen} />}
     </div>
   );
 };

@@ -2,14 +2,9 @@ import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import AdminFormField from "../../AdminFormField/AdminFormField";
 import * as yup from "yup";
-import { toastr } from "react-redux-toastr";
-import { useDispatch } from "react-redux";
 import "./FormItemNavbar.scss";
-import { updateNavbarDataByNewObject } from "../../../../store/navbar/operations";
 import FormItemNavbarSelect from "../FormItemNavbarSelect";
 import PropTypes from "prop-types";
-import { checkIsInputNotChanges } from "../../../../utils/functions/checkIsInputNotChanges";
-import { addNewItem } from "../../../../store/navbar/actions";
 
 const navbarSchema = yup.object().shape({
   textContent: yup
@@ -21,7 +16,6 @@ const navbarSchema = yup.object().shape({
   headerLocation: yup.string().required("Обязательное поле"),
   footerLocation: yup.string().required("Обязательное поле"),
   numberInNavbar: yup.string().required("Обязательное поле"),
-
 });
 
 const FormItemNavbar = ({
@@ -31,10 +25,9 @@ const FormItemNavbar = ({
   sectionsArr,
   isNew,
   children,
-  put,
-  post,
+  handleUpdate,
+  handlePost,
 }) => {
-  const dispatch = useDispatch();
   const {
     numberInNavbar,
     textContent,
@@ -50,8 +43,12 @@ const FormItemNavbar = ({
   } = sourceObj;
   const [numberValue, setNumberValue] = useState(numberInNavbar);
   const [sectionIdValue, setSectionIdValue] = useState(sectionId);
-  const [headerLocationValue, setHeaderLocationValue] = useState(headerLocation);
-  const [footerLocationValue, setFooterLocationValue] = useState(footerLocation);
+  const [headerLocationValue, setHeaderLocationValue] = useState(
+    headerLocation
+  );
+  const [footerLocationValue, setFooterLocationValue] = useState(
+    footerLocation
+  );
   const initialValues = contacts
     ? {
         textContent,
@@ -69,54 +66,11 @@ const FormItemNavbar = ({
         sectionId,
       };
 
-  const options = (name) => (
-    [
-      { value: "left-side", label: "Слева от Лого" },
-      { value: "right-side", label: "Справа от Лого" },
-      { value: "non-active", label: `Неактивно в ${name}` },
-  ]);
-
-  const postToDB = async (values) => {
-    const newItem = await post(values);
-
-    if (newItem.status === 200) {
-
-      dispatch(addNewItem(newItem.data));
-      toastr.success(
-        "Успешно",
-        `Пункт "${values.textContent}" добавлен в базу данных`
-      );
-    } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
-    }
-  };
-
-  const updateNavbarItem = async (values) => {
-    const updatedObj = {
-      ...sourceObj,
-      ...values,
-    };
-    const updatedItem = await put(updatedObj);
-
-    if (updatedItem.status === 200) {
-      dispatch(updateNavbarDataByNewObject(updatedItem.data));
-      toastr.success(
-        "Успешно",
-        `Пункт "${values.textContent}" изменён в базе данных`
-      );
-    } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
-    }
-  };
-
-  const update = (values) => {
-    if (!checkIsInputNotChanges(values, sourceObj)) {
-      updateNavbarItem(values);
-    } else {
-      toastr.warning("Сообщение", "Ничего не было изменено");
-    }
-  };
-
+  const options = (name) => [
+    { value: "left-side", label: "Слева от Лого" },
+    { value: "right-side", label: "Справа от Лого" },
+    { value: "non-active", label: `Неактивно в ${name}` },
+  ];
 
   return (
     <Formik
@@ -124,12 +78,14 @@ const FormItemNavbar = ({
       validationSchema={navbarSchema}
       validateOnChange={false}
       validateOnBlur={false}
-      onSubmit={isNew ? postToDB : update}
+      onSubmit={isNew ? handlePost : handleUpdate}
     >
-      {({ errors, setFieldValue, touched }) => (
+      {({ errors, setFieldValue }) => (
         <Form className={`${className}__item`}>
           {disabled ? (
-            <label className={`${className}__info ${className}__info_none-active`}>
+            <label
+              className={`${className}__info ${className}__info_none-active`}
+            >
               Пункт неактивен на сайте
             </label>
           ) : contacts ? (
@@ -140,8 +96,11 @@ const FormItemNavbar = ({
             <label className={`${className}__info ${className}__info_new-item`}>
               Новый пункт меню
             </label>
-          ) : headerLocation === "non-active" && footerLocation === "non-active" ? (
-            <label className={`${className}__info ${className}__info_none-active`}>
+          ) : headerLocation === "non-active" &&
+            footerLocation === "non-active" ? (
+            <label
+              className={`${className}__info ${className}__info_none-active`}
+            >
               Пункт неактивен на сайте
             </label>
           ) : (

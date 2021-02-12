@@ -10,7 +10,7 @@
 
   &__title {
     padding: 17px 69px 11px 45px;
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-weight: bold;
     font-size: 20px;
     font-family: sans-serif;
@@ -57,7 +57,7 @@
   }
 
   &__info-text {
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 13px;
     line-height: 18px;
     text-align: center;
@@ -82,7 +82,7 @@
     justify-content: center;
     padding-top: 13px;
     padding-bottom: 15px;
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 18px;
     line-height: 25px;
   }
@@ -105,14 +105,14 @@
 
   &__details-title,
   &__additionally-title {
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 12px;
     line-height: 16px;
   }
 
   &__details-name,
   &__additionally-name {
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 14px;
     line-height: 19px;
   }

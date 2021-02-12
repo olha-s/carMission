@@ -1,14 +1,12 @@
-import { openErrModal } from "../ErrorModal/openErrModal";
-import { saveErrObjAction } from "../errorObject/saveErrObjAction";
 import axios from "axios";
 import { confirmFeedbackFormAction, hideFeedbackFormAction } from "./actions";
+import { toastr } from "react-redux-toastr";
 
 export const postFeedback = (feedbackObj) => async (dispatch) => {
   const response = await axios
     .post("/api/feedbacks", feedbackObj)
     .catch((err) => {
-      dispatch(openErrModal);
-      dispatch(saveErrObjAction(err));
+      toastr.error(err.message);
       dispatch(hideFeedbackFormAction);
     });
   if (response) {

@@ -10,11 +10,11 @@
   margin-bottom: 20px;
   padding: 20px;
   font-family: $content-font;
-  background: $Rectangle48;
+  background: $palette-secondary;
 
   &__data {
     margin-bottom: 10px;
-    color: $Rectangle67;
+    color: $palette-primary;
     font-size: 18px;
   }
 
@@ -28,7 +28,7 @@
 
   &__switch-name {
     margin-right: 20px;
-    color: $Rectangle67;
+    color: $palette-primary;
     font-size: 17px;
   }
 }

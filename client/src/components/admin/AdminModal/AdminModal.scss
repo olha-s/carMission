@@ -17,7 +17,7 @@
   z-index: 3;
   max-width: 50%;
   max-height: 40%;
-  background-color: $Rectangle67;
+  background-color: $palette-primary;
   border-radius: 10px;
 
 
@@ -26,15 +26,15 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 30px;
-    background-color: $Rectangle67;
-    border-bottom: 1px solid $Rectangle48;
+    background-color: $palette-primary;
+    border-bottom: 1px solid $palette-secondary;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 
   }
 
   &-head-text {
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 22px;
   }
 
@@ -43,7 +43,7 @@
   }
 
   &__content-text {
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 25px;
     text-align: center;
   }
@@ -57,11 +57,11 @@
 
   &__btn {
     padding: 15px 50px;
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 17px;
     font-family: $content-font;
-    background: $Rectangle67;
-    border: 1px solid $Rectangle48;
+    background: $palette-primary;
+    border: 1px solid $palette-secondary;
     border-radius: 10px;
     cursor: pointer;
     transition: .3s;
@@ -69,7 +69,7 @@
 
   &__close-btn {
     padding: 5px 10px;
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 40px;
     background: none;
     border: none;

@@ -1,8 +1,7 @@
 import { setStages, setStagesLoading, updateStages } from "./actions";
 import axios from "axios";
-import { saveErrObjAction } from "../errorObject/saveErrObjAction";
-import { openErrModal } from "../ErrorModal/openErrModal";
 import { getWorkStages } from "./selectors";
+import { toastr } from "react-redux-toastr";
 
 export const loadWorkStages = () => async (dispatch) => {
   dispatch(setStagesLoading(true));
@@ -13,8 +12,7 @@ export const loadWorkStages = () => async (dispatch) => {
   })
     .then((r) => r.data)
     .catch((err) => {
-      dispatch(saveErrObjAction(err));
-      dispatch(openErrModal);
+      toastr.error(err.message);
     });
 
   stagesFromDB.sort((a, b) => a.num - b.num);

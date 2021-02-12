@@ -1,23 +1,24 @@
 import { setBlogs, BlogsIsLoading, updateBlogs } from "./actions";
 import axios from "axios";
-import { saveErrObjAction } from "../errorObject/saveErrObjAction";
-import { openErrModal } from "../ErrorModal/openErrModal";
 import { getBlogs } from "./selectors";
+import { toastr } from "react-redux-toastr";
 
 export const loadBlogs = () => (dispatch) => {
   dispatch(BlogsIsLoading(true));
 
   axios("/api/blogs/")
     .then((res) => {
-      dispatch(setBlogs(res.data.sort((a, b) => {
-        return a.date === b.date ? 0 : a.date ? -1 : 1;
-      })
-      ));
+      dispatch(
+        setBlogs(
+          res.data.sort((a, b) => {
+            return a.date === b.date ? 0 : a.date ? -1 : 1;
+          })
+        )
+      );
       dispatch(BlogsIsLoading(false));
     })
     .catch((err) => {
-      dispatch(saveErrObjAction(err));
-      dispatch(openErrModal);
+      toastr.error(err.message);
     });
 };
 

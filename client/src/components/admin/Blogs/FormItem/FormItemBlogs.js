@@ -1,67 +1,17 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import AdminFormField from "../../AdminFormField/AdminFormField";
-import { useDispatch } from "react-redux";
 import { validationSchema } from "../ValidationSchema";
 import "./FormItemBlogs.scss";
-import { toastr } from "react-redux-toastr";
-import { addNewBlog } from "../../../../store/Blogs/actions";
-import { checkIsInputNotChanges } from "../../../../utils/functions/checkIsInputNotChanges";
-import { updateBlogsByNewObject } from "../../../../store/Blogs/operations";
 
 const FormItemBlogs = ({
   sourceObj,
   isNew,
   children,
-  put,
-  post,
-  file,
-  uploadToS3,
+  handlePost,
+  handleUpdate,
 }) => {
   const { photo, title, text, fullText, buttonText, date } = sourceObj;
-
-  const dispatch = useDispatch();
-  const updateInDB = async (values) => {
-    const updatedObj = {
-      ...sourceObj,
-      ...values,
-    };
-    const updatedBlog = await put(updatedObj);
-
-    if (updatedBlog.status === 200) {
-      dispatch(updateBlogsByNewObject(updatedBlog.data));
-      toastr.success(
-        "Успешно",
-        `Блог с id "${sourceObj._id}" изменён в базе данных`
-      );
-    } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
-    }
-  };
-
-  const handleUpdate = (values) => {
-    if (file && checkIsInputNotChanges(values, sourceObj)) {
-      uploadToS3(values, sourceObj._id);
-    } else if (!file && !checkIsInputNotChanges(values, sourceObj)) {
-      updateInDB(values);
-    } else if (file && !checkIsInputNotChanges(values, sourceObj)) {
-      uploadToS3(values, sourceObj._id).then(() => updateInDB(values));
-    } else {
-      toastr.warning("Сообщение", "Ничего не изменилось");
-    }
-  };
-
-  const handleAddToDB = async (values) => {
-    values.date = Date.now();
-    console.log(values)
-    const newBlog = await post(values);
-    if (newBlog.status === 200) {
-      toastr.success("Успешно", "Блог добавлен в базу данных");
-      dispatch(addNewBlog(newBlog.data));
-    } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
-    }
-  };
 
   return (
     <Formik
@@ -69,9 +19,9 @@ const FormItemBlogs = ({
       validationSchema={validationSchema}
       validateOnChange={false}
       validateOnBlur={false}
-      onSubmit={isNew ? handleAddToDB : handleUpdate}
+      onSubmit={isNew ? handlePost : handleUpdate}
     >
-      {({ errors, touched, isValid, isSubmitting }) => (
+      {({ errors, isSubmitting }) => (
         <Form className="admin-blogs__form-item" noValidate>
           {/* <AdminFormField
             labelClassName="admin-blogs__form-label"

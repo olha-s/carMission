@@ -1,4 +1,8 @@
-import { LOAD_SECTIONS, IS_LOADING_SECTIONS } from "./actionTypes";
+import {
+  LOAD_SECTIONS,
+  IS_LOADING_SECTIONS,
+  UPDATE_SECTION,
+} from "./actionTypes";
 
 const initialState = {
   sections: [],
@@ -16,6 +20,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.payload,
+      };
+    case UPDATE_SECTION:
+      return {
+        ...state,
+        stages: action.payload,
       };
     default:
       return state;

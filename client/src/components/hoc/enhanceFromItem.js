@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { toastr } from "react-redux-toastr";
 import AdminDropZone from "../admin/AdminDropZone/AdminDropZone";
+import { checkIsInputNotChanges } from "../../utils/functions/checkIsInputNotChanges";
 
 const enhanceFormItem = (Component, config) => {
   return (props) => {
@@ -55,18 +56,60 @@ const enhanceFormItem = (Component, config) => {
       toastr.success("Успешно", "Изображение загружено");
     };
 
-    const createPutRequest = (updatedObj) => {
-      return axios
+    const updateDBCollection = async (values) => {
+      const updatedObj = {
+        ...sourceObj,
+        ...values,
+      };
+      const updated = await axios
         .put(`${routes.put}${sourceObj._id}`, updatedObj)
         .catch((err) => {
           toastr.error(err.message);
         });
+
+      if (updated.status === 200) {
+        dispatch(actions.updateInRedux(updated.data));
+        toastr.success("Успешно", "Объект изменён в базе данных");
+      } else {
+        toastr.warning("Хм...", "Что-то пошло не так");
+      }
     };
 
-    const createPostRequest = (values) => {
-      return axios.post(routes.post, values).catch((err) => {
-        toastr.error(err.message);
-      });
+    const handleUpdate = async (values) => {
+      if (fileReady && checkIsInputNotChanges(values, sourceObj)) {
+        await uploadImgAndUpdateStore(values, sourceObj._id);
+      } else if (!fileReady && !checkIsInputNotChanges(values, sourceObj)) {
+        await updateDBCollection(values);
+      } else if (fileReady && !checkIsInputNotChanges(values, sourceObj)) {
+        uploadImgAndUpdateStore(values, sourceObj._id).then(() =>
+          updateDBCollection(values)
+        );
+      } else {
+        toastr.warning("Сообщение", "Ничего не изменилось");
+      }
+    };
+
+    const handlePostToDB = async (values) => {
+      if (values[pathProp] || fileReady) {
+        const newObj = await axios.post(routes.post, values).catch((err) => {
+          toastr.error(err.message);
+        });
+
+        if (newObj.status === 200) {
+          if (fileReady) {
+            await uploadImgAndUpdateStore(values, newObj.data._id);
+          }
+
+          dispatch(
+            actions.addNew({ ...newObj.data, [pathProp]: values[pathProp] })
+          );
+          toastr.success("Успешно", "Объект добавлен в базу данных");
+        } else {
+          toastr.warning("Хм...", "Что-то пошло не так");
+        }
+      } else {
+        toastr.warning("Warning", "Не добавлено изображение или путь к нему");
+      }
     };
 
     const openConfirmModal = (e) => {
@@ -80,10 +123,8 @@ const enhanceFormItem = (Component, config) => {
 
     return (
       <Component
-        put={createPutRequest}
-        post={createPostRequest}
-        uploadToS3={dropZone && uploadImgAndUpdateStore}
-        file={dropZone && fileReady}
+        handleUpdate={handleUpdate}
+        handlePost={handlePostToDB}
         {...props}
       >
         {dropZone && (

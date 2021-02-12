@@ -1,8 +1,7 @@
 import { setReviews, ReviewsIsLoading, updateReviews } from "./actions";
 import axios from "axios";
-import { saveErrObjAction } from "../errorObject/saveErrObjAction";
-import { openErrModal } from "../ErrorModal/openErrModal";
 import { getReviews } from "./selectors";
+import { toastr } from "react-redux-toastr";
 
 export const loadReviews = () => (dispatch) => {
   dispatch(ReviewsIsLoading(true));
@@ -13,8 +12,7 @@ export const loadReviews = () => (dispatch) => {
       dispatch(ReviewsIsLoading(false));
     })
     .catch((err) => {
-      dispatch(saveErrObjAction(err));
-      dispatch(openErrModal);
+      toastr.error(err.message);
     });
 };
 

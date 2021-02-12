@@ -6,6 +6,7 @@ import FormItemLogo from "../FormItem/FormItemLogo";
 import SectionHeading from "../../../generalComponents/SectionHeading/SectionHeading";
 import "./FormContainerLogo.scss";
 import { updateLogoImgSrc } from "../../../../store/logo/operations";
+import { updateLogoData } from "../../../../store/logo/actions";
 
 const config = {
   dropZone: true,
@@ -17,6 +18,7 @@ const config = {
   },
   actions: {
     updateS3Link: updateLogoImgSrc,
+    updateInRedux: updateLogoData,
   },
 };
 
@@ -25,19 +27,20 @@ const FormContainerLogo = () => {
   const data = useSelector(getLogoData);
   const mainClassName = "admin-logo";
 
-  
   useEffect(() => {
     const formToRender = () => {
       const Enhanced = enhanceFormItem(FormItemLogo, config);
-      return <Enhanced sourceObj={data} className={mainClassName} />
-    }
-    setLogoRender(formToRender)
-  }, [data])
-
+      return <Enhanced sourceObj={data} className={mainClassName} />;
+    };
+    setLogoRender(formToRender);
+  }, [data]);
 
   return (
     <div className={mainClassName}>
-      <SectionHeading className={`${mainClassName}__main-header`} text="Главное Лого" />
+      <SectionHeading
+        className={`${mainClassName}__main-header`}
+        text="Главное Лого"
+      />
       {logoRender}
     </div>
   );

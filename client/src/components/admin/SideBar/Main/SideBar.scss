@@ -19,17 +19,17 @@
     box-sizing: border-box;
     width: 100%;
     padding: 20px 0;
-    color: $Rectangle67;
+    color: $palette-primary;
     font-size: 20px;
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
-    background-color: $Rectangle48;
+    background-color: $palette-secondary;
     transition: 0.3s;
 
     &--active {
-      color: $Rectangle48;
-      background-color: $Rectangle67;
+      color: $palette-secondary;
+      background-color: $palette-primary;
     }
   }
 }

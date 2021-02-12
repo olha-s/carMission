@@ -12,6 +12,7 @@ const FeatureSchema = new Schema({
   },
   isMain: {
     type: Boolean,
+    default: false,
     required: true,
   },
   text: {

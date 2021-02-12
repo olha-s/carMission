@@ -9,8 +9,6 @@ import paginationDotClick from "./paginationDotClick/reducer";
 import workStages from "./workStages/reducer";
 import reviewCarousel from "./ReviewCarousel/reduser";
 import blogs from "./Blogs/reducer";
-import errModalReducer from "./ErrorModal/errModalReducer";
-import errObjReducer from "./errorObject/errObjReducer";
 import auth from "./auth/reducer";
 import socialNetworks from "./socialNetworks/reducer";
 import { reducer as toastr } from "react-redux-toastr";
@@ -24,8 +22,6 @@ const reducer = combineReducers({
   servicePackages,
   workStages,
   paginationDotClick,
-  errModalReducer,
-  errObjReducer,
   reviewCarousel,
   blogs,
   auth,

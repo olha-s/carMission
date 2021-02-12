@@ -28,7 +28,7 @@
 
   &__name {
     margin-bottom: 20px;
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 20px;
   }
 
@@ -36,7 +36,7 @@
     width: 220px;
     height: 48px;
     margin-bottom: 20px;
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-weight: 600;
     font-size: 14px;
     font-family: $content-font;
@@ -57,7 +57,7 @@
     transition: 0.3s linear;
 
     &:hover {
-      color: $Rectangle67;
+      color: $palette-primary;
     }
 
     :last-child {

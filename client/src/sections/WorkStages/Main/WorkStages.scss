@@ -4,7 +4,7 @@
 .work-stages {
   width: 100%;
   padding: 0 0 119px 0;
-  background-color: $Rectangle67;
+  background-color: $palette-primary;
 
   &__content {
     @include content-block;
@@ -67,7 +67,7 @@
     max-width: 190px;
     margin: 0 auto;
     padding: 18px 5px;
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-size: 14px;
     text-align: center;
     background: rgba(196, 196, 196, 0.1);
@@ -126,7 +126,7 @@
   &__description {
     max-width: 475px;
     margin-bottom: 54px;
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;

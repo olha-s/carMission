@@ -1,62 +1,26 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import AdminFormField from "../../AdminFormField/AdminFormField";
-import { toastr } from "react-redux-toastr";
 import "./FormItemServicePackages.scss";
-import { useDispatch } from "react-redux";
-import { addPackages } from "../../../../store/servicePackages/actions";
 import AdminServiceList from "../AdminServiceList/AdminServiceList";
-import { checkIsInputNotChanges } from "../../../../utils/functions/checkIsInputNotChanges";
-import { updatePackagesByNewObject } from "../../../../store/servicePackages/operations";
 
-const FormItemServicePackages = ({ sourceObj, isNew, children, put, post }) => {
+const FormItemServicePackages = ({
+  sourceObj,
+  isNew,
+  children,
+  handleUpdate,
+  handlePost,
+}) => {
   const { name, price, currency, serviceList } = sourceObj;
-  const dispatch = useDispatch();
-
-  const handleUpdate = async (values) => {
-    if (!checkIsInputNotChanges(values, sourceObj)) {
-      const updatedObj = {
-        ...sourceObj,
-        ...values,
-      };
-      const updatedPackages = await put(updatedObj);
-
-      if (updatedPackages.status === 200) {
-        dispatch(updatePackagesByNewObject(updatedPackages.data));
-        toastr.success(
-          "Успешно",
-          `Пакет "${values.name}" изменён  в базе данных`
-        );
-      } else {
-        toastr.warning("Хм...", "Что-то пошло не так");
-      }
-    } else {
-      toastr.warning("Сообщение", "Ничего не изменилось");
-    }
-  };
-
-  const handlePostToDB = async (values) => {
-    const newPackage = await post(values);
-
-    if (newPackage.status === 200) {
-      toastr.success(
-        "Успешно",
-        `Пакет "${values.name}" добавлен в базу данных`
-      );
-      dispatch(addPackages(newPackage.data));
-    } else {
-      toastr.warning("Хм...", "Что-то пошло не так");
-    }
-  };
 
   return (
     <Formik
       initialValues={{ name, price, currency, serviceList }}
       validateOnChange={false}
       validateOnBlur={false}
-      onSubmit={isNew ? handlePostToDB : handleUpdate}
+      onSubmit={isNew ? handlePost : handleUpdate}
     >
-      {({ errors, touched, submitting, values }) => (
+      {({ errors, isSubmitting, values }) => (
         <Form className="admin-packages__form-item">
           <AdminFormField
             labelClassName="admin-packages__form-label"
@@ -91,7 +55,7 @@ const FormItemServicePackages = ({ sourceObj, isNew, children, put, post }) => {
             type="submit"
             name="submit"
             className="admin-packages__submit-btn"
-            disabled={submitting}
+            disabled={isSubmitting}
             value={isNew ? "Создать пакет услуг" : "Подтвердить изменения"}
           />
         </Form>

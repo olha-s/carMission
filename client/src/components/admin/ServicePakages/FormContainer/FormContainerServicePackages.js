@@ -5,8 +5,12 @@ import { getPackages } from "../../../../store/servicePackages/selectors";
 import FormItemServicePackages from "../FormItem/FormItemServicePackages";
 import "./FormContainerServicePackages.scss";
 import Button from "../../../generalComponents/Button/Button";
-import { filterServicePackages } from "../../../../store/servicePackages/operations";
+import {
+  filterServicePackages,
+  updatePackagesByNewObject,
+} from "../../../../store/servicePackages/operations";
 import enhanceFormItem from "../../../hoc/enhanceFromItem";
+import { addPackages } from "../../../../store/servicePackages/actions";
 
 const config = {
   canBeDeleted: true,
@@ -16,7 +20,9 @@ const config = {
     delete: "/api/service-packages/delete/",
   },
   actions: {
-    filterDeleted: filterServicePackages(),
+    filterDeleted: filterServicePackages,
+    addNew: addPackages,
+    updateInRedux: updatePackagesByNewObject,
   },
 };
 

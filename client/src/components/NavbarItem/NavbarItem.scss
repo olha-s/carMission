@@ -8,7 +8,7 @@
     transition: 0.5s;
   }
   &--link {
-    color: $Rectangle48;
+    color: $palette-secondary;
     text-decoration: none;
     cursor: pointer;
   }
@@ -63,7 +63,7 @@
   .navbar {
     &--item:hover &--link {
       padding-bottom: 36px;
-      border-bottom: 1px solid $Rectangle48;
+      border-bottom: 1px solid $palette-secondary;
     }
   }
 }

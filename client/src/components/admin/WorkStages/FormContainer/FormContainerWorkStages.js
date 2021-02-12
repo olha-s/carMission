@@ -8,9 +8,11 @@ import Button from "../../../generalComponents/Button/Button";
 import { getMainSections } from "../../../../store/appMainSections/selectors";
 import {
   filterWorkStages,
+  updateStagesByNewObject,
   updateStagesByNewSrc,
 } from "../../../../store/workStages/operations";
 import enhanceFormItem from "../../../hoc/enhanceFromItem";
+import { addNewStage } from "../../../../store/workStages/actions";
 
 const config = {
   dropZone: true,
@@ -25,6 +27,8 @@ const config = {
   actions: {
     filterDeleted: filterWorkStages,
     updateS3Link: updateStagesByNewSrc,
+    addNew: addNewStage,
+    updateInRedux: updateStagesByNewObject,
   },
 };
 

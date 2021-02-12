@@ -1,11 +1,14 @@
 import axios from "axios";
-import { setSocialNetworks, updateSocialNetwroks, socialNetwroksLoading } from "./actions";
+import {
+  setSocialNetworks,
+  updateSocialNetwroks,
+  socialNetwroksLoading,
+} from "./actions";
 import { getSocialNetworks } from "./selectors";
-import { saveErrObjAction } from "../errorObject/saveErrObjAction";
-import { openErrModal } from "../ErrorModal/openErrModal";
+import { toastr } from "react-redux-toastr";
 
 export const loadSocialNetworks = () => async (dispatch) => {
-  dispatch(socialNetwroksLoading(true))
+  dispatch(socialNetwroksLoading(true));
 
   const socialNetworksFromDB = await axios({
     method: "GET",
@@ -13,12 +16,11 @@ export const loadSocialNetworks = () => async (dispatch) => {
   })
     .then((r) => r.data)
     .catch((err) => {
-      dispatch(saveErrObjAction(err));
-      dispatch(openErrModal);
+      toastr.error(err.message);
     });
 
   dispatch(setSocialNetworks(socialNetworksFromDB));
-  dispatch(socialNetwroksLoading(false))
+  dispatch(socialNetwroksLoading(false));
 };
 
 export const filterSocialNetworks = (id) => (dispatch, getStore) => {

@@ -4,7 +4,7 @@
 .service-item {
   width: 320px;
   margin: 5px;
-  color: $Rectangle48;
+  color: $palette-secondary;
   text-align: left;
   background: linear-gradient(
     325.31deg,
@@ -42,7 +42,7 @@
       height: 1px;
       margin-top: 13px;
       margin-left: 14px;
-      background: $Rectangle48;
+      background: $palette-secondary;
       content: "";
     }
   }

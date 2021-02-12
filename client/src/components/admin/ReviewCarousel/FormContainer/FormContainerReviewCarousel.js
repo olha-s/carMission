@@ -5,12 +5,13 @@ import FormItemReviewCarousel from "../FormItem/FormItemReviewCarousel";
 import SectionHeading from "../../../generalComponents/SectionHeading/SectionHeading";
 import "./FormContainerReviewCarousel.scss";
 import Button from "../../../generalComponents/Button/Button";
-
 import {
   filterReviews,
+  updateReviewByNewObject,
   updateReviewByNewSrc,
 } from "../../../../store/ReviewCarousel/operations";
 import enhanceFormItem from "../../../hoc/enhanceFromItem";
+import { addNewReview } from "../../../../store/ReviewCarousel/actions";
 
 const config = {
   dropZone: true,
@@ -25,6 +26,8 @@ const config = {
   actions: {
     filterDeleted: filterReviews,
     updateS3Link: updateReviewByNewSrc,
+    addNew: addNewReview,
+    updateInRedux: updateReviewByNewObject,
   },
 };
 

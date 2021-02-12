@@ -8,8 +8,10 @@ import Button from "../../../generalComponents/Button/Button";
 import {
   filterBlogs,
   updateBlogByNewSrc,
+  updateBlogsByNewObject,
 } from "../../../../store/Blogs/operations";
 import enhanceFormItem from "../../../hoc/enhanceFromItem";
+import { addNewBlog } from "../../../../store/Blogs/actions";
 
 const config = {
   dropZone: true,
@@ -24,6 +26,8 @@ const config = {
   actions: {
     filterDeleted: filterBlogs,
     updateS3Link: updateBlogByNewSrc,
+    addNew: addNewBlog,
+    updateInRedux: updateBlogsByNewObject,
   },
 };
 

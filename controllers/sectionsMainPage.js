@@ -1,6 +1,11 @@
 const SectionMainPage = require("../models/SectionMainPage");
 const _ = require("lodash");
 const queryCreator = require("../commonHelpers/queryCreator");
+const {
+  updateS3Credentials,
+  upload,
+} = require("../commonHelpers/amazon-s3-upload");
+const uploadS3 = upload("main-page-sections");
 
 exports.getSectionsMainPage = (req, res, next) => {
   SectionMainPage.find()
@@ -57,14 +62,12 @@ exports.updateSectionMainPage = (req, res, next) => {
 };
 
 exports.deleteSectionMainPage = (req, res, next) => {
-  SectionMainPage.deleteOne({ _id: req.params.id }).then(() => {
-    res
-      .status(200)
-      .json({
+  SectionMainPage.deleteOne({ _id: req.params.id })
+    .then(() => {
+      res.status(200).json({
         message: "you've just deleted section from sections collection",
-      })
-
-  })
+      });
+    })
     .catch((err) => {
       res.status(400).json({
         message: `Error happened on server: "${err}" `,
@@ -73,17 +76,62 @@ exports.deleteSectionMainPage = (req, res, next) => {
 };
 
 exports.deleteAllSectionsMainPage = (req, res, next) => {
-  SectionMainPage.deleteMany({}).then(() => {
-    res
-      .status(200)
-      .json({
+  SectionMainPage.deleteMany({})
+    .then(() => {
+      res.status(200).json({
         message: "you've just deleted all data from collection",
-      })
-
-  })
+      });
+    })
     .catch((err) => {
       res.status(400).json({
-        message: `Error happened on server: "${err}"`
-      })
+        message: `Error happened on server: "${err}"`,
+      });
     });
+};
+
+exports.uploadMainPageImg = async (req, res, next) => {
+  await updateS3Credentials();
+
+  const { id } = req.params;
+  uploadS3(req, res, (error) => {
+    if (error) {
+      res.status(400).json({
+        message: `Error happened on server: "${error}" `,
+      });
+    } else {
+      // If File not found
+      if (!req.file) {
+        res.status(400).json({ message: "No File Selected" });
+      } else {
+        // If Success
+        const imageName = req.file.key;
+        const imageLocation = req.file.location;
+
+        SectionMainPage.findOne({ _id: id }).then(async (stage) => {
+          if (!stage) {
+            return res.status(400).json({
+              message: `Stage with id "${id}" is not found.`,
+            });
+          } else {
+            SectionMainPage.findOneAndUpdate(
+              { _id: id },
+              { $set: { imgPath: imageLocation } },
+              { new: true }
+            )
+              .then(() =>
+                res.json({
+                  image: imageName,
+                  location: imageLocation,
+                })
+              )
+              .catch((err) =>
+                res.status(400).json({
+                  message: `Error happened on server: "${err}" `,
+                })
+              );
+          }
+        });
+      }
+    }
+  });
 };

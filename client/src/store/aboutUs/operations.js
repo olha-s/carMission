@@ -1,8 +1,7 @@
 import { featuresIsLoading, setFeatures, updateFeatures } from "./actions";
 import axios from "axios";
-import { saveErrObjAction } from "../errorObject/saveErrObjAction";
-import { openErrModal } from "../ErrorModal/openErrModal";
 import { getFeatures } from "./selectors";
+import { toastr } from "react-redux-toastr";
 
 export const loadFeatures = () => async (dispatch) => {
   dispatch(featuresIsLoading(true));
@@ -13,8 +12,7 @@ export const loadFeatures = () => async (dispatch) => {
   })
     .then((res) => res.data)
     .catch((err) => {
-      dispatch(saveErrObjAction(err));
-      dispatch(openErrModal);
+      toastr.error(err.message);
     });
 
   dispatch(setFeatures(featuresFromServer));

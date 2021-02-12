@@ -34,7 +34,7 @@
     }
   }
   &__text-paragraph, &__header, &__date {
-    color: $Rectangle48;
+    color: $palette-secondary;
     text-shadow: 1.5px 0.1px 2px $Rectangle52;
   }
 
@@ -48,7 +48,7 @@
     margin-top: 30px;
     margin-bottom: 20px;
     padding: 12px 30px;
-    color: $Rectangle48;
+    color: $palette-secondary;
     font-weight: 600;
     font-size: 15px;
     background: transparent;

@@ -8,9 +8,11 @@ import FormItemAboutUs from "../FormItem/FormItemAboutUs";
 import { getMainSections } from "../../../../store/appMainSections/selectors";
 import {
   filterAboutUs,
+  updateFeaturesByNewObject,
   updateFeaturesByNewSrc,
 } from "../../../../store/aboutUs/operations";
 import enhanceFormItem from "../../../hoc/enhanceFromItem";
+import { addNewFeature } from "../../../../store/aboutUs/actions";
 
 const config = {
   dropZone: true,
@@ -25,6 +27,8 @@ const config = {
   actions: {
     filterDeleted: filterAboutUs,
     updateS3Link: updateFeaturesByNewSrc,
+    addNew: addNewFeature,
+    updateInRedux: updateFeaturesByNewObject,
   },
 };
 

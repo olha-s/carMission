@@ -9,6 +9,7 @@ import Blogs from "../../components/Blogs/Blogs";
 import ServicePackages from "../../sections/ServicePackages/ServicePackages";
 import { Helmet } from "react-helmet-async";
 import PaginationDots from "../../components/PaginationDots/PaginationDots";
+import MainHeader from "../../components/MainHeader/MainHeader";
 
 const MainPage = () => {
   const sectionsFromDB = useSelector(getMainSections).filter(
@@ -26,11 +27,32 @@ const MainPage = () => {
 
   const mapComponentsToRender = () => {
     return sectionsFromDB.map((section) => {
-      const { description, _id: id, heading, name, reactComponent } = section;
+      const {
+        description,
+        _id: id,
+        heading,
+        name,
+        reactComponent,
+        index,
+        imgPath,
+      } = section;
       const Component = sectionsComponents[reactComponent];
 
       if (Component) {
-        return (
+        return index === 1 ? (
+          <div
+            className="App__main-page-top-head"
+            style={{ backgroundImage: `url(${imgPath})` }}
+            key={id}
+          >
+            <MainHeader />
+            <Component
+              description={description}
+              heading={heading}
+              anchorName={name}
+            />
+          </div>
+        ) : (
           <Component
             description={description}
             heading={heading}
@@ -53,7 +75,7 @@ const MainPage = () => {
       <Helmet>
         <title>Main Page</title>
       </Helmet>
-      <PaginationDots componentsList={filteredReadySections} />
+      <PaginationDots componentsList={sectionsFromDB} />
       {filteredReadySections}
     </>
   );
