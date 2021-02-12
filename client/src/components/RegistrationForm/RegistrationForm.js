@@ -5,6 +5,7 @@ import * as yup from "yup";
 import "./RegistrationForm.scss";
 import axios from "axios";
 import { toastr } from "react-redux-toastr";
+import PropTypes from "prop-types";
 
 const registrationSchema = yup.object().shape({
   firstName: yup
@@ -124,6 +125,11 @@ const RegistrationForm = ({ uuid, email }) => {
       )}
     </Formik>
   );
+};
+
+RegistrationForm.propTypes = {
+  uuid: PropTypes.string,
+  email: PropTypes.string,
 };
 
 export default RegistrationForm;

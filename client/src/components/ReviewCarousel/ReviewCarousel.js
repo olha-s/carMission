@@ -14,6 +14,7 @@ import {
 } from "../../store/ReviewCarousel/selectors";
 import Loader from "../Loader/Loader";
 import useLiveHashPush from "../../utils/hooks/useLiveHashPush";
+import PropTypes from "prop-types";
 
 const ReviewCarousel = ({ heading, anchorName }) => {
   const reviews = useSelector(getReviews);
@@ -111,6 +112,12 @@ const ReviewCarousel = ({ heading, anchorName }) => {
       )}
     </section>
   );
+};
+
+ReviewCarousel.propTypes = {
+  description: PropTypes.string,
+  heading: PropTypes.string,
+  anchorName: PropTypes.string,
 };
 
 export default ReviewCarousel;

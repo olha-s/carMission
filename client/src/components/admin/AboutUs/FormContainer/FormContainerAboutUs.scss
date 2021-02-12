@@ -1,4 +1,5 @@
 @import "src/theme/styles/variables";
+@import "src/theme/styles/mixins";
 
 .admin-about-us {
   box-sizing: border-box;
@@ -15,20 +16,6 @@
   }
 
   &__add-btn {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 60px;
-    height: 60px;
-    color: white;
-    font-size: 40px;
-    background: darkseagreen;
-    border: none;
-    border-radius: 30px;
-    transition: .3s;
-
-    &:hover {
-      background: greenyellow;
-    }
+    @include add-form-btn;
   }
 }

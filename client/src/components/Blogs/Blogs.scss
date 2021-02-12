@@ -5,6 +5,7 @@
     @include content-block();
     padding-bottom: 50px;
   }
+
   &__section {
     margin: 0 auto;
     padding-bottom: 60px;
@@ -22,8 +23,9 @@
     color: $palette-secondary;
     font-size: 18px;
     background-color: transparent;
-    border: 0px solid transparent;
+    border: 0 solid transparent;
     outline: none;
+
     &:hover {
       color: $Rectangle54;
     }

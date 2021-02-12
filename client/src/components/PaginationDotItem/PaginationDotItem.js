@@ -6,6 +6,7 @@ import {
   setDotClick,
   setTargetSection,
 } from "../../store/paginationDotClick/actions";
+import PropTypes from "prop-types";
 
 const PaginationDotItem = ({ anchor, isVisible }) => {
   const dispatch = useDispatch();
@@ -26,6 +27,11 @@ const PaginationDotItem = ({ anchor, isVisible }) => {
       <div className={isVisible ? "dot dot--active" : "dot"} />
     </NavHashLink>
   );
+};
+
+PaginationDotItem.propTypes = {
+  anchor: PropTypes.string,
+  isVisible: PropTypes.bool,
 };
 
 export default PaginationDotItem;

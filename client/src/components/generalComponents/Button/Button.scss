@@ -212,7 +212,7 @@
     width: 28px;
     padding: 1px 0;
     background: $gradient-first;
-    border: 0px solid transparent;
+    border: 0 solid transparent;
     cursor: pointer;
     &::after,
     &::before {

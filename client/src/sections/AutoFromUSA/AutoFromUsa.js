@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { showFeedbackFormAction } from "../../store/FeedbackForm/actions";
 import SocialNetworks from "../../components/SocialNetworks/SocialNetworks";
 import useLiveHashPush from "../../utils/hooks/useLiveHashPush";
+import PropTypes from "prop-types";
 
 const AutoFromUsa = ({ heading, description, anchorName }) => {
   const dispatch = useDispatch();
@@ -27,4 +28,11 @@ const AutoFromUsa = ({ heading, description, anchorName }) => {
     </section>
   );
 };
+
+AutoFromUsa.propTypes = {
+  description: PropTypes.string,
+  heading: PropTypes.string,
+  anchorName: PropTypes.string,
+};
+
 export default AutoFromUsa;

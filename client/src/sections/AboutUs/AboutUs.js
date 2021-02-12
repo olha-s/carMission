@@ -10,6 +10,7 @@ import {
 } from "../../store/aboutUs/selectors";
 import Loader from "../../components/Loader/Loader";
 import useLiveHashPush from "../../utils/hooks/useLiveHashPush";
+import PropTypes from "prop-types";
 
 const AboutUs = ({ heading, anchorName }) => {
   const featuresList = useSelector(getFeatures);
@@ -63,6 +64,12 @@ const AboutUs = ({ heading, anchorName }) => {
       )}
     </section>
   );
+};
+
+AboutUs.propTypes = {
+  description: PropTypes.string,
+  heading: PropTypes.string,
+  anchorName: PropTypes.string,
 };
 
 export default memo(AboutUs);

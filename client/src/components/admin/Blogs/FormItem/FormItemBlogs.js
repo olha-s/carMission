@@ -23,7 +23,7 @@ const FormItemBlogs = ({
     >
       {({ errors, isSubmitting }) => (
         <Form className="admin-blogs__form-item" noValidate>
-          {/* <AdminFormField
+          <AdminFormField
             labelClassName="admin-blogs__form-label"
             fieldClassName="admin-blogs__form-input"
             errorClassName="admin-blogs__form-error"
@@ -31,7 +31,7 @@ const FormItemBlogs = ({
             name="photo"
             errors={errors}
             labelName="Путь к фото"
-          /> */}
+          />
           <AdminFormField
             labelClassName="admin-blogs__form-label"
             fieldClassName="admin-blogs__form-input"

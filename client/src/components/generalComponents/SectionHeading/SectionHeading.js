@@ -17,6 +17,7 @@ export const SectionHeading = ({ text, className }) => {
 
 SectionHeading.propTypes = {
   text: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default SectionHeading;

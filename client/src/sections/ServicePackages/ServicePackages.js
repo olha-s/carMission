@@ -14,6 +14,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Loader from "../../components/Loader/Loader";
+import PropTypes from "prop-types";
 
 const ServicePackages = ({ heading, anchorName, description }) => {
   const dispatch = useDispatch();
@@ -101,6 +102,12 @@ const ServicePackages = ({ heading, anchorName, description }) => {
       )}
     </section>
   );
+};
+
+ServicePackages.propTypes = {
+  description: PropTypes.string,
+  heading: PropTypes.string,
+  anchorName: PropTypes.string,
 };
 
 export default ServicePackages;
