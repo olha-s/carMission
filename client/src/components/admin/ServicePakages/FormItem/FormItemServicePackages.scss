@@ -31,7 +31,7 @@
   &__remove-option {
     position: absolute;
     top: calc(100% - 15px);
-    right: 30%;
+    right: 10%;
     color: $palette-secondary;
     font-size: 12px;
     background: none;
@@ -46,7 +46,7 @@
   &__add-option {
     position: absolute;
     top: calc(100% - 15px);
-    left: 30%;
+    left: 10%;
     color: $palette-secondary;
     font-size: 13px;
     background: none;

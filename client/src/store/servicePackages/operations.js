@@ -23,7 +23,7 @@ export const filterServicePackages = (id) => (dispatch, getStore) => {
   const packages = getPackages(getStore());
 
   const filtered = packages.filter(
-    (servicePackage) => servicePackage.id === id
+    (servicePackage) => servicePackage._id !== id
   );
   dispatch(updatePackages(filtered));
 };

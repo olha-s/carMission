@@ -112,6 +112,19 @@ const enhanceFormItem = (Component, config) => {
       }
     };
 
+    const handlePostWithoutDropzone = async (values) => {
+      const newObj = await axios.post(routes.post, values).catch((err) => {
+        toastr.error(err.message);
+      });
+
+      if (newObj.status === 200) {
+        dispatch(actions.addNew({ ...newObj.data }));
+        toastr.success("Успешно", "Объект добавлен в базу данных");
+      } else {
+        toastr.warning("Хм...", "Что-то пошло не так");
+      }
+    };
+
     const openConfirmModal = (e) => {
       e.preventDefault();
       setIsModalOpen(true);
@@ -124,7 +137,7 @@ const enhanceFormItem = (Component, config) => {
     return (
       <Component
         handleUpdate={handleUpdate}
-        handlePost={handlePostToDB}
+        handlePost={dropZone ? handlePostToDB : handlePostWithoutDropzone}
         {...props}
       >
         {dropZone && (
