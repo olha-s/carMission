@@ -10,7 +10,6 @@
   }
   &__header {
     font-size: 36px;
-
   }
   &__date {
     padding: 10px 0 40px;
@@ -61,3 +60,101 @@
   } 
 }
 
+
+@media screen and (max-width: 1110px) and (min-width: $md-size){
+  .blog-page{
+    &__container {
+      padding: 40px 30px 0;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) and (min-width: 769px){
+  .blog-page{
+    &__container {
+      padding: 40px 30px 0;
+    }
+    &__header {
+      font-size: 30px;
+    }
+    &__date {
+      padding: 10px 0 25px;
+      font-size: 13px;
+    }
+    &__text {
+      &-content {
+        max-width: 580px;
+      }
+      &-paragraph {
+        font-size: 13px;
+        line-height: 17px;
+      }
+    }  
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: $sm-size){
+  .blog-page{
+    &__container {
+      padding: 40px 30px 0;
+    }
+    &__header {
+      font-size: 30px;
+      line-height: 40px;
+
+    }
+    &__date {
+      padding: 10px 0 25px;
+      font-size: 13px;
+    }
+    &__text {
+      &-content {
+        max-width: 550px;
+      }
+      &-paragraph {
+        font-size: 13px;
+        line-height: 17px;
+      }
+    }  
+    &__img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+  }
+}
+
+@media screen and (max-width: 640px){
+  .blog-page{
+    &__container {
+      padding: 40px 30px 0;
+    }
+    &__side-line {
+      border-left: 0px solid transparent;
+  
+    }
+    &__header {
+      font-size: 24px;
+      line-height: 30px;
+
+    }
+    &__date {
+      padding: 10px 0 25px;
+      font-size: 12px;
+    }
+    &__text {
+      &-content {
+        max-width: 290px;
+      }
+      &-paragraph {
+        font-size: 12px;
+        line-height: 15px;
+      }
+    } 
+    &__img {
+      width: 100%;
+      border-radius: 5px; 
+    }
+  }
+}

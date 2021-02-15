@@ -18,7 +18,7 @@
     "type": "git",
     "url": "https://gitlab.com/dan-it/js-course-development/fe-final-backend.git"
   },
-  "author": "Saribeg",
+  "author": "FE-17",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.817.0",

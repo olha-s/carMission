@@ -29,18 +29,17 @@ const config = {
 };
 
 const FormContainerNavbar = () => {
-  const [navbarList, setNavbarList] = useState([]);
-  const [sectionsLinkArr, setSectionsLinkArr] = useState([]);
-
   const navbarData = useSelector(getNavbarData);
   const sectionsData = useSelector(getMainSections);
   const mainClassName = "admin-navbar";
-  const nextNum = navbarData.length + 1;
+  const [navbarList, setNavbarList] = useState([]);
+  const [sectionsLinkArr, setSectionsLinkArr] = useState([]);
+  const [itemsCount, setItemsCount] = useState([]);
 
   const createNewFormItem = () => {
-    const countsNums = navbarData.map((e) => e.numberInNavbar);
-    const newCountsNums = [...countsNums, nextNum.toString()];
-    const newNumbersInNavbar = newCountsNums.map((e) => ({
+    const nextNum = itemsCount.length + 1;
+    itemsCount.push(nextNum.toString())
+    const newNumbersInNavbar = itemsCount.map((e) => ({
       value: e,
       label: e,
     }));
@@ -71,16 +70,25 @@ const FormContainerNavbar = () => {
   };
 
   useEffect(() => {
-    const allNumbersInNavbar = navbarData.map((e) => ({
-      value: e.numberInNavbar,
-      label: e.numberInNavbar,
-    }));
     const sectionsLinks = sectionsData
       .map((e) => ({
         value: e.name,
         label: e.name,
       }))
       .filter((e) => e.value !== undefined);
+    
+    const counts = navbarData.map(e => e.numberInNavbar);
+    const firstNum = counts[0];
+    const lastNum = counts[counts.length - 1];
+    const arrOfNums = [];
+    for (let i = firstNum; i <= lastNum; i++) {
+      arrOfNums.push(i.toString());
+    }
+
+    const allNumbersInNavbar = arrOfNums.map((e) => ({
+      value: e,
+      label: e,
+    }));
 
     const mapFormToRender = () => {
       return navbarData.map((item) => {
@@ -97,6 +105,7 @@ const FormContainerNavbar = () => {
       });
     };
 
+    setItemsCount(arrOfNums);
     setSectionsLinkArr(sectionsLinks);
     setNavbarList(mapFormToRender());
   }, [navbarData, sectionsData]);

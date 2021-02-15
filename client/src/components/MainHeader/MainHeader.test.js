@@ -102,6 +102,7 @@ test("Is MainHeader have navbar", () => {
             </BrowserRouter>
         </Provider>
     )
-    const navbar = getByTestId("navbar"); 
+    const navbar = getByTestId("navbar");
     expect(navbar).toBeInTheDocument();
 })
+
