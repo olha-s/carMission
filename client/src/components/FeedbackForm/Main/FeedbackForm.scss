@@ -35,7 +35,7 @@
 
   &__heading {
     margin-top: 50px;
-    color: white;
+    color: $palette-secondary;
     font-weight: 600;
     font-size: 30px;
   }
@@ -56,7 +56,7 @@
     align-items: center;
     width: 34vw;
     margin-top: 15px;
-    color: #c6d1de;
+    color: $palette-secondary;
     font-size: 13px;
   }
 
@@ -108,6 +108,7 @@
     width: 60%;
     margin-top: 5px;
     padding: 15px;
+    color: $palette-secondary;
     font-size: 14px;
     background: #333438;
     border-color: transparent;
