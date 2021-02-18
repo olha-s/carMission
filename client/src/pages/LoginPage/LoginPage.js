@@ -51,6 +51,7 @@ const LoginPage = () => {
       {({ errors }) => (
         <div className="login">
           <Form className="login__form">
+            <h3 className="login__head">Авторизация</h3>
             <Field
               className="login__field"
               name="login"
