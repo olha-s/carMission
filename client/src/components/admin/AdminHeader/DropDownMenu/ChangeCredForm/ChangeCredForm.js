@@ -9,7 +9,7 @@ import PassFields from "../PassFields/PassFields";
 import { loginSchema, passwordSchema } from "./validationSchemas";
 import { loginValues, passwordValues } from "./initialValues";
 
-const ChangeCredForm = ({ id, isLogin, isPass }) => {
+const ChangeCredForm = ({ id, isLogin, isPass, setLogin }) => {
   const [isChange, setIsChange] = useState(false);
 
   const getBtnText = () => {
@@ -73,6 +73,7 @@ const ChangeCredForm = ({ id, isLogin, isPass }) => {
       if (isPass) {
         toastr.success("Успешно", "Пароль изменён");
       } else if (isLogin) {
+        setLogin(res.data.login);
         toastr.success("Успешно", "Логин изменён");
       }
       setIsChange(false);

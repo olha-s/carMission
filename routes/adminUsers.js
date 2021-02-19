@@ -7,6 +7,7 @@ const {
   createAdmin,
   loginAdmin,
   getAdmins,
+  getAdminById,
   deleteAdmin,
   editAdminInfo,
   updatePassword,
@@ -26,6 +27,15 @@ router.post("/login", loginAdmin);
 // @desc    Return admins collection
 // @access  Private
 router.get("/", passport.authenticate("jwt", { session: false }), getAdmins);
+
+// @route   GET /admin-users
+// @desc    Return one admin
+// @access  Private
+router.get(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  getAdminById
+);
 
 // @route   DELETE /admin-users/delete/
 // @desc    Delete admin by id

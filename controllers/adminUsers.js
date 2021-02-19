@@ -170,6 +170,28 @@ exports.getAdmins = (req, res, next) => {
     );
 };
 
+// Controller for getting one admin user
+exports.getAdminById = (req, res, next) => {
+  Admin.findOne({ _id: req.params.id })
+    .lean()
+    .then((admin) => {
+      if (!admin) {
+        return res.status(400).json({
+          message: `Admin with id "${req.params.id}" is not found.`,
+        });
+      } else {
+        const { password, ...rest } = admin;
+
+        res.status(200).send(rest);
+      }
+    })
+    .catch((err) =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `,
+      })
+    );
+};
+
 exports.deleteAdmin = (req, res, next) => {
   Admin.findOne({ _id: req.params.id }).then(async (admin) => {
     if (!admin) {
