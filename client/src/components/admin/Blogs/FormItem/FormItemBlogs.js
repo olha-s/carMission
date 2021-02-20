@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import AdminFormField from "../../AdminFormField/AdminFormField";
 import { validationSchema } from "../ValidationSchema";
 import "./FormItemBlogs.scss";
+import { Editor } from "@tinymce/tinymce-react";
 
 const FormItemBlogs = ({
   sourceObj,
@@ -12,6 +13,12 @@ const FormItemBlogs = ({
   handleUpdate,
 }) => {
   const { photo, title, text, fullText, buttonText, date } = sourceObj;
+  const [blogText, setBlogText] = useState(fullText);
+
+  const myUpdate = (values) => {
+    values.fullText = blogText;
+    handleUpdate(values);
+  };
 
   return (
     <Formik
@@ -19,7 +26,7 @@ const FormItemBlogs = ({
       validationSchema={validationSchema}
       validateOnChange={false}
       validateOnBlur={false}
-      onSubmit={isNew ? handlePost : handleUpdate}
+      onSubmit={isNew ? handlePost : myUpdate}
     >
       {({ errors, isSubmitting }) => (
         <Form className="admin-blogs__form-item" noValidate>
@@ -51,15 +58,10 @@ const FormItemBlogs = ({
             errors={errors}
             labelName="Краткое описание блога"
           />
-          <AdminFormField
-            as="textarea"
-            labelClassName="admin-blogs__form-label"
-            fieldClassName="admin-blogs__form-textarea"
-            errorClassName="admin-blogs__form-error"
-            type="textarea"
-            name="fullText"
-            errors={errors}
-            labelName="Текст блога"
+          <Editor
+            apiKey="nd49ra86ih41ltzuer5300ddq50zkffzx917inp5k032md2m"
+            value={fullText}
+            onEditorChange={(val) => setBlogText(val)}
           />
           <AdminFormField
             labelClassName="admin-blogs__form-label"
