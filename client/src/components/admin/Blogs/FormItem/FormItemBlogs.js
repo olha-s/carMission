@@ -58,6 +58,7 @@ const FormItemBlogs = ({
             errors={errors}
             labelName="Краткое описание блога"
           />
+          <p>Полный текст блога</p>
           <Editor
             apiKey="nd49ra86ih41ltzuer5300ddq50zkffzx917inp5k032md2m"
             value={fullText}
