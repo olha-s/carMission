@@ -6,7 +6,6 @@ import FormItemLogo from "../FormItem/FormItemLogo";
 import SectionHeading from "../../../generalComponents/SectionHeading/SectionHeading";
 import "./FormContainerLogo.scss";
 import { updateLogoImgSrc } from "../../../../store/logo/operations";
-import { updateLogoData } from "../../../../store/logo/actions";
 
 const config = {
   dropZone: true,
@@ -18,7 +17,7 @@ const config = {
   },
   actions: {
     updateS3Link: updateLogoImgSrc,
-    updateInRedux: updateLogoData,
+    updateInRedux: updateLogoImgSrc,
   },
 };
 

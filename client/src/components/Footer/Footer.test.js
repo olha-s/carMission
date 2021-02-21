@@ -23,13 +23,13 @@ const testStore = mockStore({
 const resizeWindow = (x, y) => {
     window.innerWidth = x;
     window.innerHeight = y;
-    window.dispatchEvent(new Event('resize'));
+    window.dispatchEvent(new Event("resize"));
 }
 
 jest.mock("../Navbar/Navbar", () => () => <div data-testid="navbar" onClick={jest.fn()}>Navbar</div>);
 jest.mock("../generalComponents/Button/Button", () => () => <button data-testid="button">Touch</button>)
-jest.mock("../Logo/Logo", () => () => <img data-testid="logo"/>)
-jest.mock("../SocialNetworks/SocialNetworks", () => () => <div data-testid="soc-nets"></div>)
+jest.mock("../Logo/Logo", () => () => <img data-testid="logo" alt="test-img"/>)
+jest.mock("../SocialNetworks/SocialNetworks", () => () => <div data-testid="soc-nets"/>)
 
 test("Is Footer return navbar-block", () => {
     const { getByTestId } = render(
