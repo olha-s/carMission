@@ -16,13 +16,13 @@ const FormItemBlogs = ({
 }) => {
   const { photo, title, text, fullText, buttonText, date } = sourceObj;
   const [blogText, setBlogText] = useState(fullText);
-  
+
   const submitItem = (values) => {
     const {blogDate, ...rest} = values;
 
     rest.fullText = blogText;
     rest.date = blogDate.getTime();
-    
+
     isNew ? handlePost(rest) : handleUpdate(rest);
   }
 
@@ -67,7 +67,6 @@ const FormItemBlogs = ({
           <AdminFormField
             as={Editor}
             labelClassName="admin-blogs__form-label"
-            fieldClassName="admin-blogs__form-textarea"
             errorClassName="admin-blogs__form-error"
             type="text"
             name="fullText"
@@ -76,6 +75,7 @@ const FormItemBlogs = ({
             apiKey="nd49ra86ih41ltzuer5300ddq50zkffzx917inp5k032md2m"
             value={fullText}
             onEditorChange={(val) => setBlogText(val)}
+            textareaName="fullText"
           />
           <AdminFormField
             labelClassName="admin-blogs__form-label"

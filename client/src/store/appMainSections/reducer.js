@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
     case UPDATE_SECTION:
       return {
         ...state,
-        stages: action.payload,
+        sections: action.payload,
       };
     default:
       return state;

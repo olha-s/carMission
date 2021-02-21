@@ -3,9 +3,24 @@ import { Formik, Form, Field } from "formik";
 import "./FormItem.scss";
 import AdminFormField from "../../AdminFormField/AdminFormField";
 import { validationSchema } from "../validationSchema";
+import { useDispatch } from "react-redux";
+import { updateNavbarDataAnchor } from "../../../../store/navbar/operations";
 
 const FormItem = ({ sourceObj, children, handleUpdate }) => {
   const { heading, description, index, disabled, name, imgPath } = sourceObj;
+  const dispatch = useDispatch();
+
+  const putToDB = (values) => {
+    const obj = {
+      ...sourceObj,
+      ...values,
+      old: sourceObj.name,
+    };
+
+    handleUpdate(obj).then(() => {
+      dispatch(updateNavbarDataAnchor(obj.name, sourceObj.name));
+    });
+  };
 
   return (
     <Formik
@@ -20,19 +35,23 @@ const FormItem = ({ sourceObj, children, handleUpdate }) => {
       validationSchema={validationSchema}
       validateOnChange={false}
       validateOnBlur={false}
-      onSubmit={handleUpdate}
+      onSubmit={putToDB}
     >
       {({ errors }) => (
         <Form className="admin__form-item">
           <AdminFormField
-            className="admin__form-label"
+            labelClassName="admin-stages__form-label"
+            fieldClassName="admin-stages__form-input"
+            errorClassName="admin-stages__form-error"
             type="text"
             name="heading"
             errors={errors}
             labelName="Заголовок"
           />
           <AdminFormField
-            className="admin__form-label"
+            labelClassName="admin-stages__form-label"
+            fieldClassName="admin-stages__form-input"
+            errorClassName="admin-stages__form-error"
             type="text"
             name="description"
             errors={errors}
@@ -40,14 +59,18 @@ const FormItem = ({ sourceObj, children, handleUpdate }) => {
             as="textarea"
           />
           <AdminFormField
-            className="admin__form-label"
+            labelClassName="admin-stages__form-label"
+            fieldClassName="admin-stages__form-input"
+            errorClassName="admin-stages__form-error"
             type="text"
             name="index"
             errors={errors}
             labelName="Порядок при отображении"
           />
           <AdminFormField
-            className="admin__form-label"
+            labelClassName="admin-stages__form-label"
+            fieldClassName="admin-stages__form-input"
+            errorClassName="admin-stages__form-error"
             type="text"
             name="name"
             errors={errors}
@@ -55,7 +78,9 @@ const FormItem = ({ sourceObj, children, handleUpdate }) => {
           />
           {imgPath && (
             <AdminFormField
-              className="admin__form-label"
+              labelClassName="admin-stages__form-label"
+              fieldClassName="admin-stages__form-input"
+              errorClassName="admin-stages__form-error"
               type="text"
               name="imgPath"
               errors={errors}

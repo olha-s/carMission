@@ -24,10 +24,8 @@ const BlogPageItem = ({ className, data }) => {
         <div className={`${className}__text-content`}>
           <SectionHeading text={title} className={`${className}__header`} />
           <p className={`${className}__date`}>{dateDDMMYYY}</p>
-          <div className={`${className}__text`}>
-            <p className={`${className}__text-paragraph`}>
-              {ReactHtmlParser(fullText)}
-            </p>
+          <div className={`${className}__text-paragraph`}>
+            {ReactHtmlParser(fullText)}
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 const SectionMainPage = require("../models/SectionMainPage");
+const Navbar = require("../models/Navbar");
 const _ = require("lodash");
 const queryCreator = require("../commonHelpers/queryCreator");
 const {
@@ -38,15 +39,31 @@ exports.updateSectionMainPage = (req, res, next) => {
           message: `Section of main page with _id "${req.params.id}" is not found.`,
         });
       } else {
-        const sectionMainPageData = _.cloneDeep(req.body);
+        const { old, ...rest } = req.body;
+        const sectionMainPageData = _.cloneDeep(rest);
         const updatedSectionMainPage = queryCreator(sectionMainPageData);
-
+        console.log("new", rest.name);
+        console.log("old", old);
         SectionMainPage.findOneAndUpdate(
           { _id: req.params.id },
           { $set: updatedSectionMainPage },
           { new: true }
         )
-          .then((sectionMainPage) => res.json(sectionMainPage))
+          .then((sectionMainPage) => {
+            Navbar.findOneAndUpdate(
+              { sectionId: old },
+              { $set: { sectionId: rest.name } },
+              { new: true }
+            )
+              .then((nav) => {
+                res.json(sectionMainPage);
+              })
+              .catch((err) => {
+                res
+                  .status(400)
+                  .json({ message: `Err happened on server: ${err}` });
+              });
+          })
           .catch((err) =>
             res.status(400).json({
               message: `Error happened on server: "${err}" `,

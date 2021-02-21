@@ -31,15 +31,15 @@ export const loadNavbarData = () => async (dispatch) => {
       toastr.error(err.message);
     });
 
-    navbarDataFromDB.map(e => {
-    if(e.sectionId) {
-        const isDisabled = mainDataFromDB.find((i) => e.sectionId === i.name);
-        if(isDisabled !== undefined) {
-            e.disabled = isDisabled.disabled
-        }
+  navbarDataFromDB.map((e) => {
+    if (e.sectionId) {
+      const isDisabled = mainDataFromDB.find((i) => e.sectionId === i.name);
+      if (isDisabled !== undefined) {
+        e.disabled = isDisabled.disabled;
+      }
     }
     return e;
-  })
+  });
 
   navbarDataFromDB.sort((a, b) => a.numberInNavbar - b.numberInNavbar);
 
@@ -47,14 +47,16 @@ export const loadNavbarData = () => async (dispatch) => {
   dispatch(navbarDataLoading(false));
 };
 
-
 export const filterNavbarData = (id) => (dispatch, getStore) => {
   const items = getNavbarData(getStore());
   const filtered = items.filter((item) => item._id !== id);
   dispatch(updateItem(filtered));
 };
 
-export const updateNavbarDataByNewObject = (newItem) => (dispatch, getStore) => {
+export const updateNavbarDataByNewObject = (newItem) => (
+  dispatch,
+  getStore
+) => {
   const items = getNavbarData(getStore());
 
   const updated = items.map((item) => {
@@ -68,3 +70,22 @@ export const updateNavbarDataByNewObject = (newItem) => (dispatch, getStore) => 
   dispatch(updateItem(updated));
 };
 
+export const updateNavbarDataAnchor = (newAnchor, oldAnchor) => (
+  dispatch,
+  getStore
+) => {
+  const items = getNavbarData(getStore());
+
+  const updated = items.map((item) => {
+    if (item.sectionId === oldAnchor) {
+      return {
+        ...item,
+        sectionId: newAnchor,
+      };
+    } else {
+      return item;
+    }
+  });
+
+  dispatch(updateItem(updated));
+};

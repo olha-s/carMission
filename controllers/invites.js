@@ -14,11 +14,27 @@ exports.addInvite = async (req, res, next) => {
     email,
     subject,
     `<p style="font-size: 20px">Ваша ссылка на регистрацию на сайте:<br>${hostUrl}/users/registration/invite?uuid=${newUuid}&email=${email}</p>`
-  );
-  console.log(newMail);
-  newInvite
-    .save()
-    .then((data) => res.status(200).json({ message: "Invite sent" }))
+  ).catch((err) => {
+    res.status(400).json({ message: `Error happened on server: "${err}" ` });
+  });
+
+  Invite.findOne({ email: req.body.email })
+    .then((invite) => {
+      if (invite) {
+        res
+          .status(400)
+          .json({ message: `invite on email ${req.body.email} already exist` });
+      } else {
+        newInvite
+          .save()
+          .then((data) => res.status(200).json({ message: "Invite sent" }))
+          .catch((err) =>
+            res.status(400).json({
+              message: `Error happened on server: "${err}" `,
+            })
+          );
+      }
+    })
     .catch((err) =>
       res.status(400).json({
         message: `Error happened on server: "${err}" `,
