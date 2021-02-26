@@ -12,7 +12,7 @@ export const loadWorkStages = () => async (dispatch) => {
   })
     .then((r) => r.data)
     .catch((err) => {
-      toastr.error(err.message);
+      toastr.error(err.response.data.message);
     });
 
   stagesFromDB.sort((a, b) => a.num - b.num);

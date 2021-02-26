@@ -10,7 +10,7 @@ export const loadMainSection = () => async (dispatch) => {
     .get("/api/sections-main/")
     .then((r) => r.data)
     .catch((err) => {
-      toastr.error(err.message);
+      toastr.error(err.response.data.message);
     });
 
   sectionsFromServer.sort((a, b) => a.index - b.index);

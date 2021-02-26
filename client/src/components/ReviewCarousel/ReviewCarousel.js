@@ -104,10 +104,7 @@ const ReviewCarousel = ({ heading, anchorName }) => {
         <Loader />
       ) : (
         <div className="carousel__wrapper">
-          <Slider {...settings}>
-            {allReviews}
-            {allReviews}
-          </Slider>
+          <Slider {...settings}>{allReviews}</Slider>
         </div>
       )}
     </section>

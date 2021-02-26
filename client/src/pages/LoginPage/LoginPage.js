@@ -25,7 +25,7 @@ const LoginPage = () => {
     const res = await axios
       .post("/api/admin-users/login", { ...values })
       .catch((err) => {
-        toastr.error(err.message);
+        toastr.error(err.response.data.message);
       });
 
     if (res.data.success) {

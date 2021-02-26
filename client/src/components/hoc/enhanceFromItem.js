@@ -22,7 +22,7 @@ const enhanceFormItem = (Component, config) => {
       const deleted = await axios
         .delete(`${routes.delete}${sourceObj._id}`)
         .catch((err) => {
-          toastr.error(err.message);
+          toastr.error(err.response.data.message);
         });
 
       if (deleted.status === 200) {
@@ -47,7 +47,7 @@ const enhanceFormItem = (Component, config) => {
           },
         })
         .catch((err) => {
-          toastr.error(err.message);
+          toastr.error(err.response.data.message);
         });
 
       dispatch(actions.updateS3Link(res.data.location, id));
@@ -64,7 +64,7 @@ const enhanceFormItem = (Component, config) => {
       const updated = await axios
         .put(`${routes.put}${sourceObj._id}`, updatedObj)
         .catch((err) => {
-          toastr.error(err.message);
+          toastr.error(err.response.data.message);
         });
 
       if (updated.status === 200) {
@@ -92,7 +92,7 @@ const enhanceFormItem = (Component, config) => {
     const handlePostToDB = async (values) => {
       if (values[pathProp] || fileReady) {
         const newObj = await axios.post(routes.post, values).catch((err) => {
-          toastr.error(err.message);
+          toastr.error(err.response.data.message);
         });
 
         if (newObj.status === 200) {
@@ -114,7 +114,7 @@ const enhanceFormItem = (Component, config) => {
 
     const handlePostWithoutDropzone = async (values) => {
       const newObj = await axios.post(routes.post, values).catch((err) => {
-        toastr.error(err.message);
+        toastr.error(err.response.data.message);
       });
 
       if (newObj.status === 200) {

@@ -18,7 +18,7 @@ const AdminsWrapper = () => {
     const getAdmins = async () => {
       const adminsFromDB = await axios
         .get("/api/admin-users/")
-        .catch((err) => toastr.error(err.message));
+        .catch((err) => toastr.error(err.response.data.message));
 
       if (adminsFromDB.status === 200) {
         setAdminsList(adminsFromDB.data);
@@ -30,7 +30,7 @@ const AdminsWrapper = () => {
     const getHidden = async () => {
       const config = await axios
         .get("/api/configs/admins-visibility")
-        .catch((err) => toastr.error(err.message));
+        .catch((err) => toastr.error(err.response.data.message));
 
       if (config.status === 200) {
         setIsAdminsHidden(config.data.hidden);
@@ -44,7 +44,7 @@ const AdminsWrapper = () => {
   const toggleHidden = async () => {
     const updatedConfig = await axios
       .put("/api/configs/admins-visibility", { hidden: !isAdminsHidden })
-      .catch((err) => toastr.error(err.message));
+      .catch((err) => toastr.error(err.response.data.message));
 
     if (updatedConfig.status === 200) {
       setIsAdminsHidden((prevState) => !prevState);

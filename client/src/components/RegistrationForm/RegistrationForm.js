@@ -53,7 +53,7 @@ const RegistrationForm = ({ uuid, email }) => {
 
     const res = await axios
       .post("/api/admin-users/", dataToSend)
-      .catch((err) => toastr.error(err.message));
+      .catch((err) => toastr.error(err.response.data.message));
 
     if (res.status === 200) {
       setSubmitSuccessfully(true);

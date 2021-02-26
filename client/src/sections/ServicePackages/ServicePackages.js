@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import SectionHeading from "../../components/generalComponents/SectionHeading/SectionHeading";
 import "./servicePackages.scss";
 import Button from "../../components/generalComponents/Button/Button";
@@ -110,4 +110,4 @@ ServicePackages.propTypes = {
   anchorName: PropTypes.string,
 };
 
-export default ServicePackages;
+export default memo(ServicePackages);

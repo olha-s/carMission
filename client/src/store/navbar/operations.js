@@ -10,7 +10,7 @@ export const loadNavbarData = () => async (dispatch) => {
       dispatch(setNavbarData(res.data));
     })
     .catch((err) => {
-      toastr.error(err.message);
+      toastr.error(err.response.data.message);
     });
 
   const navbarDataFromDB = await axios({
@@ -19,7 +19,7 @@ export const loadNavbarData = () => async (dispatch) => {
   })
     .then((r) => r.data)
     .catch((err) => {
-      toastr.error(err.message);
+      toastr.error(err.response.data.message);
     });
 
   const mainDataFromDB = await axios({
@@ -28,7 +28,7 @@ export const loadNavbarData = () => async (dispatch) => {
   })
     .then((r) => r.data)
     .catch((err) => {
-      toastr.error(err.message);
+      toastr.error(err.response.data.message);
     });
 
   navbarDataFromDB.map((e) => {

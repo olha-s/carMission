@@ -12,7 +12,7 @@ export const loadFeatures = () => async (dispatch) => {
   })
     .then((res) => res.data)
     .catch((err) => {
-      toastr.error(err.message);
+      toastr.error(err.response.data.message);
     });
 
   dispatch(setFeatures(featuresFromServer));

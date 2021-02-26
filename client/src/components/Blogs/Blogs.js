@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import BlogItem from "./BlogItem/BlogItem";
 import SectionHeading from "../generalComponents/SectionHeading/SectionHeading";
 import Button from "../generalComponents/Button/Button";
 import "./Blogs.scss";
 import { useSelector } from "react-redux";
-import {
-  getBlogs,
-  getBlogsIsLoading,
-} from "../../store/Blogs/selectors";
+import { getBlogs, getBlogsIsLoading } from "../../store/Blogs/selectors";
 import Loader from "../Loader/Loader";
 import useLiveHashPush from "../../utils/hooks/useLiveHashPush";
 
@@ -18,8 +15,8 @@ const Blogs = ({ heading, anchorName, id }) => {
   const ref = useLiveHashPush(anchorName);
   const numOfBlogs = blogs.length;
 
-  if(id) {
-    blogs = blogs.filter(e => e._id !== id);
+  if (id) {
+    blogs = blogs.filter((e) => e._id !== id);
   }
 
   const allBlogs = blogs.map((el) => (
@@ -36,7 +33,7 @@ const Blogs = ({ heading, anchorName, id }) => {
     />
   ));
 
-  const blogsContent = heading ?
+  const blogsContent = heading ? (
     <>
       <div className="blogs__container">
         <SectionHeading text={heading} />
@@ -47,32 +44,47 @@ const Blogs = ({ heading, anchorName, id }) => {
             <div className="blogs__wrapper">
               {allBlogs.slice(0, countOfBlogs)}
             </div>
-            {numOfBlogs > countOfBlogs && <Button text="Показать больше статей" onClick={() => setCountOfBlogs(countOfBlogs + 3)} className="blogs__show-more"/>}
+            {numOfBlogs > countOfBlogs && (
+              <Button
+                text="Показать больше статей"
+                onClick={() => setCountOfBlogs(countOfBlogs + 3)}
+                className="blogs__show-more"
+              />
+            )}
           </>
         )}
       </div>
     </>
-    :
+  ) : (
     <>
       {isLoading ? (
-          <Loader />
-        ) : (
-          <>
-            <div className="blogs__wrapper">
-              {allBlogs.slice(0, countOfBlogs)}
-            </div>
-            {numOfBlogs > countOfBlogs && <Button text="Показать больше статей" onClick={() => setCountOfBlogs(countOfBlogs + 3)} className="blogs__show-more"/>}
-          </>
-        )}
-
+        <Loader />
+      ) : (
+        <>
+          <div className="blogs__wrapper">
+            {allBlogs.slice(0, countOfBlogs)}
+          </div>
+          {numOfBlogs > countOfBlogs && (
+            <Button
+              text="Показать больше статей"
+              onClick={() => setCountOfBlogs(countOfBlogs + 3)}
+              className="blogs__show-more"
+            />
+          )}
+        </>
+      )}
     </>
+  );
 
   return (
-    <section className="blogs__section" id={anchorName} ref={anchorName ? ref : null}>
+    <section
+      className="blogs__section"
+      id={anchorName}
+      ref={anchorName ? ref : null}
+    >
       {blogsContent}
     </section>
   );
 };
 
-export default Blogs;
-
+export default memo(Blogs);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./WorkStages.scss";
 import WorkStagesList from "../WorkStagesList/WorkStagesList";
 import Button from "../../../components/generalComponents/Button/Button";
@@ -40,4 +40,4 @@ WorkStages.propTypes = {
   anchorName: PropTypes.string,
 };
 
-export default WorkStages;
+export default memo(WorkStages);

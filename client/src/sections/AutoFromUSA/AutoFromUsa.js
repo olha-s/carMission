@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./AutoFromUSA.scss";
 import Button from "../../components/generalComponents/Button/Button";
 import { useDispatch } from "react-redux";
@@ -35,4 +35,4 @@ AutoFromUsa.propTypes = {
   anchorName: PropTypes.string,
 };
 
-export default AutoFromUsa;
+export default memo(AutoFromUsa);

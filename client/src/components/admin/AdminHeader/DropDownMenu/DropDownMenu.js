@@ -12,7 +12,7 @@ const DropDownMenu = () => {
     const fetchUser = async () => {
       const user = await axios
         .get(`/api/admin-users/${id}`)
-        .catch((err) => toastr.error(err.message));
+        .catch((err) => toastr.error(err.response.data.message));
 
       if (user.status === 200) {
         const { login } = user.data;

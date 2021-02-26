@@ -51,13 +51,13 @@ const ChangeCredForm = ({ id, isLogin, isPass, setLogin }) => {
     if (isLogin) {
       return axios
         .put(`/api/admin-users/${id}`, values)
-        .catch((err) => toastr.error(err.message));
+        .catch((err) => toastr.error(err.response.data.message));
     } else if (isPass) {
       const { password, newPassword } = values;
       const toSend = { password, newPassword };
       return axios
         .put(`/api/admin-users/password/${id}`, toSend)
-        .catch((err) => toastr.error(err.message));
+        .catch((err) => toastr.error(err.response.data.message));
     }
   };
 

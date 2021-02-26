@@ -12,7 +12,7 @@ export const loadReviews = () => (dispatch) => {
       dispatch(ReviewsIsLoading(false));
     })
     .catch((err) => {
-      toastr.error(err.message);
+      toastr.error(err.response.data.message);
     });
 };
 

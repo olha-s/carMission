@@ -10,7 +10,7 @@ const UserItem = ({ sourceObj, admins, setAdmins }) => {
   const toggleProp = async (propName, value) => {
     const res = await axios
       .put(`/api/admin-users/${_id}`, { [propName]: !value })
-      .catch((err) => toastr.error(err.message));
+      .catch((err) => toastr.error(err.response.data.message));
 
     if (res.status === 200) {
       const updated = admins.map((admin) => {

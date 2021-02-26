@@ -16,7 +16,7 @@ export const loadSocialNetworks = () => async (dispatch) => {
   })
     .then((r) => r.data)
     .catch((err) => {
-      toastr.error(err.message);
+      toastr.error(err.response.data.message);
     });
 
   dispatch(setSocialNetworks(socialNetworksFromDB));
@@ -29,7 +29,10 @@ export const filterSocialNetworks = (id) => (dispatch, getStore) => {
   dispatch(updateSocialNetwroks(filtered));
 };
 
-export const updateSocialNetwroksByNewSrc = (src, id) => (dispatch, getStore) => {
+export const updateSocialNetwroksByNewSrc = (src, id) => (
+  dispatch,
+  getStore
+) => {
   const items = getSocialNetworks(getStore());
   const updated = items.map((item) => {
     if (item._id === id) {
@@ -45,7 +48,10 @@ export const updateSocialNetwroksByNewSrc = (src, id) => (dispatch, getStore) =>
   dispatch(updateSocialNetwroks(updated));
 };
 
-export const updateSocialNetworkNewObject = (newNetwork) => (dispatch, getStore) => {
+export const updateSocialNetworkNewObject = (newNetwork) => (
+  dispatch,
+  getStore
+) => {
   const networks = getSocialNetworks(getStore());
 
   const updated = networks.map((item) => {
