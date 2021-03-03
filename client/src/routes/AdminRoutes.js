@@ -12,6 +12,7 @@ import AdminsWrapper from "../components/admin/AdminUsers/AdminsWrapper/AdminsWr
 import { decodeUser } from "../utils/functions/decodeUser";
 import FormContainerLogo from "../components/admin/Logo/FormConatiner/FormContainerLogo";
 import FormContainerNavbar from "../components/admin/Navbar/FormContainer/FormContainerNavbar";
+import Callbacks from "../components/admin/Callbacks/Main/Callbacks";
 
 const AdminRoutes = () => {
   const { isOwner } = decodeUser().decoded;
@@ -47,17 +48,8 @@ const AdminRoutes = () => {
         path="/admin/reviews"
         component={FormContainerReviewCarousel}
       />
+      <Route exact path="/admin/callback-requests" component={Callbacks} />
       <Route exact path="/admin/blogs" component={FormContainerBlogs} />
-      <Route
-        exact
-        path="/admin/car-catalog"
-        component={FormContainerWorkStages}
-      />
-      <Route
-        exact
-        path="/admin/calculator"
-        component={FormContainerWorkStages}
-      />
       {isOwner && <Route exact path="/admin/users" component={AdminsWrapper} />}
       <Route path="*" component={Page404} />
     </Switch>

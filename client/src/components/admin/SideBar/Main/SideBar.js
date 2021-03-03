@@ -19,6 +19,10 @@ const SideBar = () => {
 
   const links = [
     {
+      route: "callback-requests",
+      heading: "Обратный звонок",
+    },
+    {
       route: "main-page-sections",
       heading: "Секции главной страницы",
     },
