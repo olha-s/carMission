@@ -26,6 +26,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .stylelintcache
-.stylelintcache;
-debug.log
 .prettierignore
+
