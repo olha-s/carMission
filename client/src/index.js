@@ -3,11 +3,22 @@ import ReactDOM from "react-dom";
 import "./theme/styles/style.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { HelmetProvider } from "react-helmet-async";
+import store from "./store/store";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <React.StrictMode>
+    <Provider store={store}>
+      <HelmetProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
+    </Provider>
+  // </React.StrictMode>
+  ,
   document.getElementById("root")
 );
 
